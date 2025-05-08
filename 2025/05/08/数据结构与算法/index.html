@@ -4,28 +4,89 @@
   <meta charset="utf-8">
   
   
-  <title>Hexo</title>
+  <title>数据结构与算法 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://frosty-xue.github.io/index.html">
+  <meta name="description" content="数据结构与算法整理第一章 导论 数据结构概念 A data structure is a data object together with the relationships among the data members that compose the object Data Structure &#x3D; {D，R}，D为数据，R为所有数据间的关系 抽象数据结构ADT：数据 + 对应操">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法">
+<meta property="og:url" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="数据结构与算法整理第一章 导论 数据结构概念 A data structure is a data object together with the relationships among the data members that compose the object Data Structure &#x3D; {D，R}，D为数据，R为所有数据间的关系 抽象数据结构ADT：数据 + 对应操">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240106150547680.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240106173001935.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240106173658855.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240106210937444.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240106210926230.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240106212447675.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240107091929146.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240107093052919.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240107093427609.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240107111044518.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240107115634904.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240107115801585.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240107120939766.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240107123919487.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240107123115144.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240107185808987.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240107194100165.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240107200008343.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240107200139516.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240107201105493.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240107201206982.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240107201240355.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240107205422549.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240107211422734.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240107211726374.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240107211909366.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240107212509783.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240107212531304.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240107213231846.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240107213415919.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240108093433682.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240108103611106.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240108104520940.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240108104535783.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240108110219014.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240108110234403.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240108110814458.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240108114809407.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240108115459395.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240108115748149.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240108121334560.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240108121352722.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240108141408779.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240108143316318.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240108161745262.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240108203531665.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240108203823440.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240108155038706.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240108155112178.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240108195151936.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240108200440789.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240108210555872.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240108210823462.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240108210953952.png">
+<meta property="article:published_time" content="2025-05-08T14:58:58.000Z">
+<meta property="article:modified_time" content="2025-05-08T15:00:10.945Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://frosty-xue.github.io/2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240106150547680.png">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
+    <link rel="alternate" href="../../../../atom.xml" title="Hexo" type="application/atom+xml">
   
   
+    <link rel="shortcut icon" href="../../../../favicon.png">
   
-<link rel="stylesheet" href="css/style.css">
+  
+  
+<link rel="stylesheet" href="../../../../css/style.css">
 
   
     
-<link rel="stylesheet" href="fancybox/jquery.fancybox.min.css">
+<link rel="stylesheet" href="../../../../fancybox/jquery.fancybox.min.css">
 
   
   
@@ -41,7 +102,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="index.html" id="logo">Hexo</a>
+        <a href="../../../../index.html" id="logo">Hexo</a>
       </h1>
       
     </div>
@@ -49,15 +110,15 @@
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
         
-          <a class="main-nav-link" href="index.html">Home</a>
+          <a class="main-nav-link" href="../../../../index.html">Home</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          <a class="main-nav-link" href="../../../../archives">Archives</a>
         
       </nav>
       <nav id="sub-nav">
         
         
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+          <a class="nav-icon" href="../../../../atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
         
         <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
       </nav>
@@ -69,11 +130,9 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-数据结构与算法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-数据结构与算法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="article-date">
+    <a href="" class="article-date">
   <time class="dt-published" datetime="2025-05-08T14:58:58.000Z" itemprop="datePublished">2025-05-08</time>
 </a>
     
@@ -84,8 +143,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      数据结构与算法
     </h1>
   
 
@@ -969,268 +1028,24 @@
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
 
     </footer>
   </div>
   
-</article>
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-编译原理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="2025/05/08/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" class="article-date">
-  <time class="dt-published" datetime="2025-05-08T14:55:53.000Z" itemprop="datePublished">2025-05-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="2025/05/08/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a>
-    </h1>
+    <a href="../%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">编译原理</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h1>
-        
-          <p class="article-more-link">
-            <a href="2025/05/08/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://frosty-xue.github.io/2025/05/08/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" data-id="cmafhusuk0002i0tre72s0ps9" data-title="编译原理" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="tag">编译原理</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-
-  
-    <article id="post-计算机网络" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="2025/05/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="article-date">
-  <time class="dt-published" datetime="2025-05-08T11:39:58.000Z" itemprop="datePublished">2025-05-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="2025/05/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="计网重点"><a href="#计网重点" class="headerlink" title="计网重点"></a>计网重点</h1>
-        
-          <p class="article-more-link">
-            <a href="2025/05/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://frosty-xue.github.io/2025/05/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" data-id="cmafhusuq000hi0treowj8rl0" data-title="计算机网络" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-COA" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="2025/05/08/COA/" class="article-date">
-  <time class="dt-published" datetime="2025-05-08T09:58:16.000Z" itemprop="datePublished">2025-05-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="2025/05/08/COA/">计算机组成原理</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="计算机组成原理整理"><a href="#计算机组成原理整理" class="headerlink" title="计算机组成原理整理"></a>计算机组成原理整理</h1><h2 id="第一讲：计算机概述"><a href="#第一讲：计算机概述" class="headerlink" title="第一讲：计算机概述"></a>第一讲：计算机概述</h2><ul>
-<li>冯诺依曼结构<ul>
-<li>计算机由运算器、存储器、控制器、输入设备、输出设备组成<ul>
-<li>主存储器：地址和存储的内容</li>
-<li>算术逻辑单元 &#x2F; 处理单元：执行信息的实际处理</li>
-<li>程序控制单元 &#x2F; 控制单元：指挥信息的处理</li>
-<li>输入设备：将信息送入计算机中</li>
-<li>输出设备：将处理结果以某种形式显示在计算机外</li>
-</ul>
-</li>
-<li>指令和数据以同等地位存放在存储器内，并可按地址访问</li>
-<li>指令和数据均用二进制表示</li>
-</ul>
-</li>
-<li>计算机性能标准<ul>
-<li>CPU ：速度</li>
-<li>存储器：速度，容量</li>
-<li>I&#x2F;O ：速度，容量</li>
-</ul>
-</li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="2025/05/08/COA/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://frosty-xue.github.io/2025/05/08/COA/" data-id="cmafhusum0004i0tr2ur5g4vc" data-title="计算机组成原理" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-test" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="2025/05/05/test/" class="article-date">
-  <time class="dt-published" datetime="2025-05-05T12:36:26.000Z" itemprop="datePublished">2025-05-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="2025/05/05/test/">test</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>RPC</p>
-<ul>
-<li>RPC 即远程过程调用，允许程序调用运行在另一台计算机上的程序中的过程或函数，就像调用本地程序中的过程或函数一样，而无需了解底层网络细节。</li>
-<li>步骤：客户端调用-&gt;请求发送(序列化) -&gt; 服务器接受并处理(反序列化) -&gt; 结果返回(序列化) -&gt; 客户端接收结果(反序列化)</li>
-<li>常见的 RPC 框架：gRPC、Thrift、Dubbo</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://frosty-xue.github.io/2025/05/05/test/" data-id="cmafhusuj0001i0treokjg680" data-title="test" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Hexo/" rel="tag">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="2025/05/05/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2025-05-05T12:14:22.281Z" itemprop="datePublished">2025-05-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="2025/05/05/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://frosty-xue.github.io/2025/05/05/hello-world/" data-id="cmafhusuf0000i0tr66esa249" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
 </section>
@@ -1244,7 +1059,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="tag">编译原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="tag">编译原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
     </div>
   </div>
 
@@ -1254,7 +1069,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" style="font-size: 10px;">编译原理</a> <a href="tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 10px;">计算机组成原理</a> <a href="tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a>
+      <a href="../../../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../../../tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="../../../../tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="../../../../tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="../../../../tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" style="font-size: 10px;">编译原理</a> <a href="../../../../tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 10px;">计算机组成原理</a> <a href="../../../../tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a>
     </div>
   </div>
 
@@ -1263,7 +1078,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="archives/2025/05/">May 2025</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2025/05/">May 2025</a></li></ul>
     </div>
   </div>
 
@@ -1276,23 +1091,23 @@
       <ul>
         
           <li>
-            <a href="2025/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+            <a href="">数据结构与算法</a>
           </li>
         
           <li>
-            <a href="2025/05/08/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a>
+            <a href="../%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a>
           </li>
         
           <li>
-            <a href="2025/05/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+            <a href="../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
           </li>
         
           <li>
-            <a href="2025/05/08/COA/">计算机组成原理</a>
+            <a href="../COA/">计算机组成原理</a>
           </li>
         
           <li>
-            <a href="2025/05/05/test/">test</a>
+            <a href="../../05/test/">test</a>
           </li>
         
       </ul>
@@ -1317,25 +1132,25 @@
     </div>
     <nav id="mobile-nav">
   
-    <a href="index.html" class="mobile-nav-link">Home</a>
+    <a href="../../../../index.html" class="mobile-nav-link">Home</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <a href="../../../../archives" class="mobile-nav-link">Archives</a>
   
 </nav>
     
 
 
-<script src="js/jquery-3.6.4.min.js"></script>
+<script src="../../../../js/jquery-3.6.4.min.js"></script>
 
 
 
   
-<script src="fancybox/jquery.fancybox.min.js"></script>
+<script src="../../../../fancybox/jquery.fancybox.min.js"></script>
 
 
 
 
-<script src="js/script.js"></script>
+<script src="../../../../js/script.js"></script>
 
 
 
