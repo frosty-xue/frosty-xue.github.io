@@ -19,15 +19,15 @@
   <meta name="author" content="Frosty">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. 滑动窗口与双指针1.1 滑动窗口1.1.1 定长滑动窗口 总结成三步：入-更新-出。 入：下标为 i 的元素进入窗口，更新相关统计量。如果 i&lt;k−1 则重复第一步。更新：更新答案。一般是更新最大值&#x2F;最小值。出：下标为 i−k+1 的元素离开窗口，更新相关统计量。">
+    <meta name="description" content="1. 滑动窗口与双指针 写在最前面：LeetCode算法刷题笔记中一部分图文和代码来自于LeetCode上的 @灵茶山艾府 大佬，仅供学习转载。灵神题单：https:&#x2F;&#x2F;leetcode.cn&#x2F;discuss&#x2F;post&#x2F;3141566&#x2F;ru-he-ke-xue-shua-ti-by-endlesscheng-q3yd&#x2F;  1.1 滑动窗口1.1.1 定长滑动窗口 总结成三步：入-更新-出。 入：下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="滑动窗口与双指针">
 <meta property="og:url" content="https://frosty-xue.github.io/2025/05/09/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E4%B8%8E%E5%8F%8C%E6%8C%87%E9%92%88/index.html">
 <meta property="og:site_name" content="Frosty的技术博客">
-<meta property="og:description" content="1. 滑动窗口与双指针1.1 滑动窗口1.1.1 定长滑动窗口 总结成三步：入-更新-出。 入：下标为 i 的元素进入窗口，更新相关统计量。如果 i&lt;k−1 则重复第一步。更新：更新答案。一般是更新最大值&#x2F;最小值。出：下标为 i−k+1 的元素离开窗口，更新相关统计量。">
+<meta property="og:description" content="1. 滑动窗口与双指针 写在最前面：LeetCode算法刷题笔记中一部分图文和代码来自于LeetCode上的 @灵茶山艾府 大佬，仅供学习转载。灵神题单：https:&#x2F;&#x2F;leetcode.cn&#x2F;discuss&#x2F;post&#x2F;3141566&#x2F;ru-he-ke-xue-shua-ti-by-endlesscheng-q3yd&#x2F;  1.1 滑动窗口1.1.1 定长滑动窗口 总结成三步：入-更新-出。 入：下">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-05-09T08:44:32.000Z">
-<meta property="article:modified_time" content="2025-05-09T09:03:19.861Z">
+<meta property="article:modified_time" content="2025-05-09T09:30:42.092Z">
 <meta property="article:author" content="Frosty">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="滑动窗口">
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k words
+          1.3k words
         
       </span>
     
@@ -278,7 +278,10 @@
             
               <div class="markdown-body">
                 
-                <h2 id="1-滑动窗口与双指针"><a href="#1-滑动窗口与双指针" class="headerlink" title="1. 滑动窗口与双指针"></a>1. 滑动窗口与双指针</h2><h3 id="1-1-滑动窗口"><a href="#1-1-滑动窗口" class="headerlink" title="1.1 滑动窗口"></a>1.1 滑动窗口</h3><h4 id="1-1-1-定长滑动窗口"><a href="#1-1-1-定长滑动窗口" class="headerlink" title="1.1.1 定长滑动窗口"></a>1.1.1 定长滑动窗口</h4><ul>
+                <h2 id="1-滑动窗口与双指针"><a href="#1-滑动窗口与双指针" class="headerlink" title="1. 滑动窗口与双指针"></a>1. 滑动窗口与双指针</h2><blockquote>
+<p>写在最前面：LeetCode算法刷题笔记中一部分图文和代码来自于LeetCode上的 @灵茶山艾府 大佬，仅供学习转载。<br>灵神题单：<a target="_blank" rel="noopener" href="https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3yd/">https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3yd/</a></p>
+</blockquote>
+<h3 id="1-1-滑动窗口"><a href="#1-1-滑动窗口" class="headerlink" title="1.1 滑动窗口"></a>1.1 滑动窗口</h3><h4 id="1-1-1-定长滑动窗口"><a href="#1-1-1-定长滑动窗口" class="headerlink" title="1.1.1 定长滑动窗口"></a>1.1.1 定长滑动窗口</h4><ul>
 <li><p>总结成三步：入-更新-出。</p>
 <p>入：下标为 i 的元素进入窗口，更新相关统计量。如果 i&lt;k−1 则重复第一步。<br>更新：更新答案。一般是更新最大值&#x2F;最小值。<br>出：下标为 i−k+1 的元素离开窗口，更新相关统计量。</p>
 </li>
