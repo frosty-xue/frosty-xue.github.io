@@ -19,23 +19,22 @@
   <meta name="author" content="Frosty">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. 滑动窗口与双指针1.1 滑动窗口1.1.1 定长滑动窗口 总结成三步：入-更新-出。 入：下标为 i 的元素进入窗口，更新相关统计量。如果 i&lt;k−1 则重复第一步。更新：更新答案。一般是更新最大值&#x2F;最小值。出：下标为 i−k+1 的元素离开窗口，更新相关统计量。">
+    <meta name="description" content="2. 二分查找 灵神讲解视频：https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1AP41137w7&#x2F;  2.1 基本二分查找 注：以下的写法都是找第一个 &gt;&#x3D; x的下标，其他三种可以转换： &gt; x 转换成 &gt;&#x3D; (x + 1) &lt;&#x3D; x 转换成 (&gt; x) - 1，注意这种方法找到的是最后一个满足&lt;&#x3D; x">
 <meta property="og:type" content="article">
-<meta property="og:title" content="滑动窗口与双指针">
-<meta property="og:url" content="https://frosty-xue.github.io/2025/05/09/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E4%B8%8E%E5%8F%8C%E6%8C%87%E9%92%88/index.html">
+<meta property="og:title" content="二分算法">
+<meta property="og:url" content="https://frosty-xue.github.io/2025/05/09/%E4%BA%8C%E5%88%86%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="Frosty的技术博客">
-<meta property="og:description" content="1. 滑动窗口与双指针1.1 滑动窗口1.1.1 定长滑动窗口 总结成三步：入-更新-出。 入：下标为 i 的元素进入窗口，更新相关统计量。如果 i&lt;k−1 则重复第一步。更新：更新答案。一般是更新最大值&#x2F;最小值。出：下标为 i−k+1 的元素离开窗口，更新相关统计量。">
+<meta property="og:description" content="2. 二分查找 灵神讲解视频：https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1AP41137w7&#x2F;  2.1 基本二分查找 注：以下的写法都是找第一个 &gt;&#x3D; x的下标，其他三种可以转换： &gt; x 转换成 &gt;&#x3D; (x + 1) &lt;&#x3D; x 转换成 (&gt; x) - 1，注意这种方法找到的是最后一个满足&lt;&#x3D; x">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-05-09T08:44:32.000Z">
-<meta property="article:modified_time" content="2025-05-09T08:49:32.369Z">
+<meta property="article:published_time" content="2025-05-09T08:48:29.000Z">
+<meta property="article:modified_time" content="2025-05-09T08:49:32.364Z">
 <meta property="article:author" content="Frosty">
-<meta property="article:tag" content="滑动窗口">
-<meta property="article:tag" content="双指针">
+<meta property="article:tag" content="二分查找">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>滑动窗口与双指针 - Frosty的技术博客</title>
+  <title>二分算法 - Frosty的技术博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="滑动窗口与双指针"></span>
+            <span id="subtitle" data-typed-text="二分算法"></span>
           
         </div>
 
@@ -212,7 +211,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-05-09 16:44" pubdate>
+        <time datetime="2025-05-09 16:48" pubdate>
           May 9, 2025 pm
         </time>
       </span>
@@ -224,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k words
+          748 words
         
       </span>
     
@@ -235,7 +234,7 @@
         
         
         
-          11 mins
+          7 mins
         
       </span>
     
@@ -272,92 +271,73 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">滑动窗口与双指针</h1>
+            <h1 id="seo-header">二分算法</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="1-滑动窗口与双指针"><a href="#1-滑动窗口与双指针" class="headerlink" title="1. 滑动窗口与双指针"></a>1. 滑动窗口与双指针</h2><h3 id="1-1-滑动窗口"><a href="#1-1-滑动窗口" class="headerlink" title="1.1 滑动窗口"></a>1.1 滑动窗口</h3><h4 id="1-1-1-定长滑动窗口"><a href="#1-1-1-定长滑动窗口" class="headerlink" title="1.1.1 定长滑动窗口"></a>1.1.1 定长滑动窗口</h4><ul>
-<li><p>总结成三步：入-更新-出。</p>
-<p>入：下标为 i 的元素进入窗口，更新相关统计量。如果 i&lt;k−1 则重复第一步。<br>更新：更新答案。一般是更新最大值&#x2F;最小值。<br>出：下标为 i−k+1 的元素离开窗口，更新相关统计量。</p>
-</li>
-</ul>
-<span id="more"></span>
-
+                <h2 id="2-二分查找"><a href="#2-二分查找" class="headerlink" title="2. 二分查找"></a>2. 二分查找</h2><blockquote>
+<p>灵神讲解视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1AP41137w7/">https://www.bilibili.com/video/BV1AP41137w7/</a></p>
+</blockquote>
+<h3 id="2-1-基本二分查找"><a href="#2-1-基本二分查找" class="headerlink" title="2.1 基本二分查找"></a>2.1 基本二分查找</h3><blockquote>
+<p>注：以下的写法都是找第一个 &gt;&#x3D; x的下标，其他三种可以转换：</p>
+<p>&gt; x 转换成 &gt;&#x3D; (x + 1)</p>
+<p>&lt;&#x3D; x 转换成 (&gt; x) - 1，注意这种方法找到的是最后一个满足&lt;&#x3D; x 的</p>
+<p>&lt; x 转换成 (&gt;&#x3D; x) - 1，注意这种方法找到的是最后一个满足&lt; x 的</p>
+</blockquote>
 <ul>
-<li>题目列表：<a target="_blank" rel="noopener" href="https://leetcode.cn/circle/discuss/0viNMK/">https://leetcode.cn/circle/discuss/0viNMK/</a></li>
+<li><p>左闭右闭写法</p>
+<ul>
+<li>初始化：<code>L = 0, R = n - 1</code></li>
+<li>循环条件：<code>L &lt;= R</code>，即区间不为空</li>
+<li>更新L&#x2F;R：<code>L = M + 1 / R = M - 1</code></li>
+<li>最终答案为 L 或 R + 1（结束时满足L &#x3D; R + 1）</li>
 </ul>
-<h4 id="1-1-2-不定长滑动窗口"><a href="#1-1-2-不定长滑动窗口" class="headerlink" title="1.1.2 不定长滑动窗口"></a>1.1.2 不定长滑动窗口</h4><ul>
-<li>与定长区别在于当窗口右侧新进入的元素破坏限制条件时，需要用一个while循环移动左指针，直到限制条件重新被满足</li>
-<li>不定长滑动窗口主要分为三类：求最长子数组，求最短子数组，以及求子数组个数。</li>
-</ul>
-<h4 id="1-1-3-求子数组个数"><a href="#1-1-3-求子数组个数" class="headerlink" title="1.1.3 求子数组个数"></a>1.1.3 求子数组个数</h4><ul>
-<li>这种题型下一般都要求子数组是连续的</li>
-<li>越长越合法<ul>
-<li>一般要写 ans +&#x3D; left。</li>
-<li>滑动窗口的内层循环结束时，右端点固定在 right，左端点在0,1,2,…,left−1 的所有子数组（子串）都是合法的，这一共有 left 个。</li>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">lower_bound</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> target)</span> </span>&#123;<br>    <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>, right = (<span class="hljs-type">int</span>) nums.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>; <span class="hljs-comment">// 闭区间 [left, right]</span><br>    <span class="hljs-keyword">while</span> (left &lt;= right) &#123; <span class="hljs-comment">// 区间不为空</span><br>        <span class="hljs-comment">// 循环不变量：</span><br>        <span class="hljs-comment">// nums[left-1] &lt; target</span><br>        <span class="hljs-comment">// nums[right+1] &gt;= target</span><br>        <span class="hljs-type">int</span> mid = left + (right - left) / <span class="hljs-number">2</span>;<br>        <span class="hljs-keyword">if</span> (nums[mid] &gt;= target) &#123;<br>            right = mid - <span class="hljs-number">1</span>; <span class="hljs-comment">// 范围缩小到 [left, mid-1]</span><br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            left = mid + <span class="hljs-number">1</span>; <span class="hljs-comment">// 范围缩小到 [mid+1, right]</span><br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">// 循环结束后 left = right+1</span><br>    <span class="hljs-comment">// 此时 nums[left-1] &lt; target 而 nums[left] = nums[right+1] &gt;= target</span><br>    <span class="hljs-comment">// 所以 left 就是第一个 &gt;= target 的元素下标</span><br>    <span class="hljs-keyword">return</span> left;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>左闭右开写法</p>
+<ul>
+<li>初始化：<code>L = 0, R = n</code></li>
+<li>循环条件：<code>L &lt; R</code>，即区间不为空</li>
+<li>更新L&#x2F;R：<code>L = M + 1 / R = M</code></li>
+<li>最终答案为 L 或 R（结束时满足L &#x3D; R）</li>
 </ul>
 </li>
-<li>越短越合法<ul>
-<li>一般要写 ans +&#x3D; right - left + 1。</li>
-<li>滑动窗口的内层循环结束时，右端点固定在 right，左端点在 left,left+1,…,right 的所有子数组（子串）都是合法的，这一共有 right−left+1 个。</li>
-</ul>
-</li>
-<li>恰好型滑动窗口<ul>
-<li>例如，要计算有多少个元素和恰好等于k 的子数组，可以把问题变成：<ul>
-<li>计算有多少个元素和 ≥k 的子数组。</li>
-<li>计算有多少个元素和 &gt;k，也就是 ≥k+1的子数组。</li>
-</ul>
-</li>
-<li>答案就是元素和 ≥k 的子数组个数，减去元素和 ≥k+1 的子数组个数。这里把 &gt; 转换成 ≥，从而可以把滑窗逻辑封装成一个函数f，然后用f(k) - f(k + 1)计算，无需写两份滑动窗口代码</li>
-<li>注：也可以把问题变成 ≤k 减去 ≤k−1（两个至多）。可根据题目选择合适的变形方式。</li>
+<li><p>左开右开写法</p>
+<ul>
+<li>初始化：<code>L = -1, R = n</code></li>
+<li>循环条件：<code>L + 1 &lt; R</code>，即区间不为空</li>
+<li>更新L&#x2F;R：<code>L = M / R = M</code></li>
+<li>最终答案为 L + 1 或 R（结束时满足L + 1 &#x3D; R）</li>
 </ul>
 </li>
 </ul>
-<h3 id="1-2-双指针"><a href="#1-2-双指针" class="headerlink" title="1.2 双指针"></a>1.2 双指针</h3><h4 id="1-2-1-单序列双指针"><a href="#1-2-1-单序列双指针" class="headerlink" title="1.2.1 单序列双指针"></a>1.2.1 单序列双指针</h4><ul>
-<li>相向双指针<ul>
-<li>两个指针 left&#x3D;0, right&#x3D;n−1，从数组的两端开始，向中间移动，这叫相向双指针。上面的滑动窗口相当于同向双指针。</li>
-<li>遇到多于两个变量的题（如三数之和、四数之和、有效三角形的个数），对双指针以外的变量用for进行遍历，然后对剩下的部分数组（可以是左侧也可是右侧，具体看情况）进行双指针遍历</li>
+<h3 id="2-2-二分答案"><a href="#2-2-二分答案" class="headerlink" title="2.2 二分答案"></a>2.2 二分答案</h3><ul>
+<li>核心思路：题目求什么，就对这个值的范围进行二分查找并<code>check</code></li>
 </ul>
-</li>
-<li>同向双指针<ul>
-<li>两个指针的移动方向相同（都向右，或者都向左）</li>
-<li>类似于滑动窗口，通常做法是用for循环枚举一端的端点，然后通过内层while移动另一端端点</li>
-</ul>
-</li>
-<li>背向双指针<ul>
-<li>两个指针从数组中的同一个位置出发，一个向左，另一个向右，背向移动</li>
-</ul>
-</li>
-<li>原地修改<ul>
-<li>一般要对数组元素进行位置交换，通过同向双指针进行遍历（枚举其中一个，元素满足某个条件时移动另一个并进行处理）</li>
+<h4 id="2-2-1-求最小与求最大"><a href="#2-2-1-求最小与求最大" class="headerlink" title="2.2.1 求最小与求最大"></a>2.2.1 求最小与求最大</h4><ul>
+<li><p>注意「求最小」和「求最大」的二分写法上的区别。</p>
+<ul>
+<li>前面的「求最小」和二分查找求「排序数组中某元素的第一个位置」是类似的，按照红蓝染色法，左边是不满足要求的（红色），右边则是满足要求的（蓝色）。</li>
+<li>「求最大」的题目则相反，左边是满足要求的（蓝色），右边是不满足要求的（红色）。这会导致二分写法和上面的「求最小」有一些区别。</li>
 </ul>
 </li>
 </ul>
-<h4 id="1-2-2-双序列双指针"><a href="#1-2-2-双序列双指针" class="headerlink" title="1.2.2 双序列双指针"></a>1.2.2 双序列双指针</h4><ul>
-<li>双指针<ul>
-<li>一般会给两个数组，用两个指针分别同时遍历两个数组</li>
-<li>可能是正序遍历，可能是倒序遍历</li>
+<ul>
+<li>以开区间二分为例：<ul>
+<li>求最小：<code>check(mid) == true</code> 时更新 <code>right = mid</code>，反之更新 <code>left = mid</code>，最后返回 <code>right</code></li>
+<li>求最大：<code>check(mid) == true</code> 时更新 <code>left = mid</code>，反之更新 <code>right = mid</code>，最后返回 <code>left</code></li>
 </ul>
 </li>
-<li>判断子序列<ul>
-<li>一般会给两个字符串，判断其中一个是不是另一个的子序列</li>
-<li>对子序列的每一个字母，通过遍历另一个字符串（长的那个）找到该字母后再找下一个字母，一直到其中一个字符串遍历完（子序列先遍历完结果为true，反之为false）</li>
+<li>对于<strong>开区间</strong>写法，简单来说 <code>check(mid) == true</code> 时<strong>更新的是谁最后就返回谁</strong>。相比其他二分写法，开区间写法不需要思考加一减一等细节，<strong>推荐使用开区间写二分</strong>。</li>
 </ul>
-</li>
+<h4 id="2-2-2-二分间接值"><a href="#2-2-2-二分间接值" class="headerlink" title="2.2.2 二分间接值"></a>2.2.2 二分间接值</h4><ul>
+<li>二分的不是答案，而是一个和答案有关的值（间接值）</li>
 </ul>
-<h4 id="1-2-3-三指针"><a href="#1-2-3-三指针" class="headerlink" title="1.2.3 三指针"></a>1.2.3 三指针</h4><ul>
-<li>一般是遍历其中一个变量，然后对剩下的子问题用（单序列）双指针进行求解</li>
-<li>核心思路是先确定区间的其中一个端点，例如右端点，然后在右端点的左边求合法的左端点。由于左端点的合法取值是一个区间，因此又可以用双指针解决，因此称为三指针</li>
+<h4 id="2-2-3-第-K-小-大"><a href="#2-2-3-第-K-小-大" class="headerlink" title="2.2.3 第 K 小&#x2F;大"></a>2.2.3 第 K 小&#x2F;大</h4><ul>
+<li>第 k 小等价于：求最小的 x，满足 ≤x 的数至少有 k 个。</li>
+<li>第 k 大等价于：求最大的 x，满足 ≥x 的数至少有 k 个。</li>
 </ul>
-<h3 id="1-3-分组循环"><a href="#1-3-分组循环" class="headerlink" title="1.3 分组循环"></a>1.3 分组循环</h3><ul>
-<li>适用于按照题目要求，数组会被分割成若干组，且每一组的判断&#x2F;处理逻辑是一样的。</li>
-<li>外层循环负责遍历组之前的准备工作（记录开始位置），和遍历组之后的统计工作（更新答案最大值）。</li>
-<li>内层循环负责遍历组，找出这一组最远在哪结束。</li>
-<li>一般来说，分组循环的模板如下（可根据题目调整）：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">n = <span class="hljs-built_in">len</span>(nums)<br>i = <span class="hljs-number">0</span><br><span class="hljs-keyword">while</span> i &lt; n:<br>    start = i<br>    <span class="hljs-keyword">while</span> i &lt; n <span class="hljs-keyword">and</span> ...:<br>        i += <span class="hljs-number">1</span><br>    <span class="hljs-comment"># 从 start 到 i-1 是一组</span><br>    <span class="hljs-comment"># 下一组从 i 开始，无需 i += 1</span><br></code></pre></td></tr></table></figure>
-
 
                 
               </div>
@@ -391,9 +371,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="../../../../tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" class="print-no-link">#滑动窗口</a>
-      
-        <a href="../../../../tags/%E5%8F%8C%E6%8C%87%E9%92%88/" class="print-no-link">#双指针</a>
+        <a href="../../../../tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" class="print-no-link">#二分查找</a>
       
     </div>
   
@@ -405,8 +383,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>滑动窗口与双指针</div>
-      <div>https://frosty-xue.github.io/2025/05/09/滑动窗口与双指针/</div>
+      <div>二分算法</div>
+      <div>https://frosty-xue.github.io/2025/05/09/二分算法/</div>
     </div>
     <div class="license-meta">
       
@@ -450,18 +428,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="../%E4%BA%8C%E5%88%86%E7%AE%97%E6%B3%95/" title="二分算法">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">二分算法</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="../../../01/11/%E7%A7%BB%E5%8A%A8%E4%BA%92%E8%81%94%E7%BD%91%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" title="移动互联网软件工程">
-                        <span class="hidden-mobile">移动互联网软件工程</span>
+                      <a href="../%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E4%B8%8E%E5%8F%8C%E6%8C%87%E9%92%88/" title="滑动窗口与双指针">
+                        <span class="hidden-mobile">滑动窗口与双指针</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
