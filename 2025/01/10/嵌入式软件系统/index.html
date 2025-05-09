@@ -1,0 +1,1435 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../img/fluid.png">
+  <link rel="icon" href="../../../../img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="嵌入式系统1. 嵌入式系统概论 嵌入式系统定义 “嵌入式系统”实际上是”嵌入式计算机系统”的简称，以下是对嵌入式系统的不同定义。 IEEE的定义 嵌入式系统是用于控制、监视或者辅助操作机器和设备的装置。 此定义是从应用上考虑的，嵌入式系统是软件和硬件的综合体，还可以涵盖机电等附属装置。   国内的定义 嵌入式系统是以应用为中心，以计算机技术为基础，软硬件可裁减，适用于应用系统对功能、可靠性、成本、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="嵌入式软件系统">
+<meta property="og:url" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="嵌入式系统1. 嵌入式系统概论 嵌入式系统定义 “嵌入式系统”实际上是”嵌入式计算机系统”的简称，以下是对嵌入式系统的不同定义。 IEEE的定义 嵌入式系统是用于控制、监视或者辅助操作机器和设备的装置。 此定义是从应用上考虑的，嵌入式系统是软件和硬件的综合体，还可以涵盖机电等附属装置。   国内的定义 嵌入式系统是以应用为中心，以计算机技术为基础，软硬件可裁减，适用于应用系统对功能、可靠性、成本、">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241211144341082.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/2.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20250104093057527.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20250104093134536.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241211154237746.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241211154350359.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20250104093329334.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241211154941064.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241211155159047.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241211155717208.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241211162121699.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212151836995.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212154345902.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212155422778.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212160731236.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212160957513.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212161038698.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212161056264.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212161915313.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212162142431.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212162434797.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212173144298.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212165513722.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212174232972.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212174639515.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20250104102306876.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212202222625.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212202534873.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212203247392.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212203533406.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212203719583.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212203853827.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212203908295.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212204208529.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212204525140.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212204744527.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212205219193.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212204856981.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212204840254.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212204905925.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241212204916227.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20250104102652866.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20250104105137310.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20250104152205962.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20250104152301276.png">
+<meta property="article:published_time" content="2025-01-10T03:50:44.000Z">
+<meta property="article:modified_time" content="2025-05-09T03:52:36.732Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="嵌入式">
+<meta property="article:tag" content="物联网">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://frosty-xue.github.io/2025/01/10/%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20241211144341082.png">
+  
+  
+  
+  <title>嵌入式软件系统 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="../../../../css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="../../../../css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"frosty-xue.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="../../../../js/utils.js" ></script>
+  <script  src="../../../../js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="../../../../index.html">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../../../index.html" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../../../archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../../../categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../../../tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../../../about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('../../../../img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="嵌入式软件系统"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-01-10 11:50" pubdate>
+          January 10, 2025 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          83 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">嵌入式软件系统</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="嵌入式系统"><a href="#嵌入式系统" class="headerlink" title="嵌入式系统"></a>嵌入式系统</h1><h2 id="1-嵌入式系统概论"><a href="#1-嵌入式系统概论" class="headerlink" title="1. 嵌入式系统概论"></a>1. 嵌入式系统概论</h2><ul>
+<li><strong>嵌入式系统定义</strong><ul>
+<li>“嵌入式系统”实际上是”嵌入式计算机系统”的简称，以下是对嵌入式系统的不同定义。</li>
+<li>IEEE的定义<ul>
+<li>嵌入式系统是用于<strong>控制、监视或者辅助操作机器和设备的装置</strong>。</li>
+<li>此定义是从应用上考虑的，嵌入式系统是软件和硬件的综合体，还可以涵盖机电等附属装置。</li>
+</ul>
+</li>
+<li>国内的定义<ul>
+<li>嵌入式系统是<strong>以应用为中心，以计算机技术为基础，软硬件可裁减，适用于应用系统对功能、可靠性、成本、体积、功耗有严格要求的专用计算机系统</strong>。<ol>
+<li>嵌入式设备是用于特定的设备</li>
+<li>计算机技术为基础，必须要有计算</li>
+<li>软硬件可裁剪:印证了专用设备的特点，将不需要的设备裁剪掉</li>
+</ol>
+</li>
+<li>嵌入式系统就是一个具有特定功能或用途的隐藏在某种设备中的计算机软硬件集合体，没有固定的特征形状。</li>
+<li>嵌入的可以不是设备，而是生产流程，这样的系统也是嵌入式系统</li>
+</ul>
+</li>
+<li>其他的定义<ul>
+<li>看不见的计算机，一般不能被用户编程, 它有一些专用的I&#x2F;O设备, 对用户的接口是应用专用的。</li>
+<li>嵌入式系统是包含在某些较大的设备或产品中的计算机系统，其目的是为该设备提供<strong>监视和控制</strong>服务。</li>
+<li>包括可编程计算机在内但本身<strong>不打算用作通用计算机</strong>的任何设备。</li>
+<li>包含有计算机，但又不是通用计算机的计算机应用系统。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+
+<ul>
+<li>嵌入式系统示例<ul>
+<li>CPS：信息物理系统，Cyber-Physical System (CPS) ，是计算进程与物理进程的集成</li>
+<li>WSN：无线感知网络，是由许多在空间中分布的自动装置组成的一种无线通信计算机网络。这些装置使用传感器器协作地监控不同位置的物理或环境状况</li>
+<li>传感器:将非电信号转换为电信号，用来感知和度量外部世界，并将其转换为计算机可度量的电信号。比如温湿度、酸碱度传感器等。</li>
+<li>物联网(IoT)是物理设备，车辆(也称为”连接设备”和”智能设备”)，建筑物以及其他嵌入电子设备，软件，传感器，执行器和网络的物品的互连网络 连接性，使这些对象能够收集和交换数据。</li>
+</ul>
+</li>
+<li><img src="image-20241211144341082.png" srcset="/img/loading.gif" lazyload alt="image-20241211144341082" style="zoom: 67%;" /></li>
+<li><strong>嵌入式系统的组成</strong><ul>
+<li>嵌入式系统一般由<strong>嵌入式硬件和软件</strong>组成</li>
+<li>硬件以<strong>微处理器</strong>为核心集成<strong>存储器</strong>和系统专用的<strong>输入&#x2F;输出设备</strong></li>
+<li>软件包括：<strong>初始化代码及驱动、嵌入式操作系统和应用程序</strong>等，这些软件有机地结合在一起，形成系统特定的一体化软件。</li>
+</ul>
+</li>
+<li><strong>嵌入式系统的特点</strong><ul>
+<li><strong>形式多样、面向特定应用</strong>：一般用于特定的任务，其硬件和软件都必须高效率地设计，可剪裁</li>
+<li><strong>高度制约的环境</strong>：嵌入式系统通常工作在资源高度受限的环境中，这也使得系统设计极具挑战性</li>
+<li><strong>与外部环境的交互，包含传感器和执行器</strong>：与外部环境的交互在很大程度上是无人干预的，需要传感器来接收来自外部环境的数据，通过执行器输出数据到外部环境并控制外部环境</li>
+<li><strong>实时性要求</strong>：一方面大多数实时系统都是嵌入式系统，另一方面嵌入式系统多数有实时性的要求，具有时间约束条件，必须在给定的时间范围内处理完事件</li>
+<li><strong>安全性和可靠性</strong>：某些实时嵌入式系统是安全至上且必须是具有高度的可靠性</li>
+<li><strong>关注成本</strong>：嵌入式系统通常需要注意的成本是系统成本，特别是量大的消费类数字化产品，其成本是产品竞争的关键因素之一</li>
+<li><strong>并发性</strong>：并发性是指在一个系统中将多个计算同时执行并潜在地交互的特性</li>
+</ul>
+</li>
+<li><strong>嵌入式系统的分类</strong><ul>
+<li>按嵌入式处理器的位数来分类：4位、8位、16位、32位、64位</li>
+<li>按应用来分类</li>
+<li>按速度分类：强实时系统、⼀般实时系统、弱实时系统</li>
+<li>按确定性来分类：硬实时、软实时系统</li>
+<li>按嵌入式系统软件复杂程度来分类</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-嵌入式系统设计方法、EMP"><a href="#2-嵌入式系统设计方法、EMP" class="headerlink" title="2. 嵌入式系统设计方法、EMP"></a>2. 嵌入式系统设计方法、EMP</h2><ul>
+<li>设计过程<ul>
+<li><img src="2.png" srcset="/img/loading.gif" lazyload style="zoom: 50%;" /></li>
+</ul>
+</li>
+<li>硬件组成：CPU、bus、memory、I&#x2F;O devices: 网络，传感器，执行器等。</li>
+<li><strong>嵌入式微处理器(EMP)的分类</strong><ul>
+<li>嵌入式微处理器种类繁多，按位数可分为4位、8位、16位、32位和64位。</li>
+<li>根据功能不同，嵌入式微处理器分为四种：<ol>
+<li>嵌入式微处理单元(MPU)：嵌入式微处理器就是和通用计算机的处理器对应的CPU</li>
+<li>嵌入式微控制器(MCU)：嵌入式微控制器就是将整个计算机系统的主要硬件集成到一块芯片中，芯片内部集成ROM&#x2F;EPROM，RAM，总线，总线逻辑，定时&#x2F;计数器，I&#x2F;O，串行口等各种必要功能和外设</li>
+<li>嵌入式DSP处理器：嵌入式DSP是专门用于信号处理方面的处理器，其在系统结构和指令算法方面进行了特殊设计，具有很高的编译效率和指令执行速度。</li>
+<li>嵌入式SoC：系统级芯片，也称为片上系统（System-on-Chip），是追求产品系统最大包容的集成器件，绝大多数系统构件都在一个系统芯片内部</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong>嵌入式微处理器特点</strong><ul>
+<li>体积小、重量轻、可靠性高</li>
+<li>功耗低</li>
+<li>成本低：片上存储、引脚与封装、代码密度</li>
+<li>工作温度、抗电磁干扰、可靠性等方面增强</li>
+</ul>
+</li>
+<li><strong>选择微处理器的准则</strong><ul>
+<li>高效、经济地满足任务的计算需求</li>
+<li>软件开发工具的可用性</li>
+<li>广泛的可用性和可靠的微控制器来源</li>
+</ul>
+</li>
+<li><strong>设备分类</strong><ul>
+<li>根据其能力和性能，物联网设备可以分为三类</li>
+<li>高端设备，车载</li>
+<li>中端物联网设备，包括Rasberry Pi等单板机（SBC）和智能手机</li>
+<li>低端物联网设备，这些设备资源有限，无法运行这些传统的操作系统</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-存储器架构"><a href="#3-存储器架构" class="headerlink" title="3. 存储器架构"></a>3. 存储器架构</h2><ul>
+<li>易失性存储器：随机存取存储器（RAM）<ul>
+<li>SRAM：静态RAM，速度快，面积大</li>
+<li>DRAM：动态RAM，保持数据的时间很短，需要定期刷新，比SRAM更不稳定</li>
+<li><strong>大多数嵌入式系统都包括一个SRAM，许多ES也会包括DRAM</strong></li>
+</ul>
+</li>
+<li>非易失性存储器<ul>
+<li>不需要持续供电来保留存储在计算设备中的数据或程序代码</li>
+<li>只读存储器（ROM），或掩模ROM（Mask ROM）：内容在芯片工厂就已经固定</li>
+<li>电可擦除可编程ROM（Electrically Erasable Programmable ROM，EEPROM）</li>
+<li>快闪存储器（Flash）<ul>
+<li>有比较快的读取时间，但比SRAM和DRAM慢</li>
+<li>写入时间大大超过读取时间，而且写入的次数是有限的</li>
+<li>NOR:(放置固态代码:因为还有XIP)<ol>
+<li>字可读取。</li>
+<li>逐块擦除。</li>
+</ol>
+</li>
+<li>NAND:<ol>
+<li>按页读取(512-4K字节)。</li>
+<li>逐块擦除。</li>
+</ol>
+</li>
+<li>NAND便宜，擦除速度更快，顺序访问时间更短</li>
+</ul>
+</li>
+<li>磁盘存储器</li>
+</ul>
+</li>
+<li><strong>固件和可固化</strong><ul>
+<li>固件（firmware）：一般存储于设备中的电可擦除只读存储器EEPROM 或FLASH芯片中，一般可由用户通过特定的刷新程序进行升级的程序</li>
+<li>可固化（ROMable）：可被编程到ROM芯片中的机器语言</li>
+</ul>
+</li>
+<li><strong>存储器层次结构</strong><ul>
+<li>处理器寄存器</li>
+<li>缓冲存储器：高速缓存Cache、地址转换高速缓存（TLB，也称快表）以及暂存存储器（SPM）。<ul>
+<li>SPM和主存统一编址，每当某个简单的地址解码器给出一个SPM地址范围内的地址时，SPM就被访问</li>
+<li>SPM通常和处理器集成在一个芯片上</li>
+</ul>
+</li>
+<li>工作存储器（或主存储器、主存）：实现了处理器存储地址所涵盖的存储器。通常，其容量在MB到GB之间，并且是易失的</li>
+<li>flash、磁盘等非易失性存储，也可基于互联网的存储器解决方案</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-Bus"><a href="#4-Bus" class="headerlink" title="4. Bus"></a>4. Bus</h2><ul>
+<li>可编程I&#x2F;O<ul>
+<li>在通信过程中选择控制寄存器或数据缓冲区的三种方法<ul>
+<li>独立I&#x2F;O端口：I&#x2F;0独立编址，不占用内存空间，但是只能用专门的I&#x2F;0指令，访问端口的方法少</li>
+<li>内存映射I&#x2F;O：在内存映射I&#x2F;O模式中，设备控制寄存器只是内存中的变量，可以像其他变量一样在C语言中寻址</li>
+<li>混合解决方案，混合模型包括内存映射的I&#x2F;O数据缓冲区和用于控制寄存器的独立I&#x2F;O端口</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>I&#x2F;O中断部分：中断向量、中断优先级等内容与OS相同，不再赘述</li>
+<li><strong>可重入</strong><ul>
+<li>定义：一个函数可以同时被多次调用。可重入函数在任何时候都可以被中断，一段时间后继续运行时数据不会丢失。</li>
+<li>在嵌入式世界中，例程必须满足以下条件才能重入:<ul>
+<li>以原子方式使用所有共享变量，除非将每个共享变量分配给函数的特定实例</li>
+<li>不调用不可重入的函数</li>
+<li>不以非原子的方式使用硬件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>竞态条件</strong>：设备或系统出现不恰当的执行时序，而得到不正确的结果</li>
+<li>CPU总线<ul>
+<li>总线（Bus）是计算机各种功能部件之间传送信息的公共通信干线</li>
+<li>总线协议决定了设备是如何进行通信的</li>
+<li>总线上的设备会经历状态序列：协议是由状态机指定的，协议中的每个参与者都有一个状态机。</li>
+</ul>
+</li>
+<li>分类<ul>
+<li><img src="image-20250104093057527.png" srcset="/img/loading.gif" lazyload alt="image-20250104093057527" style="zoom: 67%;" /></li>
+<li><img src="image-20250104093134536.png" srcset="/img/loading.gif" lazyload alt="image-20250104093134536" style="zoom:67%;" /></li>
+</ul>
+</li>
+</ul>
+<h2 id="5-嵌入式软件系统"><a href="#5-嵌入式软件系统" class="headerlink" title="5. 嵌入式软件系统"></a>5. 嵌入式软件系统</h2><ul>
+<li><p>嵌入式软件与桌面软件的对比</p>
+<ul>
+<li><p>内存：有限，影响编程语言的选择以及开发工具的使用(比如编译器优化)</p>
+</li>
+<li><p>CPU处理能力：成本和功耗的考虑，ES不得不采用保守的设计方案，其中的CPU往往只是恰好满足要求。</p>
+</li>
+<li><p>操作系统：OS(Windows&#x2F;Linux)、RTOS、专有OS或裸机</p>
+</li>
+<li><p>实时性</p>
+<ul>
+<li>实时系统不⼀定会运行得很快，但⼀定是可预测的，通常的术语叫做确定性</li>
+<li>实时性的要求对于OS的选择和程序设计都有影响</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>开发流程<ul>
+<li>ES往往没有足够的资源进行软件开发。交叉开发对于工具的选择有很大影响。<ul>
+<li>开发过程也不同，编辑&#x2F;编译&#x2F;调试的循环是一样的，但执行程序这⼀步却非常复杂，需要把代码转移到目标机上或者在某种环境下运行。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>执行流程：多数嵌入式设备从开机开始就会运行某个程序，该程序会⼀直运⾏到系统关机。这个程序可能存储在ROM，也可能是从⾮易失性存储器转移到RAM中执行。</li>
+<li>嵌入式软件开发工具<ul>
+<li><img src="image-20241211154237746.png" srcset="/img/loading.gif" lazyload alt="image-20241211154237746" style="zoom:67%;" /></li>
+</ul>
+</li>
+<li>软件组件<ul>
+<li><img src="image-20241211154350359.png" srcset="/img/loading.gif" lazyload alt="image-20241211154350359" style="zoom:67%;" /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>嵌入式软件系统层次结构</p>
+<ul>
+<li><img src="image-20250104093329334.png" srcset="/img/loading.gif" lazyload alt="image-20250104093329334" style="zoom:80%;" /></li>
+</ul>
+</li>
+<li><p>为何要为实时系统建立模型</p>
+<ul>
+<li>辅助测试和完善最终系统</li>
+<li>更重要的是，模型利用它所知的系统属性来描述整个系统，并能够被用于对系统特性的进⼀步研究</li>
+<li>实时工程师使用程序模型来开发软件和硬件，以便能将整个实时系统全盘考虑</li>
+<li>模型使得⼯程师能够预测程序的运行，从而满足系统的性能需求和功能需求</li>
+</ul>
+</li>
+<li><p>嵌入式软件<strong>架构</strong></p>
+<ul>
+<li>分为两部分：业务逻辑、实时依赖硬件的逻辑</li>
+<li><img src="image-20241211154941064.png" srcset="/img/loading.gif" lazyload alt="image-20241211154941064" style="zoom:50%;" /></li>
+</ul>
+</li>
+<li><p>嵌入式软件<strong>架构模式</strong></p>
+<ul>
+<li>非结构化单体架构：很容易构建，但很难维持规模和移植，与应用层的应用程序紧密耦合</li>
+<li>分层架构<ul>
+<li><img src="image-20241211155159047.png" srcset="/img/loading.gif" lazyload alt="image-20241211155159047" style="zoom:50%;" /></li>
+</ul>
+</li>
+<li>事件驱动架构<ul>
+<li>对于实时嵌入式应用程序和与能耗相关的应用程序非常有意义</li>
+<li>通常利用中断来立即响应事件</li>
+<li>事件驱动的体系结构通常使用消息队列、信号量和事件标志来表示系统中发生了事件</li>
+<li>优点：具有相对的可扩展性、软件模块通常具有高内聚性和低耦合性</li>
+<li>缺点：无论何时需要做任何事情，都有额外的开销和复杂性</li>
+</ul>
+</li>
+<li>微服务架构<ul>
+<li>微服务架构将应用程序构建为为业务领域开发的小型自治服务的集合</li>
+<li>微服务本质上是低耦合的，使得微服务易于维护和可测试，开发人员可以快速扩展或移植微服务</li>
+<li>围绕系统的业务逻辑组织，业务逻辑(有时称为业务功能)是系统行为的业务规则和用例</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>嵌入式软件<strong>设计模式</strong></p>
+<ul>
+<li>单核、多核、发布和订阅模型、RTOS模式、中断处理和低功耗设计</li>
+<li>轮询<ul>
+<li>从外设收集数据的最直接的设计机制是让应用程序定期轮询外设，以查看是否有任何数据可供管理和处理</li>
+<li><img src="image-20241211155717208.png" srcset="/img/loading.gif" lazyload alt="image-20241211155717208" style="zoom:50%;" /></li>
+<li>watchdog：<a target="_blank" rel="noopener" href="https://blog.csdn.net/shulianghan/article/details/80249185">https://blog.csdn.net/shulianghan/article/details/80249185</a></li>
+</ul>
+</li>
+<li><strong>有限状态机</strong><ul>
+<li>与轮询类似，但只有当前状态被执行.</li>
+<li>每个状态决定下一个状态(非顺序执行)。</li>
+<li>优先级:每个状态确定下一个状态的优先级。</li>
+<li>响应时间:所有任务的总和。</li>
+<li>变更的影响:重大。更改任务的执行时间或添加任务会影响所有其他任务。</li>
+<li>简单性:没有共享数据问题。</li>
+</ul>
+</li>
+<li><strong>中断设计模式</strong><ul>
+<li>中断应用程序的正常流程，以允许中断处理程序运行代码来处理系统中发生的事件</li>
+<li>当设计ISR（中断处理服务）时，我们希望中断尽可能快地运行(以最小化中断)</li>
+<li>优先级：中断优先于主循环</li>
+<li>响应时间：所有任务的总和以及中断执行时间</li>
+<li>更改的影响：对于中断服务程序而言意义不大。与轮询作为主循环相同。</li>
+<li>共享数据：必须处理与中断服务程序共享的数据</li>
+<li>是MCU中使用最多的</li>
+</ul>
+</li>
+<li><strong>数据获取&#x2F;存储相关的中断设计模式</strong>：线性数据存储、乒乓缓冲&#x2F;双缓冲、环形&#x2F;循环缓冲区、带有信号量的循环缓冲区、带有事件标志的循环缓冲区、消息队列</li>
+<li>DMA控制器将外设数据传输到循环缓冲区的设计模式<ul>
+<li>DMA，全称Direct Memory Access，即直接存储器访问</li>
+<li>无需CPU的交互情况下在RAM和外设之间以及内部传输数据</li>
+</ul>
+</li>
+<li><strong>RTOS应用程序设计模式</strong><ul>
+<li>在RTOS应用程序中，通常有两种类型的同步</li>
+<li>资源同步：决定了对共享资源的访问是否安全，包括中断锁定（关中断）、抢占锁定（禁用抢占式调度器）和互斥锁</li>
+<li>活动同步：决定执行是否已达到特定状态，用于协调任务执行<ul>
+<li>例如，假设我们正在开发一个获取传感器数据并使用传感器值驱动电机的系统。我们很可能想要向运动任务发出信号，告诉它有新的数据可用，这样任务就不会对陈旧的数据采取行动</li>
+<li>单向同步(任务对任务)：使用二值信号量或事件标志来同步任务</li>
+<li>单向同步(中断到任务)：单向同步还可以在中断和任务之间同步和协调任务执行， 不同之处在于，在ISR给出信号量或事件标志之后，ISR将继续执行，直到完成为止。</li>
+<li>双向同步：两个任务在它们之间的两个方向上进行协调</li>
+<li>同步多个任务之广播设计模式：广播设计模式允许多个任务阻塞，直到给定信号量、出现事件标志，甚至将消息放入消息队列</li>
+<li>发布和订阅模型：在许多情况下，物联网设备将启动电源，连接到云，然后订阅它想要接收的消息主题，该设备还可以发布特定的主题</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><img src="image-20241211162121699.png" srcset="/img/loading.gif" lazyload alt="image-20241211162121699" style="zoom: 67%;" /></li>
+</ul>
+</li>
+</ul>
+<h2 id="6-嵌入式操作系统概述"><a href="#6-嵌入式操作系统概述" class="headerlink" title="6. 嵌入式操作系统概述"></a>6. 嵌入式操作系统概述</h2><ul>
+<li>实时系统：一个实时系统是指计算的正确性不仅取决于程序的逻辑正确性，也取决于结果产生的时间，如果系统的时间约束条件得不到满足，将会发生系统出错<ul>
+<li>确定性（Determinism）：如果一个系统始终会为某个已知输入产生相同的输出，则该系统是确定性的</li>
+<li>截止时限（Deadline）：截止时限就是必须完成某项任务的有限时间窗口，指明计算何时必须结束</li>
+</ul>
+</li>
+<li>实时操作系统（Real-Time Operating System, RTOS）是支持构建实时系统的操作系统</li>
+<li>RTOS与GPOS<ul>
+<li>相似的功能<ul>
+<li>多任务级别</li>
+<li>软件和硬件资源管理</li>
+<li>为应用提供基本的OS服务</li>
+<li>从软件应用抽象硬件</li>
+</ul>
+</li>
+<li>RTOS从GPOS分离出的功能<ul>
+<li>更快的特性</li>
+<li>满足应用需要的剪裁能力</li>
+<li>减少内存需求</li>
+<li>为实时嵌入式系统提供可剪裁的调度策略</li>
+<li>嵌入式应用上下文中具有更好的可靠性</li>
+<li>支持无盘化嵌入式系统，允许从ROM或RAM上引导和运行</li>
+<li>对不同硬件平台具有更好的可移植性</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>为何使用RTOS<ul>
+<li>可被复用的标准软件组件</li>
+<li>灵活性</li>
+<li>响应时间</li>
+</ul>
+</li>
+<li>RTOS关键要求<ul>
+<li>操作系统的时间行为必须是可预测的</li>
+<li>操作系统必须管理线程和进程的调度</li>
+<li>一些系统要求操作系统管理时间</li>
+<li>操作系统必须是快速的</li>
+<li>可靠性</li>
+<li>简洁紧凑</li>
+</ul>
+</li>
+<li>RTOS内核系统服务<ul>
+<li>任务管理</li>
+<li>同步与通信</li>
+<li>内存管理</li>
+<li>时间管理</li>
+<li>IO管理</li>
+<li>异常与中断管理</li>
+</ul>
+</li>
+<li>物联网操作系统的要求<ul>
+<li>内存占用小</li>
+<li>支持异构硬件</li>
+<li>网络连接</li>
+<li>节能</li>
+<li>实时功能</li>
+<li>安全</li>
+</ul>
+</li>
+<li>物联网操作系统分类<ul>
+<li>事件驱动的操作系统<ul>
+<li>该模型的关键思想是，系统上的所有处理都是由(外部)事件触发的，通常由中断发出信号</li>
+<li>这类操作系统包括continki、TinyOS和OpenWSN</li>
+</ul>
+</li>
+<li>多线程OS<ul>
+<li>多线程操作系统通常会引入一些内存开销，这是由于堆栈预留空间造成的，而运行时开销则是由于上下文切换造成的</li>
+<li>属于这一类的操作系统包括RIOT、nuttX、eCos或ChibiOS</li>
+</ul>
+</li>
+<li>纯RTOS<ul>
+<li>在工业&#x2F;商业环境中，RTOS主要关注实现实时保证的目标，正式的验证、认证和标准化通常是至关重要的</li>
+<li>为了允许模型检查和形式化验证，这些操作系统中使用的编程模型通常会对开发人员施加严格的约束</li>
+<li>属于这一类别的物联网设备的操作系统包括FreeRTOS、eCos、RTEMS、ThreadX和一系列其他商业产品(通常是封闭源代码)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>调度程序分类<ul>
+<li>完全静态调度程序：在系统设计时制定三项决策（分配、排序、定时）</li>
+<li>静态顺序调度程序&#x2F;离线调度程序：在设计时完成任务的分配和排序，但直到任务运行时才确定每个任务的物理执行时间</li>
+<li>在线调度程序<ul>
+<li>静态分配调度程序：在设计时制定任务的分配，其他决策在任务运行时制定</li>
+<li>完全动态调度程序：在任务运行时制定所有的决策</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>任务的周期<ul>
+<li><img src="image-20241212151836995.png" srcset="/img/loading.gif" lazyload alt="image-20241212151836995" style="zoom:67%;" /></li>
+<li>周期就是一个任务隔这么久会出现一次，同时也是这个任务完成的最晚时间</li>
+</ul>
+</li>
+<li>优先级<ul>
+<li>假设每个任务都有优先级号，调度程序总是执行优先级最高的任务</li>
+<li>固定优先级：任务整个执行过程中其优先级保持不变</li>
+<li>动态优先级：在执行过程中任务的优先级是可变的</li>
+</ul>
+</li>
+<li>非抢占式调度与抢占式调度程序<ul>
+<li>非抢占式优先级调度程序：通过优先级决定当前任务完成之后执行哪个任务，不中断一个正在执行的任务而去执行另外一个</li>
+<li>抢占式优先级调度程序：在任何时刻，支持任务的到达，执行最高优先级的被激活任务。当任何任务改变优先级或激活状态时，内核可以调度一个新任务</li>
+<li>可行调度：所有的任务执行都符合他们的时限</li>
+</ul>
+</li>
+<li><strong>RMS调度算法</strong>：单调速率调度<ul>
+<li>看这篇：<a target="_blank" rel="noopener" href="https://www.cdsy.xyz/computer/system/OS/20210307/cd161510310410910.html">https://www.cdsy.xyz/computer/system/OS/20210307/cd161510310410910.html</a></li>
+</ul>
+</li>
+<li><strong>EDD调度算法</strong>：最早交货期<ul>
+<li><img src="image-20241212154345902.png" srcset="/img/loading.gif" lazyload alt="image-20241212154345902" style="zoom:67%;" /></li>
+<li>EDD在最大延迟最小化方面是最优的</li>
+</ul>
+</li>
+<li><strong>EDF调度算法</strong>：最早截止时限优先<ul>
+<li>EDD不支持任务到达，可通过允许任务在任何时刻“到达”(就绪)来扩展EDD</li>
+<li>最早截止时限优先(EDF)：给定n个具有任意到达时间的独立任务集，在<strong>任何时刻</strong>，在<strong>所有到达的任务</strong>中执行<strong>绝对截止时限最早</strong>的任务的算法对于最大延迟最小化上是最优的</li>
+<li>看这篇：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Cap220590/article/details/102762190">https://blog.csdn.net/Cap220590/article/details/102762190</a></li>
+</ul>
+</li>
+<li>优先序约束<ul>
+<li><img src="image-20241212155422778.png" srcset="/img/loading.gif" lazyload alt="image-20241212155422778" style="zoom:67%;" /></li>
+</ul>
+</li>
+<li><strong>LDF调度算法</strong>：最晚时限优先<ul>
+<li><img src="image-20241212160731236.png" srcset="/img/loading.gif" lazyload alt="image-20241212160731236" style="zoom: 67%;" /></li>
+<li>LDF 在最大延迟最小化方面是最优的</li>
+<li>但是，LDF要求所有任务都是已知的，并且在执行任何任务之前都知道它们的优先序约束</li>
+</ul>
+</li>
+<li>具有优先序的EDF<ul>
+<li><img src="image-20241212160957513.png" srcset="/img/loading.gif" lazyload alt="image-20241212160957513" style="zoom: 60%;" /></li>
+<li><img src="image-20241212161038698.png" srcset="/img/loading.gif" lazyload alt="image-20241212161038698" style="zoom:60%;" /></li>
+<li>修改截止时限<ul>
+<li><img src="image-20241212161056264.png" srcset="/img/loading.gif" lazyload alt="image-20241212161056264" style="zoom:60%;" /></li>
+<li>从叶子往上面算，叶子的<code>di&#39;</code>就等于原来的<code>di</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>优先级反转<ul>
+<li><img src="image-20241212161915313.png" srcset="/img/loading.gif" lazyload alt="image-20241212161915313" style="zoom:67%;" /></li>
+<li>解决方案是优先级继承协议：当任务<code>Ji</code>阻塞一个或多个高优先级任务时，它暂时假定(继承)被阻塞任务的最高优先级</li>
+<li><img src="image-20241212162142431.png" srcset="/img/loading.gif" lazyload alt="image-20241212162142431" style="zoom:67%;" /></li>
+</ul>
+</li>
+<li>死锁问题的解决<ul>
+<li>优先级上限协议<ul>
+<li>每个锁或信号量都被分配了一个优先级上限，该上限等于可以锁定它的最高优先级任务的优先级</li>
+<li>只有当任务T的优先级严格高于其他任务当前持有的所有锁的优先级上限时，任务T才能获得锁</li>
+</ul>
+</li>
+<li><img src="image-20241212162434797.png" srcset="/img/loading.gif" lazyload alt="image-20241212162434797" style="zoom:67%;" /></li>
+</ul>
+</li>
+<li>FreeRTOS 支持的调度方法：抢占式、协作式、时间片轮转</li>
+</ul>
+<h2 id="7-实时内核"><a href="#7-实时内核" class="headerlink" title="7. 实时内核"></a>7. 实时内核</h2><ul>
+<li><p>任务和ISR之间的通信方式</p>
+<ul>
+<li>一个任务或ISR可以通过事件控制块ECB（信号量、邮箱或消息队列）向另外的任务发信号</li>
+<li>一个任务还可以等待另一个任务或中断服务子程序给它发送信号，对于处于等待状态的任务，还可以给它指定一个最长等待时间</li>
+<li>多个任务可以同时等待同一个事件的发生，当该事件发生后，在所有等待该事件的任务中，优先级最高的任务得到了该事件并进入就绪状态，准备执行</li>
+</ul>
+</li>
+<li><p>μC&#x2F;OS：一种基于优先级的抢占式多任务实时操作系统，包含了实时内核、任务管理、时间管理、任务间通信同步（信号量，邮箱，消息队列）和内存管理等功能。</p>
+<ul>
+<li>邮箱（MailBox）：一个任务或ISR可以通过邮箱向另一个任务发送一个指针型的变量，该指针指向一个包含了特定“消息”（message）的数据结构；</li>
+<li>消息队列可以使一个任务或ISR向另一个任务发送多个以指针方式定义的变量，实现了任务接收来自其他任务或中断的不固定长度的消息。当队列中的消息是空时， 读取消息的任务将被阻塞</li>
+<li>μC&#x2F;OSII中是实模式存储管理，不划分内核空间和用户空间，整个系统只有一个地址空间，即物理内存空间，应用程序和内核程序都能直接对所有的内存单元进行访问</li>
+<li>μC&#x2F;OS采用的是固定分区的存储管理方法，把连续的大块内存按分区来管理，每个分区包含有整数个大小相同的块</li>
+</ul>
+</li>
+<li><img src="image-20241212173144298.png" srcset="/img/loading.gif" lazyload alt="image-20241212173144298" style="zoom:67%;" /></li>
+<li><p>内存管理方法</p>
+<ul>
+<li><p>静态内存分配（Static Memory Allocation）</p>
+<ul>
+<li>允许用户在编译时为任务和内核对象（如队列、信号量等）分配静态内存</li>
+<li>静态可以保证设备的可靠性但是需要考虑内存上限，内存使用效率低</li>
+</ul>
+</li>
+<li><p>动态内存分配（Dynamic Memory Allocation）</p>
+<ul>
+<li>提供用于动态内存分配的内置函数，允许任务在运行时请求和释放内存</li>
+<li>这种方法对于需要灵活管理内存的应用非常有用，但需要小心避免内存泄漏和碎片化</li>
+</ul>
+</li>
+<li><p>内存池（Memory Pools）</p>
+<ul>
+<li>内存池是在系统初始化时创建的一块内存区域，用于存储固定大小的内存块</li>
+<li>任务可以从内存池中申请内存块，并在使用完毕后将其返回给内存池，这有助于减少内存碎片化</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><img src="image-20241212165513722.png" srcset="/img/loading.gif" lazyload alt="image-20241212165513722" style="zoom:67%;" /></li>
+</ul>
+<h2 id="8-板级支持包与系统引导"><a href="#8-板级支持包与系统引导" class="headerlink" title="8. 板级支持包与系统引导"></a>8. 板级支持包与系统引导</h2><ul>
+<li>版级支持包 BSP<ul>
+<li>BSP全称“板级支持包”（Board Support Packages），是介于主板硬件和操作系统中驱动层程序之间的一层，一般认为它属于操作系统一部分，主要是实现对操作系统的支持，为上层的驱动程序提供访问硬件设备寄存器的函数包，使之能够更好的运行于硬件主板</li>
+<li>BSP是用于特定硬件平台的一组软件组件，通常包括启动代码、驱动程序和其他与硬件相关的软件库</li>
+<li>组成<ul>
+<li>启动代码：负责系统上电后的硬件初始化，如设置时钟、初始化存储器等</li>
+<li>硬件抽象层（HAL）：介于底层硬件和上层软件之间的一层抽象层，用于隐藏硬件的具体实现细节，提供统一的接口</li>
+<li>设备驱动：针对特定硬件的驱动程序</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>RTOS的引导模式<ul>
+<li>不需要BootLoader的引导模式：时间效率高，系统快速启动，直接在NOR flash或ROM系列非易失性存储介质中运行，但不满足运行速度的要求</li>
+<li>需要BootLoader的引导模式：节省空间，牺牲时间，适用于硬件成本低，运行速度快，但启动速度相对慢</li>
+</ul>
+</li>
+<li>BootLoader：嵌入式系统中的 OS 启动加载程序<ul>
+<li>汇编部分执行简单的硬件初始化</li>
+<li>C语言部分负责复制数据,设置启动参数,串口通信等功能</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-嵌入式系统建模"><a href="#9-嵌入式系统建模" class="headerlink" title="9. 嵌入式系统建模"></a>9. 嵌入式系统建模</h2><ul>
+<li>建模、设计、分析<ul>
+<li>建模是通过模拟加深对系统理解的过程<ul>
+<li>模型是对所研究的系统、过程或概念的一种表达形式</li>
+<li>使用模型的目的是要给出系统的抽象视图，每个模型都表示一组对象以及这些对象之间的相互关系</li>
+<li><img src="image-20241212174232972.png" srcset="/img/loading.gif" lazyload alt="image-20241212174232972" style="zoom:60%;" /></li>
+</ul>
+</li>
+<li>常见的建模技术<ul>
+<li>面向状态的建模</li>
+<li>面向活动的建模</li>
+<li>面向结构的模型</li>
+<li>面向数据的模型</li>
+<li>异构模型：综合前四种模型特征</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>嵌入式系统模型的用途<ul>
+<li>通过使用现代建模软件工具，可以离线仿真的方式进行设计和执行初始验证</li>
+<li>可以使用模型来作为所有后续开发阶段的基础</li>
+<li>建模（涉及硬件原型设计）将降低出错风险，通过在整个开发过程中执行验证和确认测试来缩短开发周期</li>
+<li>以系统模型为基础，可以更快、更可靠地进行设计评估和预测</li>
+<li>这种迭代方法可以在性能和可靠性方面改进设计</li>
+<li>由于模型的可重用性以及对物理原型的依赖的减少，降低了资源成本</li>
+<li>通过使用代码自动生成技术，可以减少开发错误和开销</li>
+</ul>
+</li>
+<li>建模语言<ul>
+<li><img src="image-20241212174639515.png" srcset="/img/loading.gif" lazyload alt="image-20241212174639515" style="zoom: 60%;" /></li>
+<li>与编程语言一样，建模语言有明确的定义和标准语法，用于表示结构和功能参与者及其随时间变化的主要关系</li>
+<li>建模语言有多种形式<ul>
+<li>图形、文本</li>
+<li>面向文档、仿真或执行</li>
+<li>专注于体系架构层面内容、实现层面内容</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>何时为嵌入式系统建立模型<ul>
+<li>任务和安全关键型应用</li>
+<li>高度复杂的应用程序和系统</li>
+<li>大型开发团队</li>
+<li>没有其他选择（当没有原型时）</li>
+</ul>
+</li>
+<li><img src="image-20250104102306876.png" srcset="/img/loading.gif" lazyload alt="image-20250104102306876" style="zoom: 67%;" /></li>
+</ul>
+<h2 id="10-有限状态机FSM"><a href="#10-有限状态机FSM" class="headerlink" title="10. 有限状态机FSM"></a>10. 有限状态机FSM</h2><ul>
+<li>反应式(reactive)系统：指能够持续地与环境进行交互，并且及时地进行响应</li>
+<li>有限状态机：又称有限状态自动机，简称状态机，是表示有限个状态以及在这些状态之间的转移和动作等行为的数学计算模型<ul>
+<li>两个重要特性<ul>
+<li>确定性：如果对于每个状态，每个输入值最多可激活一个转移，则称这样的状态机具有确定性，这意味着Φ(S,E)是单一值</li>
+<li>可接受性：如果对于每个状态，每个输入都有至少一个可能的转移，则称这样的状态机为可接受的，定义了每个可能的状态和输入值</li>
+</ul>
+</li>
+<li>Moore状态模型：意味着输出完全由当前状态决定，与输入信号的当前值无关</li>
+<li>Mealy状态模型：意味着输出既依赖于当前状态，也与输入信号的当前值有关</li>
+</ul>
+</li>
+<li>状态表FSM<ul>
+<li><img src="image-20241212202222625.png" srcset="/img/loading.gif" lazyload alt="image-20241212202222625" style="zoom:67%;" /></li>
+<li><img src="image-20241212202534873.png" srcset="/img/loading.gif" lazyload alt="image-20241212202534873" style="zoom: 80%;" /></li>
+<li><img src="image-20241212203247392.png" srcset="/img/loading.gif" lazyload alt="image-20241212203247392"></li>
+</ul>
+</li>
+<li>层次有限状态机<ul>
+<li>是由多个嵌套到层次结构中的有限状态机（fsm）组成的</li>
+<li><img src="image-20241212203533406.png" srcset="/img/loading.gif" lazyload alt="image-20241212203533406"></li>
+<li><img src="image-20241212203719583.png" srcset="/img/loading.gif" lazyload alt="image-20241212203719583" style="zoom:60%;" /></li>
+<li><img src="image-20241212203853827.png" srcset="/img/loading.gif" lazyload alt="image-20241212203853827" style="zoom:67%;" /></li>
+<li><img src="image-20241212203908295.png" srcset="/img/loading.gif" lazyload alt="image-20241212203908295" style="zoom:67%;" /></li>
+<li><img src="image-20241212204208529.png" srcset="/img/loading.gif" lazyload alt="image-20241212204208529" style="zoom:67%;" /></li>
+</ul>
+</li>
+<li>行为树BTs<ul>
+<li>行为树是一种分层的决策树，通常用于实现复杂的行为逻辑</li>
+<li>将各种行为组织成节点，并通过条件来控制节点的执行顺序</li>
+<li><img src="image-20241212204525140.png" srcset="/img/loading.gif" lazyload alt="image-20241212204525140" style="zoom:67%;" /></li>
+<li><img src="image-20241212204744527.png" srcset="/img/loading.gif" lazyload alt="image-20241212204744527"></li>
+<li><img src="image-20241212205219193.png" srcset="/img/loading.gif" lazyload alt="image-20241212205219193"></li>
+<li><img src="image-20241212204856981.png" srcset="/img/loading.gif" lazyload alt="image-20241212204856981"></li>
+<li><img src="image-20241212204840254.png" srcset="/img/loading.gif" lazyload alt="image-20241212204840254"></li>
+<li><img src="image-20241212204905925.png" srcset="/img/loading.gif" lazyload alt="image-20241212204905925"></li>
+<li><img src="image-20241212204916227.png" srcset="/img/loading.gif" lazyload alt="image-20241212204916227"></li>
+</ul>
+</li>
+</ul>
+<h2 id="11-嵌入式系统设计方法"><a href="#11-嵌入式系统设计方法" class="headerlink" title="11. 嵌入式系统设计方法"></a>11. 嵌入式系统设计方法</h2><ul>
+<li>嵌入式系统设计所面临的挑战<ul>
+<li>需要多少硬件？</li>
+<li>如何满足时限要求，如何处理多项功能在时间上的协调一致关系？</li>
+<li>如何降低系统的功耗？</li>
+<li>如何设计以保证系统可升级？</li>
+<li>如何保证系统可靠地工作？</li>
+</ul>
+</li>
+<li>设计目标：成本、性能、功耗、尺寸、可伸缩性和可重用性、容错</li>
+<li>传统的嵌入式系统的设计过程的基本流程<ul>
+<li><img src="image-20250104102652866.png" srcset="/img/loading.gif" lazyload alt="image-20250104102652866" style="zoom:67%;" /></li>
+</ul>
+</li>
+<li>软硬件的划分<ul>
+<li>嵌入式系统的设计涉及硬件与软件部件，设计中必须决定什么功能由硬件实现，什么功能由软件实现</li>
+<li>硬件和软件具有双重性</li>
+<li>软硬件变动对系统的决策造成影响</li>
+<li>划分和选择需要考虑多种因素</li>
+<li>硬件和软件的双重性是划分决策的前提</li>
+</ul>
+</li>
+</ul>
+<h2 id="12-物联网"><a href="#12-物联网" class="headerlink" title="12. 物联网"></a>12. 物联网</h2><ul>
+<li>定义<ul>
+<li>物联网，Internet of Things (IoT) ，通过射频识别(RFID)、红外感应器、全球定位系统、激光扫描器等信息传感设备，按约定的协议，把任何物品与互联网相连接，进行信息交换和通信，以实现智能化识别、定位、跟踪、监控和管理的一种网络概念</li>
+<li>物联网是一种计算设备、机械、数字机器相互关系的系统，具备通用唯一识别码（UID），并具有通过网络传输数据的能力，无需人与人、或是人与设备的交互</li>
+<li><strong>设备</strong>：在物联网中，具有强制性通信能力和选择性传感、激励、数据捕获、数据存储和数据处理能力的设备</li>
+<li><strong>物</strong>：在物联网中，“物”指物理世界（物理装置）或信息世界（虚拟事物）中的对象，可以被标识并整合入通信网</li>
+</ul>
+</li>
+<li>IOT特征<ul>
+<li>智能：从生成的数据中提取知识</li>
+<li>架构：一个支持许多其他架构的混合架构</li>
+<li>复杂的系统：一组动态变化的对象</li>
+<li>规模：可伸缩性</li>
+<li>时间：数十亿并行和同时发生的事件</li>
+<li>空间：定位</li>
+<li>一切都是服务：将资源作为服务消费</li>
+</ul>
+</li>
+<li>IoT的优势<ul>
+<li>技术优化：物联网技术有助于技术的改进和提高</li>
+<li>改进的数据采集：传统的数据采集有其局限性，设计为被动使用，物联网促进了对数据的即时行动</li>
+<li>减少浪费：物联网提供实时信息可使资源被有效的管理</li>
+<li>提高客户参与度：物联网允许你通过发现问题和改进流程来改善客户体验</li>
+</ul>
+</li>
+<li>IoT的不足<ul>
+<li>安全：物联网技术创造了一个连接设备的生态系统，尽管有足够的安全措施，但系统可能缺乏足够的认证控制</li>
+<li>隐私：物联网的使用，在没有用户积极参与的情况下，暴露大量的个人数据，这就产生了很多隐私问题</li>
+<li>灵活性：主要涉及到与另一个系统的集成，在这个过程中涉及到许多不同的系统</li>
+<li>复杂性：物联网系统的设计也相当复杂，此外部署和维护也不是很容易</li>
+<li>合规性：物联网有自己的一套规则和法规，然而，由于法规遵循的复杂性，其任务是相当具有挑战性的</li>
+</ul>
+</li>
+<li>IoT应用<ul>
+<li>智能家居类：智能灌溉、智能车库门、智能门锁、智能灯、智能恒温器和智能安全系统</li>
+<li>可穿戴设备类：健康和运动跟踪器、智能服装&#x2F;可穿戴设备</li>
+<li>宠物类：宠物定位系统、智能狗狗门</li>
+</ul>
+</li>
+<li>物联网体系结构<ul>
+<li><img src="image-20250104105137310.png" srcset="/img/loading.gif" lazyload alt="image-20250104105137310" style="zoom: 67%;" /></li>
+</ul>
+</li>
+<li>物联网软件、硬件、连接<ul>
+<li>物联网软件：若干物联网技术已接近成熟，包括边缘人工智能、基于物联网的流分析、监督和非监督机器学习</li>
+<li>物联网硬件：现有物联网技术被归类为相当成熟或主流包括cpu、mcu、gpu、安全芯片、FPGA和边缘网关</li>
+<li>物联网连接：eSIM、mesh网络、5G和Wi-Fi 6，接近成熟</li>
+</ul>
+</li>
+</ul>
+<h2 id="13-IOT平台"><a href="#13-IOT平台" class="headerlink" title="13. IOT平台"></a>13. IOT平台</h2><ul>
+<li>概念<ul>
+<li>物联网平台是一种多层技术，能够在物联网领域中直接提供、管理和自动化连接设备</li>
+<li>对于开发者来说，物联网平台提供了一套随时可用的功能，极大地加快了联网设备应用程序的开发，同时兼顾了可扩展性和跨设备兼容性</li>
+<li>物联网平台起源于物联网<strong>中间件</strong>的形式，其目的是充当硬件层和应用层之间的中介，主要任务包括通过不同的协议和网络拓扑从设备收集数据、远程设备配置和控制、设备管理和空中固件更新</li>
+</ul>
+</li>
+<li>物联网平台覆盖功能领域<ul>
+<li>使设备连接管理简单</li>
+<li>接收、存储和发送数据</li>
+<li>帮助企业可视化设备数据并提供关键的见解</li>
+<li>提供特定于应用程序的支持和数据</li>
+<li>是否有知识渊博、反应灵敏的支持团队‍ 提供健壮的安全</li>
+<li>提供支持物联网解决方案特定需求的定制</li>
+<li>一致的产品交付和平台更新</li>
+</ul>
+</li>
+<li>设备管理<ul>
+<li>设备管理服务, 可以帮助对所有连接的设备, 在全球范围内进行规模化的注册、查看及远程管理</li>
+<li>物模型（Thing Model）是对设备在云端的功能描述，包括设备的属性、数据、服务和事件</li>
+<li>物联网平台提供设备影子功能，用于缓存设备状态，是一个 JSON 文档</li>
+<li>数字孪生，是充分利用物理模型、传感器更新、运行历史等数据，集成多学科、多物理量、多尺度、多概率的仿真过程，在虚拟空间中完成映射，从而反映相对应的实体装备的全生命周期过程</li>
+</ul>
+</li>
+<li>通信协议<ul>
+<li>应用层协议<ul>
+<li><img src="image-20250104152205962.png" srcset="/img/loading.gif" lazyload alt="image-20250104152205962" style="zoom:67%;" /></li>
+</ul>
+</li>
+<li>多协议接入方案<ul>
+<li>通过协议转换网关实现泛协议设备接入</li>
+<li><img src="image-20250104152301276.png" srcset="/img/loading.gif" lazyload alt="image-20250104152301276" style="zoom:67%;" /></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="实验部分"><a href="#实验部分" class="headerlink" title="实验部分"></a>实验部分</h2><ul>
+<li>Arduino为什么流行<ul>
+<li>跨平台的</li>
+<li>简单，清晰的编程环境</li>
+<li>开放源码和可扩展软件</li>
+<li>开源和可扩展硬件</li>
+<li>便宜</li>
+</ul>
+</li>
+<li>ROS<ul>
+<li>ROS 是一个适用于机器人的开源的元操作系统，提供了操作系统应有的服务，包括硬件抽象、底层设备控制、常用函数的实现、进程间消息传递、以及包管理</li>
+<li>ROS的核心是提供一个消息传递系统，通常称为“中间件”或“管道”</li>
+<li>为什么使用<ul>
+<li>ROS生态系统具有丰富的机器人软件</li>
+<li>ROS项目的目标是不断降低构建机器人应用程序的门槛</li>
+<li>ROS社区是一个庞大、多样和全球性的社区</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>PID<ul>
+<li><strong>反馈控制</strong>是指将系统的输出信息返送到输入端，与输入信息进行比较，并利用二者的偏差进行控制的过程</li>
+<li><strong>开环控制</strong>：open loop control，又称“开环控制系统”，是指在一个控制系统中系统的输入信号不受输出信号影响的控制系统, 也就是，不将控制的结果反馈回来影响当前控制的系统</li>
+<li><strong>闭环控制</strong>：是指作为被控的输出量以一定方式返回到作为控制的输入端，并对输入端施加控制影响的一种控制关系，即带有反馈信息的系统控制方式</li>
+<li><strong>PID</strong>：在过程控制中，按偏差的比例（P）、积分（I）和微分（D）进行控制的PID控制器（亦称PID调节器）是应用最为广泛的一种自动控制器</li>
+</ul>
+</li>
+<li>传感器<ul>
+<li><strong>温度漂移（温漂）</strong>：传感器在不同温度条件下，输出信号发生的变化。由于传感器的材料、结构以及电子元件的温度依赖性，随着环境温度的变化，传感器的灵敏度、零点和其他性能可能发生变化。</li>
+<li><strong>零点漂移（零漂）</strong>：传感器在没有输入信号（例如，温度、压力、加速度等）时，输出信号发生的变化。理想情况下，当输入信号为零时，传感器应该输出零值，但实际情况中，传感器可能会在无输入的情况下产生一个非零的输出，称为零点漂移。</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="../../../../tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="print-no-link">#嵌入式</a>
+      
+        <a href="../../../../tags/%E7%89%A9%E8%81%94%E7%BD%91/" class="print-no-link">#物联网</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>嵌入式软件系统</div>
+      <div>https://frosty-xue.github.io/2025/01/10/嵌入式软件系统/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 10, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="../../09/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" title="面向服务的软件工程">
+                        <span class="hidden-mobile">面向服务的软件工程</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="../../../../js/events.js" ></script>
+<script  src="../../../../js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="../../../../js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="../../../../js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="../../../../js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
