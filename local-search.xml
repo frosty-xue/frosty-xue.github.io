@@ -217,6 +217,8 @@
       
       <tag>算法</tag>
       
+      <tag>数据结构</tag>
+      
       <tag>DFS</tag>
       
       <tag>BFS</tag>
@@ -228,8 +230,6 @@
       <tag>回溯</tag>
       
       <tag>递归</tag>
-      
-      <tag>数据结构</tag>
       
     </tags>
     
@@ -256,6 +256,8 @@
       
       <tag>算法</tag>
       
+      <tag>数据结构</tag>
+      
       <tag>DFS</tag>
       
       <tag>BFS</tag>
@@ -265,8 +267,6 @@
       <tag>深度优先遍历</tag>
       
       <tag>递归</tag>
-      
-      <tag>数据结构</tag>
       
       <tag>拓扑排序</tag>
       
@@ -607,9 +607,38 @@
   
   
   <entry>
+    <title>爬虫自学笔记</title>
+    <link href="/2023/01/25/%E7%88%AC%E8%99%AB%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/"/>
+    <url>/2023/01/25/%E7%88%AC%E8%99%AB%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<h1 id="爬虫学习笔记"><a href="#爬虫学习笔记" class="headerlink" title="爬虫学习笔记"></a>爬虫学习笔记</h1><blockquote><p>本文记录了我自学 Python 爬虫的过程中，通过 <code>Selenium</code> 与 <code>Requests</code> 所掌握的一些基础操作与实战技巧，适合入门者阅读。</p></blockquote><span id="more"></span><hr><h2 id="一、使用-Selenium-控制浏览器自动化"><a href="#一、使用-Selenium-控制浏览器自动化" class="headerlink" title="一、使用 Selenium 控制浏览器自动化"></a>一、使用 Selenium 控制浏览器自动化</h2><p>Selenium 是一个强大的自动化测试工具，也常被用于爬虫任务中，尤其是需要模拟用户操作的场景。</p><h3 id="1-环境配置"><a href="#1-环境配置" class="headerlink" title="1. 环境配置"></a>1. 环境配置</h3><p>首先需要下载与浏览器版本匹配的 WebDriver。以 Edge 浏览器为例：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver<br><span class="hljs-keyword">from</span> selenium.webdriver.common.by <span class="hljs-keyword">import</span> By<br><span class="hljs-keyword">import</span> time<br><br><span class="hljs-comment"># 指定驱动路径</span><br>edge_driver_path = <span class="hljs-string">&quot;E:\\EdgeDriver\\msedgedriver.exe&quot;</span><br>edge_service = webdriver.EdgeService(executable_path=edge_driver_path)<br><br><span class="hljs-comment"># 创建浏览器实例</span><br>edge_options = webdriver.EdgeOptions()<br>driver = webdriver.Edge(service=edge_service, options=edge_options)<br><br><span class="hljs-comment"># 打开网页</span><br>driver.maximize_window()<br>driver.get(<span class="hljs-string">&quot;https://www.baidu.com/&quot;</span>)<br></code></pre></td></tr></table></figure><h3 id="2-常见操作"><a href="#2-常见操作" class="headerlink" title="2. 常见操作"></a>2. 常见操作</h3><ul><li>刷新页面：<code>driver.refresh()</code></li><li>后退&#x2F;前进：<code>driver.back()</code> &#x2F; <code>driver.forward()</code></li><li>获取信息：<ul><li>当前网址：<code>driver.current_url</code></li><li>页面标题：<code>driver.title</code></li><li>页面源码：<code>driver.page_source</code></li></ul></li></ul><h3 id="3-元素交互"><a href="#3-元素交互" class="headerlink" title="3. 元素交互"></a>3. 元素交互</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 输入关键词</span><br>element = driver.find_element(By.NAME, <span class="hljs-string">&quot;wd&quot;</span>)<br>element.send_keys(<span class="hljs-string">&quot;selenium&quot;</span>)<br><br><span class="hljs-comment"># 点击搜索按钮</span><br>button = driver.find_element(By.ID, <span class="hljs-string">&quot;su&quot;</span>)<br>button.click()<br>time.sleep(<span class="hljs-number">2</span>)<br><br><span class="hljs-comment"># 点击搜索结果中的某个链接</span><br>result_links = driver.find_elements(By.CSS_SELECTOR, <span class="hljs-string">&quot;h3 a&quot;</span>)<br>result_links[<span class="hljs-number">2</span>].click()<br></code></pre></td></tr></table></figure><h3 id="4-鼠标操作示例"><a href="#4-鼠标操作示例" class="headerlink" title="4. 鼠标操作示例"></a>4. 鼠标操作示例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> selenium.webdriver <span class="hljs-keyword">import</span> ActionChains<br><br>actions = ActionChains(driver)<br><br><span class="hljs-comment"># 单击、双击、右键</span><br>actions.click(element).perform()<br>actions.double_click(element).perform()<br>actions.context_click(element).perform()<br><br><span class="hljs-comment"># 拖拽</span><br>actions.drag_and_drop(source_element, target_element).perform()<br></code></pre></td></tr></table></figure><hr><h2 id="二、使用-Requests-模拟网络请求"><a href="#二、使用-Requests-模拟网络请求" class="headerlink" title="二、使用 Requests 模拟网络请求"></a>二、使用 Requests 模拟网络请求</h2><p>相比 Selenium，<code>requests</code> 更轻量，适合处理静态页面或 API 数据。</p><h3 id="1-基本-GET-请求"><a href="#1-基本-GET-请求" class="headerlink" title="1. 基本 GET 请求"></a>1. 基本 GET 请求</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> requests<br><br>r = requests.get(<span class="hljs-string">&quot;https://www.baidu.com&quot;</span>)<br><span class="hljs-built_in">print</span>(r.content.decode(<span class="hljs-string">&quot;utf-8&quot;</span>))<br></code></pre></td></tr></table></figure><h3 id="2-模拟浏览器请求"><a href="#2-模拟浏览器请求" class="headerlink" title="2. 模拟浏览器请求"></a>2. 模拟浏览器请求</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">headers = &#123;<br>    <span class="hljs-string">&quot;User-Agent&quot;</span>: <span class="hljs-string">&quot;Mozilla/5.0 ...&quot;</span><br>&#125;<br>response = requests.get(<span class="hljs-string">&quot;https://bing.com&quot;</span>, headers=headers)<br><span class="hljs-built_in">print</span>(response.status_code)<br></code></pre></td></tr></table></figure><h3 id="3-带参数的请求"><a href="#3-带参数的请求" class="headerlink" title="3. 带参数的请求"></a>3. 带参数的请求</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">params = &#123;<span class="hljs-string">&quot;q&quot;</span>: <span class="hljs-string">&quot;requests&quot;</span>&#125;<br>response = requests.get(<span class="hljs-string">&quot;https://bing.com/search&quot;</span>, params=params, headers=headers)<br><span class="hljs-built_in">print</span>(response.url)<br></code></pre></td></tr></table></figure><h3 id="4-下载图片"><a href="#4-下载图片" class="headerlink" title="4. 下载图片"></a>4. 下载图片</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">picture = requests.get(<span class="hljs-string">&quot;https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png&quot;</span>)<br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;baidu.png&quot;</span>, <span class="hljs-string">&#x27;wb&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>    f.write(picture.content)<br></code></pre></td></tr></table></figure><hr><h2 id="三、Requests-常用方法和属性"><a href="#三、Requests-常用方法和属性" class="headerlink" title="三、Requests 常用方法和属性"></a>三、Requests 常用方法和属性</h2><table><thead><tr><th>方法</th><th>用途</th></tr></thead><tbody><tr><td><code>requests.get()</code></td><td>发送 GET 请求</td></tr><tr><td><code>requests.post()</code></td><td>提交表单或登录请求</td></tr><tr><td><code>requests.put()</code> &#x2F; <code>delete()</code> &#x2F; <code>head()</code></td><td>RESTful 请求</td></tr><tr><td><code>response.status_code</code></td><td>返回状态码</td></tr><tr><td><code>response.text</code> &#x2F; <code>response.content</code></td><td>返回响应内容</td></tr><tr><td><code>response.json()</code></td><td>返回 JSON 数据</td></tr><tr><td><code>response.headers</code> &#x2F; <code>cookies</code></td><td>获取响应头和 cookies</td></tr></tbody></table><hr><h2 id="四、编码与响应解析小贴士"><a href="#四、编码与响应解析小贴士" class="headerlink" title="四、编码与响应解析小贴士"></a>四、编码与响应解析小贴士</h2><ul><li><code>response.text</code> 是自动解码为字符串的形式</li><li><code>response.content</code> 返回原始二进制内容，更适合处理文件</li><li>可以手动指定编码方式，如 <code>response.content.decode(&quot;gbk&quot;)</code></li></ul><hr><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul><li>Selenium 更适合需要模拟人类操作的动态页面</li><li>Requests 更适合处理静态网页或 API</li><li>建议熟练掌握两者的基础使用，再逐步深入如 XPath、BeautifulSoup、正则表达式等内容</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>杂七杂八的自学笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>爬虫</tag>
+      
+      <tag>selenium</tag>
+      
+      <tag>request</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>test</title>
-    <link href="/2023/12/05/test/"/>
-    <url>/2023/12/05/test/</url>
+    <link href="/2022/12/05/test/"/>
+    <url>/2022/12/05/test/</url>
     
     <content type="html"><![CDATA[<p>RPC</p><ul><li>RPC 即远程过程调用，允许程序调用运行在另一台计算机上的程序中的过程或函数，就像调用本地程序中的过程或函数一样，而无需了解底层网络细节。</li><li>步骤：客户端调用-&gt;请求发送(序列化) -&gt; 服务器接受并处理(反序列化) -&gt; 结果返回(序列化) -&gt; 客户端接收结果(反序列化)</li><li>常见的 RPC 框架：gRPC、Thrift、Dubbo</li></ul>]]></content>
     
