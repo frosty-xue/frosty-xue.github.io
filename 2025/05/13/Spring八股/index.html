@@ -1,0 +1,864 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../img/fluid.png">
+  <link rel="icon" href="../../../../img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Frosty">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="3. Spring Spring核心思想 IoC：即控制反转的意思，它是一种创建和获取对象的技术思想，依赖注入(DI)是实现这种技术的一种方式。我们不通过new关键字创建对象，而是通过IoC容器来帮我们实例化对象，可以降低对象间耦合度。 AOP：是面向切面编程，能够将那些与业务无关，却为业务模块所共同调用的逻辑封装起来，以减少系统的重复代码，降低模块间的耦合度。   JDK Proxy 是一种只针">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring八股">
+<meta property="og:url" content="https://frosty-xue.github.io/2025/05/13/Spring%E5%85%AB%E8%82%A1/index.html">
+<meta property="og:site_name" content="Frosty的技术博客">
+<meta property="og:description" content="3. Spring Spring核心思想 IoC：即控制反转的意思，它是一种创建和获取对象的技术思想，依赖注入(DI)是实现这种技术的一种方式。我们不通过new关键字创建对象，而是通过IoC容器来帮我们实例化对象，可以降低对象间耦合度。 AOP：是面向切面编程，能够将那些与业务无关，却为业务模块所共同调用的逻辑封装起来，以减少系统的重复代码，降低模块间的耦合度。   JDK Proxy 是一种只针">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/13/Spring%E5%85%AB%E8%82%A1/image-20250421212230096.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/13/Spring%E5%85%AB%E8%82%A1/1713944902120-e35c2b4f-e290-4973-aa1a-3193af3bb371.png">
+<meta property="og:image" content="https://cdn.xiaolincoding.com//picgo/1716791047520-ac0d9673-be0a-4005-8732-30bdedc8f1af.webp">
+<meta property="og:image" content="https://cdn.xiaolincoding.com//picgo/1721712159282-79195670-9acf-4bfb-93b1-47d089a4bc1c.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/05/13/Spring%E5%85%AB%E8%82%A1/image-20250421225420345.png">
+<meta property="article:published_time" content="2025-05-13T11:33:44.000Z">
+<meta property="article:modified_time" content="2025-05-13T11:49:30.857Z">
+<meta property="article:author" content="Frosty">
+<meta property="article:tag" content="Spring">
+<meta property="article:tag" content="Spring Boot">
+<meta property="article:tag" content="Spring Cloud">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://frosty-xue.github.io/2025/05/13/Spring%E5%85%AB%E8%82%A1/image-20250421212230096.png">
+  
+  
+  
+  <title>Spring八股 - Frosty的技术博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="../../../../css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="../../../../css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"frosty-xue.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="../../../../js/utils.js" ></script>
+  <script  src="../../../../js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="../../../../index.html">
+      <strong>Frosty的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../../../index.html" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../../../archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../../../categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../../../tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../../../about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('../../../../img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Spring八股"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-13 19:33" pubdate>
+          May 13, 2025 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          30 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Spring八股</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="3-Spring"><a href="#3-Spring" class="headerlink" title="3. Spring"></a>3. Spring</h2><ul>
+<li>Spring核心思想<ul>
+<li><strong>IoC</strong>：即控制反转的意思，它是一种创建和获取对象的技术思想，依赖注入(DI)是实现这种技术的一种方式。我们不通过new关键字创建对象，而是通过IoC容器来帮我们实例化对象，可以降低对象间耦合度。</li>
+<li><strong>AOP</strong>：是面向切面编程，能够将那些与业务无关，却为业务模块所共同调用的逻辑封装起来，以减少系统的重复代码，降低模块间的耦合度。</li>
+</ul>
+</li>
+<li>JDK Proxy 是一种只针对接口的动态代理机制，可以在运行时生成实现对应接口的代理对象，用于统一处理接口方法调用逻辑，比如增强日志、权限、事务等。</li>
+<li>IOC（Inversion Of Control）<ul>
+<li>实现机制<ul>
+<li><strong>反射</strong>：Spring IOC容器利用Java的反射机制动态地加载类、创建对象实例及调用对象方法</li>
+<li><strong>依赖注入</strong>：IOC的核心概念是依赖注入，即容器负责管理应用程序组件之间的依赖关系，包括构造函数注入、属性注入和方法注入</li>
+<li><strong>工厂模式</strong>：Spring IOC容器通常采用工厂模式来管理对象的创建和生命周期。容器作为工厂负责实例化Bean并管理它们的生命周期</li>
+</ul>
+</li>
+<li>在Spring中，开发者可以通过XML配置文件或者基于注解的方式声明组件之间的依赖关系。当应用程序启动时，Spring容器会扫描这些配置或注解，然后利用反射来实例化Bean（即Java对象），并根据配置自动装配它们的依赖。</li>
+</ul>
+</li>
+<li>AOP<ul>
+<li>AOP 中最小的单元是“切面”。一个“切面”可以包含很多种类型和对象，对它们进行模块化管理，例如事务管理。</li>
+<li>在面向切面编程的思想里面，把功能分为核心业务和周边功能。核心业务功能和周边功能是分别独立进行开发，然后把切面功能和核心业务功能 “编织” 在一起</li>
+<li>AOP能够将那些与业务无关，却为业务模块所共同调用的逻辑或责任封装起来，便于减少系统的重复代码，降低模块间的耦合度，并有利于未来的可拓展性和可维护性</li>
+<li>实现依赖于动态代理技术，JDK Proxy负责有接口的类，而没有实现接口的类用CGLIB（生成一个被代理类的子类）</li>
+<li>相关注解<ul>
+<li>@Aspect：用于定义切面，标注在切面类上。</li>
+<li>@Pointcut：定义切点，标注在方法上，用于指定连接点。</li>
+<li>@Before：在方法执行之前执行通知。</li>
+<li>@After：在方法执行之后执行通知。</li>
+<li>@Around：在方法执行前后都执行通知。</li>
+<li>@AfterReturning：在方法执行后返回结果后执行通知。</li>
+<li>@AfterThrowing：在方法抛出异常后执行通知。</li>
+<li>@Advice：通用的通知类型，可以替代@Before、@After等。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Spring中的循环依赖<ul>
+<li>循环依赖分类：<ul>
+<li>通过构造方法进行依赖注入时产生的循环依赖问题</li>
+<li>通过setter方法进行依赖注入且是在多例（原型）模式下产生的循环依赖问题</li>
+<li>通过setter方法进行依赖注入且是在单例模式下产生的循环依赖问题</li>
+</ul>
+</li>
+<li>只有第三种依赖可以解决，方法是三级缓存。三级缓存都是Map类型的</li>
+<li>三级缓存结构<ul>
+<li><strong>一级缓存 singletonObjects</strong>：存放完全初始化好的单例 bean（getBean() 正常返回的对象）。</li>
+<li><strong>二级缓存 earlySingletonObjects</strong>：存放早期暴露的（还没被初始化、AOP增强等的）bean 实例，解决循环依赖。</li>
+<li><strong>三级缓存 singletonFactories</strong>：存放用于创建 bean 的 ObjectFactory，对 AOP 代理等动态包装很关键。</li>
+</ul>
+</li>
+<li>Bean的创建过程：<ul>
+<li>实例化Bean后，放【ObjectFactory】到三级缓存。</li>
+<li>属性赋值后，提前暴露“半成品”bean到二级缓存（没有AOP增强，只是原始对象）。</li>
+<li>初始化和AOP增强后，将“完整，可用的”Bean放入一级缓存，将二三级缓存对应数据删除。</li>
+</ul>
+</li>
+<li>getBean(A)  → new A 实例  → singletonFactories.put(“A”, ObjectFactory)  → injection: @Autowired B → getBean(B)       → new B 实例       → singletonFactories.put(“B”, ObjectFactory)       → injection: @Autowired A → getBean(A)[循环]           → 1级无 2级无 3级有           → 使用A的ObjectFactory生成A实例，放到2级缓存           → 返回A实例（未初始化）       → B.a &#x3D; A (半成品A)       → B初始化完，放到1级缓存，清理2级、3级  → A.b &#x3D; B  → A初始化完，放到1级缓存，清理2级、3级</li>
+</ul>
+</li>
+<li>Spring用到的设计模式：工厂模式、代理模式、单例模式、观察者模式、适配器模式、模板方法模式</li>
+<li>Spring常见注解<ul>
+<li>@Autowired：主要用于自动装配bean</li>
+<li>@Component：用于标记一个类作为Spring的bean</li>
+<li>@Configuration：用于标记一个类作为Spring的配置类</li>
+<li>@Bean：用于标记一个方法作为Spring的bean工厂方法，Spring会将该方法的返回值作为一个bean</li>
+<li>@Service：用于标记一个类作为服务层的组件</li>
+<li>@Repository：用于标记一个类作为数据访问层的组件</li>
+<li>@Controller：用于标记一个类作为控制层的组件</li>
+</ul>
+</li>
+<li>Spring事务<ul>
+<li>事务管理在Spring Boot中通常是通过 @Transactional 注解来实现的</li>
+<li>Spring事务是通过<strong>代理对象</strong>来控制的</li>
+<li>事务失效情况：抛出未捕获异常、事务嵌套时配置有误、事务方法调用非事务方法、方法不是public</li>
+</ul>
+</li>
+<li>Spring 中的 Bean 默认都是单例的。但是也支持将Bean设置为多例模式，即每次请求都会创建一个新的Bean实例。</li>
+<li>Spring 只帮我们管理单例模式 Bean 的完整生命周期，对于 <code>prototype</code> 的 Bean，Spring 在创建好交给使用者之后不再管理后续生命周期</li>
+<li><img src="image-20250421212230096.png" srcset="/img/loading.gif" lazyload alt="image-20250421212230096" style="zoom: 80%;" /></li>
+<li>在Spring框架中，如果你希望在Bean加载（即实例化、属性赋值、初始化等过程完成后）或销毁前后执行某些逻辑，你可以使用Spring的生命周期回调接口或注解。这些接口和注解允许你定义在Bean生命周期的关键点执行的代码。</li>
+<li>Bean的注入有XML注入和注解注入两种方法。使用 XML 文件进行 Bean 注入时，Spring 在启动时会读取 XML 配置文件，注入过程：bean定义解析-&gt;bean定义注册-&gt;实例化和依赖注入。注解方式只有第一步不同，是类路径扫描（查找带@service、@controller等注解的类）</li>
+<li>Spring MVC<ul>
+<li>MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写，一种软件设计典范，用一种业务逻辑、数据、界面显示分离的方法组织代码，将业务逻辑聚集到一个部件里面，在改进和个性化定制界面及用户交互的同时，不需要重新编写业务逻辑。</li>
+<li><img src="1713944902120-e35c2b4f-e290-4973-aa1a-3193af3bb371.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:80%;" /></li>
+<li><img src="https://cdn.xiaolincoding.com//picgo/1716791047520-ac0d9673-be0a-4005-8732-30bdedc8f1af.webp" srcset="/img/loading.gif" lazyload alt="img" style="zoom:80%;" /></li>
+<li>HandlerMapping作用是将请求映射到对应的controller，HandlerAdapter负责调用controller来处理请求</li>
+</ul>
+</li>
+<li>SpringBoot与Spring<ul>
+<li><strong>Spring</strong> 是 Java 开发的基础生态，提供核心功能。<strong>Spring Boot</strong> 是对 Spring 的进一步封装和增强，让你更简单、更快捷地开发和部署 Spring 应用。</li>
+<li>SpringBoot的优势<ul>
+<li>Spring Boot提供一系列的开箱即用的组件和自动配置，通过引入不同的 Starter，可以快速集成常用的框架和库</li>
+<li>Spring Boot提供了快速的应用程序启动方式，可通过内嵌的Tomcat、Jetty或Undertow等容器快速启动应用程序</li>
+<li>Spring Boot通过自动配置功能，根据项目中的依赖关系和约定俗成的规则来配置应用程序</li>
+</ul>
+</li>
+<li>约定大于配置是Spring Boot的核心设计理念，它通过<strong>预设合理的默认行为和项目规范</strong>，大幅减少开发者需要手动配置的步骤，从而提升开发效率和项目标准化程度</li>
+<li><img src="https://cdn.xiaolincoding.com//picgo/1721712159282-79195670-9acf-4bfb-93b1-47d089a4bc1c.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom: 67%;" /></li>
+</ul>
+</li>
+<li>Spring Boot starter<ul>
+<li><strong>starter（起步依赖）</strong>，本质是<strong>一个标准的 Maven 依赖包（Jar）</strong>，它里面会“串联”或聚合好一组常见的相关依赖和默认配置，目的是让你<strong>只需要引入一个 starter，就能轻松用上一个完整的技术功能模块，提升开发效率</strong>。</li>
+<li><strong>spring-boot-starter-web</strong>：这是最常用的起步依赖之一，它包含了Spring MVC和Tomcat嵌入式服务器，用于快速构建Web应用程序</li>
+<li><strong>spring-boot-starter-security</strong>：提供了Spring Security的基本配置，帮助开发者快速实现应用的安全性，包括认证和授权功能。</li>
+<li><strong>mybatis-spring-boot-starter</strong>：用于简化在Spring Boot应用中集成MyBatis的过程</li>
+<li><strong>spring-boot-starter-data-jpa</strong> 或<strong>spring-boot-starter-jdbc</strong>：如果使用的是Java Persistence API (JPA)进行数据库操作则引入前者（包含了Hibernate等JPA实现），用JDBC就引入后者。</li>
+<li><strong>spring-boot-starter-data-redis</strong>：用于集成Redis缓存和数据存储服务</li>
+<li><strong>spring-boot-starter-test</strong>：包含了单元测试和集成测试所需的库</li>
+</ul>
+</li>
+<li>Spring Boot常见注解<ul>
+<li><strong>@SpringBootApplication</strong>：用于标注主应用程序类，标识一个Spring Boot应用程序的入口点，同时启用自动配置和组件扫描。</li>
+<li><strong>@RestController</strong>：结合@Controller和@ResponseBody，返回RESTful风格的数据。</li>
+<li><strong>@RequestMapping</strong>：用于映射HTTP请求路径到Controller的处理方法</li>
+<li><strong>@GetMapping</strong>、<strong>@PostMapping</strong>、<strong>@PutMapping</strong>、<strong>@DeleteMapping</strong>：简化@RequestMapping的GET、POST、PUT和DELETE请求</li>
+<li>其余与Spring相同</li>
+</ul>
+</li>
+<li>过滤器和拦截器<ul>
+<li><img src="image-20250421225420345.png" srcset="/img/loading.gif" lazyload alt="image-20250421225420345" style="zoom: 67%;" /></li>
+<li>过滤器在请求进入 Servlet 容器后，在到达目标 Servlet 或控制器之前执行；拦截器在请求到达控制器之后，在控制器方法执行前后执行。</li>
+</ul>
+</li>
+<li>JDBC连接数据库步骤<ul>
+<li><strong>加载数据库驱动程序</strong>：如可以通过 Class.forName(“com.mysql.jdbc.Driver”) 加载MySQL驱动程序</li>
+<li><strong>建立数据库连接</strong>：使用 DriverManager 类的 getConnection(url, username, password) 连接</li>
+<li><strong>创建 Statement 对象</strong>：通过 Connection 对象的createStatement() 方法创建一个 Statement 对象用于执行操作</li>
+<li><strong>执行 SQL 查询或更新操作</strong>：使用 Statement 对象的executeQuery(sql) 、executeUpdate(sql) 方法来执行</li>
+<li><strong>处理查询结果</strong>：如果是 SELECT 查询操作，通过 ResultSet对象来处理查询结果</li>
+<li><strong>关闭连接</strong>：在完成数据库操作后，需要<strong>逐级</strong>关闭数据库连接相关对象</li>
+</ul>
+</li>
+<li>Mybatis简单介绍（<del>复杂的暂时不管</del>）<ul>
+<li><strong>MyBatis 就是一个让你手写 SQL，然后帮你自动把 SQL 执行&amp;结果转对象、简化数据库操作的 Java 框架</strong>。它是一款优秀的开源 <strong>ORM（对象关系映射）框架</strong>，主要用于简化 Java 程序对关系型数据库的操作。</li>
+<li>MyBatis 让你用 <strong>XML 文件（或注解）来写 SQL 语句</strong>，并把这些 SQL 和 Java 方法做一一对应映射。只需要写 SQL，MyBatis 自动把参数填进去，结果查出来转成相应的 Java 对象。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.demo.mapper;<br><br><span class="hljs-keyword">import</span> com.example.demo.entity.User;<br><span class="hljs-keyword">import</span> org.apache.ibatis.annotations.Mapper;<br><span class="hljs-keyword">import</span> org.apache.ibatis.annotations.Select;<br><br><span class="hljs-keyword">import</span> java.util.List;<br><br><span class="hljs-meta">@Mapper</span>  <span class="hljs-comment">// 必须标注为 @Mapper</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserMapper</span> &#123;<br>    <br>    <span class="hljs-meta">@Select(&quot;SELECT * FROM user&quot;)</span><br>    List&lt;User&gt; <span class="hljs-title function_">findAll</span><span class="hljs-params">()</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span> ?&gt;</span><br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">mapper</span> <span class="hljs-keyword">PUBLIC</span> <span class="hljs-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span><br><span class="hljs-meta">        <span class="hljs-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">&quot;com.example.demo.mapper.UserMapper&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;findAll&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;com.example.demo.entity.User&quot;</span>&gt;</span><br>        SELECT * FROM user<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>Spring Cloud<ul>
+<li>Spring Cloud是用于构建分布式系统中的微服务架构的工具，提供了服务注册与发现、负载均衡、断路器、网关等功能。</li>
+<li>微服务常用的组件：<ul>
+<li><strong>注册中心</strong>：注册中心是微服务架构最核心的组件，作用是对新节点的注册与状态维护，通常会采用心跳机制最大程度保证已登记过的服务节点都是可用的</li>
+<li><strong>负载均衡</strong>：通常微服务在互相调用时，并不是直接通过IP、端口进行访问调用，而是先通过服务名在注册中心查询该服务拥有哪些节点，注册中心将该服务可用节点列表返回给服务调用者，这个过程叫服务发现。服务调用者要从多个节点中选择，因此服务调用者一端必须内置负载均衡器，通过负载均衡策略选择合适的节点发起实质性的通信请求</li>
+<li><strong>服务通信</strong>：封装了服务间通信的协议</li>
+<li><strong>配置中心</strong>：通过部署配置中心服务器，将各节点配置文件从服务中剥离，集中转存到配置中心。</li>
+<li><strong>集中式日志管理</strong>：通过搭建独立的日志收集系统，定时抓取各节点增量日志形成有效的统计报表，为统计和分析提供数据支撑。</li>
+<li><strong>服务保护</strong>：如果某个微服务出现高延迟导致线程池满载，或是业务处理失败，这里就需要引入服务保护组件来实现高延迟服务的快速降级，避免系统崩溃。</li>
+</ul>
+</li>
+<li><strong>应用结构</strong><ul>
+<li><strong>服务注册中心</strong>（如Nacos）</li>
+<li><strong>配置中心</strong>（Spring Cloud Config 或 Nacos）</li>
+<li><strong>网关服务</strong>（Spring Cloud Gateway）</li>
+<li><strong>业务服务</strong>（多个，服务之间通过Feign调用）</li>
+<li><strong>监控与追踪</strong>（Sleuth、Zipkin）</li>
+</ul>
+</li>
+<li>负载均衡算法：简单轮询、加权轮询、简单随机、加权随机、一致性哈希（可实现同一个客户端或相同参数的请求对应一台服务器）、最小活跃数</li>
+<li>服务熔断：当调用链路的某个微服务不可用或者响应时间太长时，会进行服务熔断，不再有该节点微服务的调用，快速返回错误信息。当检测到该节点微服务调用响应正常后，恢复调用链路。</li>
+<li>服务降级：对某些负荷会比较高的情况，为了预防某些功能（业务场景）出现负荷过载或者响应慢的情况，在其内部暂时舍弃对一些非核心的接口和数据的请求，而直接返回一个提前准备好的错误处理信息</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>作用简介</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Eureka</td>
+<td>服务注册与发现中心（已被 Spring 官方弃用）</td>
+</tr>
+<tr>
+<td>Nacos</td>
+<td>推荐的注册中心 + 配置中心（阿里开源）</td>
+</tr>
+<tr>
+<td>Config</td>
+<td>分布式配置中心</td>
+</tr>
+<tr>
+<td>Gateway</td>
+<td>微服务 API 网关，替代 Zuul</td>
+</tr>
+<tr>
+<td>OpenFeign</td>
+<td>声明式 HTTP 客户端，用于服务之间远程调用</td>
+</tr>
+<tr>
+<td>Hystrix</td>
+<td>熔断降级，已弃用，推荐使用 Resilience4j</td>
+</tr>
+<tr>
+<td>Sleuth + Zipkin</td>
+<td>分布式链路追踪</td>
+</tr>
+<tr>
+<td>Bus</td>
+<td>配置自动刷新总线</td>
+</tr>
+<tr>
+<td>Consul</td>
+<td>可选的注册中心+配置中心（HashiCorp 提供）</td>
+</tr>
+</tbody></table>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="../../../../categories/Java%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87/" class="category-chain-item">Java面试八股文</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="../../../../tags/Spring/" class="print-no-link">#Spring</a>
+      
+        <a href="../../../../tags/Spring-Boot/" class="print-no-link">#Spring Boot</a>
+      
+        <a href="../../../../tags/Spring-Cloud/" class="print-no-link">#Spring Cloud</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Spring八股</div>
+      <div>https://frosty-xue.github.io/2025/05/13/Spring八股/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Frosty</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>May 13, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="../Java%E5%85%AB%E8%82%A1/" title="Java八股">
+                        <span class="hidden-mobile">Java八股</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="../../../../js/events.js" ></script>
+<script  src="../../../../js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="../../../../js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="../../../../js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="../../../../js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
