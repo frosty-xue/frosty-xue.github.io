@@ -19,79 +19,76 @@
   <meta name="author" content="Frosty">
   <meta name="keywords" content="">
   
-    <meta name="description" content="软件系统设计整理(架构部分)">
+    <meta name="description" content="软件系统设计整理(架构部分)1. 介绍 理解软件工程 软件和硬件： 软件是不可见的：软件是虚拟的，而硬件是实体的。 软件制作出来就是为了被修改和改变的(软件的演化是他的本质属性)   科学和工程 科学的研究是研究这个世界既有的部分，而工程是研究的是人类创造新的世界(是不是因为人才产生的)，下面的图是很重要的。        注：Architecture可以翻译为架构，也可以是体系结构   什么是软">
 <meta property="og:type" content="article">
-<meta property="og:title" content="软件系统设计(架构部分)">
+<meta property="og:title" content="Frosty的技术博客">
 <meta property="og:url" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/index.html">
 <meta property="og:site_name" content="Frosty的技术博客">
-<meta property="og:description" content="软件系统设计整理(架构部分)">
+<meta property="og:description" content="软件系统设计整理(架构部分)1. 介绍 理解软件工程 软件和硬件： 软件是不可见的：软件是虚拟的，而硬件是实体的。 软件制作出来就是为了被修改和改变的(软件的演化是他的本质属性)   科学和工程 科学的研究是研究这个世界既有的部分，而工程是研究的是人类创造新的世界(是不是因为人才产生的)，下面的图是很重要的。        注：Architecture可以翻译为架构，也可以是体系结构   什么是软">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/1.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250528202710016.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/45ed3af0f45c4fdb8500c92a0d7455a3.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250530192359706.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250528202710016.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/45ed3af0f45c4fdb8500c92a0d7455a3.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250530192359706.png">
 <meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/7.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529195836443.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529195836443.png">
 <meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/5.png">
 <meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529153004954.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529154100715.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529154100715.png">
 <meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529153805503.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529183555510.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529185634800.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529183555510.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529185634800.png">
 <meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529183844839.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529184529017.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529185615365.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529185027406.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529185416629.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529185703769.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529191237976.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529184529017.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529185615365.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529185027406.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529185416629.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529185703769.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529191237976.png">
 <meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529191903342.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529192206966.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529192602450.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529192822172.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529192206966.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529192602450.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529192822172.png">
 <meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529193135500.png">
 <meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529194315617.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529194826560.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529195328527.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529194826560.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529195328527.png">
 <meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529195644114.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250530200152966.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529202144119.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250530200152966.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529202144119.png">
 <meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/v2-03b6d52599d7a97b4362ca83bbffd96d_r.jpg">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529202959043.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529202959043.png">
 <meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250529203220288.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250530103446068.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/v2-d01cefd6ccd37b11d6bd6192349a31fb_1440w.jpg">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250530103446068.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/v2-d01cefd6ccd37b11d6bd6192349a31fb_1440w.jpg">
 <meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250530104235595.png">
 <meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250530105059192.png">
 <meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250530110643885.png">
 <meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250530111230616.png">
 <meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250530111902992.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250530122749200.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250530123151554.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250530122749200.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250530123151554.png">
 <meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250530142622943.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250530144434061.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250530162639760.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250530144434061.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250530162639760.png">
 <meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250530163124749.png">
 <meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250530163341259.png">
 <meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250531122914808.png">
 <meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250531122934220.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250530164414125.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250530164414125.png">
 <meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250602174120502.png">
 <meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250531124625876.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250530171428382.png">
-<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250531144609140.png">
-<meta property="article:published_time" content="2025-06-03T00:47:14.000Z">
-<meta property="article:modified_time" content="2025-06-03T00:49:07.104Z">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250530171428382.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/image-20250531144609140.png">
+<meta property="article:published_time" content="2025-06-03T00:47:14.306Z">
+<meta property="article:modified_time" content="2025-06-03T06:52:33.214Z">
 <meta property="article:author" content="Frosty">
-<meta property="article:tag" content="软件系统设计">
-<meta property="article:tag" content="架构">
-<meta property="article:tag" content="质量属性">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://frosty-xue.github.io/2025/06/03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/1.png">
   
   
   
-  <title>软件系统设计(架构部分) - Frosty的技术博客</title>
+  <title>Frosty的技术博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -257,7 +254,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="软件系统设计(架构部分)"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -328,14 +325,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">软件系统设计(架构部分)</h1>
+            <h1 id="seo-header"></h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="软件系统设计整理-架构部分"><a href="#软件系统设计整理-架构部分" class="headerlink" title="软件系统设计整理(架构部分)"></a>软件系统设计整理(架构部分)</h1><span id="more"></span>
-
-<h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h2><ul>
+                <h1 id="软件系统设计整理-架构部分"><a href="#软件系统设计整理-架构部分" class="headerlink" title="软件系统设计整理(架构部分)"></a>软件系统设计整理(架构部分)</h1><h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h2><ul>
 <li>理解软件工程<ul>
 <li>软件和硬件：<ul>
 <li>软件是不可见的：软件是虚拟的，而硬件是实体的。</li>
@@ -468,11 +463,12 @@
 </li>
 <li><p>用例场景(Use Case Scenarios)：捕获架构需求，与一个或多个特定视图相关</p>
 </li>
-<li><p>| 视图名                     | 关注点                   | 面向对象角色         | 表示方式         |<br>  | ————————– | ———————— | ——————– | —————- |<br>| <strong>1️⃣ 逻辑视图</strong>             | 功能划分，类的结构和交互 | 开发人员             | UML 类图、对象图 |<br>| <strong>2️⃣ 开发视图（实现视图）</strong> | 模块结构，代码组织       | 开发&#x2F;构建者          | 包图、组件图     |<br>| <strong>3️⃣ 进程视图</strong>             | 运行时行为，多线程、通信 | 测试&#x2F;性能分析者      | 活动图、通信图   |<br>| <strong>4️⃣ 物理视图（部署视图）</strong> | 部署拓扑、服务器结构     | 运维工程师           | 部署图、网络图   |<br>| <strong>➕ 场景视图（用例视图）</strong> | 主要功能场景、用例驱动   | 所有人（尤其是客户） | 用例图、文本     |</p>
+</ul>
+<p>| 视图名                     | 关注点                   | 面向对象角色         | 表示方式         |<br>    | ————————– | ———————— | ——————– | —————- |<br>| <strong>1️⃣ 逻辑视图</strong>             | 功能划分，类的结构和交互 | 开发人员             | UML 类图、对象图 |<br>| <strong>2️⃣ 开发视图（实现视图）</strong> | 模块结构，代码组织       | 开发&#x2F;构建者          | 包图、组件图     |<br>| <strong>3️⃣ 进程视图</strong>             | 运行时行为，多线程、通信 | 测试&#x2F;性能分析者      | 活动图、通信图   |<br>| <strong>4️⃣ 物理视图（部署视图）</strong> | 部署拓扑、服务器结构     | 运维工程师           | 部署图、网络图   |<br>| <strong>➕ 场景视图（用例视图）</strong> | 主要功能场景、用例驱动   | 所有人（尤其是客户） | 用例图、文本     |</p>
+<ul>
+<li><p><img src="image-20250528202710016.png" srcset="/img/loading.gif" lazyload alt="image-20250528202710016"></p>
 </li>
-<li><p><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250528202710016.png" srcset="/img/loading.gif" lazyload alt="image-20250528202710016"></p>
-</li>
-<li><p><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/45ed3af0f45c4fdb8500c92a0d7455a3.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<li><p><img src="45ed3af0f45c4fdb8500c92a0d7455a3.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 </li>
 <li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_29068607/article/details/143194772">https://blog.csdn.net/qq_29068607/article/details/143194772</a></p>
 </li>
@@ -512,7 +508,7 @@
 </ul>
 </li>
 <li><strong>软件架构过程(活动)</strong> 重要<ul>
-<li><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250530192359706.png" srcset="/img/loading.gif" lazyload alt="image-20250530192359706"></li>
+<li><img src="image-20250530192359706.png" srcset="/img/loading.gif" lazyload alt="image-20250530192359706"></li>
 <li>通过 StackHolder获取到 ASRs</li>
 <li>通过分析得到 Prioritized Quality Attribute Scenarios(高优先级质量属性场景 )和 Requirements Constraints(需求和约束 )</li>
 <li>将上述部分，结合模式和策略，综合可以得到架构的设计</li>
@@ -534,7 +530,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="2-质量属性-Quality-Attributes"><a href="#2-质量属性-Quality-Attributes" class="headerlink" title="2. 质量属性 Quality Attributes"></a>2. 质量属性 Quality Attributes</h2><p><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529195836443.png" srcset="/img/loading.gif" lazyload alt="image-20250529195836443"></p>
+<h2 id="2-质量属性-Quality-Attributes"><a href="#2-质量属性-Quality-Attributes" class="headerlink" title="2. 质量属性 Quality Attributes"></a>2. 质量属性 Quality Attributes</h2><p><img src="image-20250529195836443.png" srcset="/img/loading.gif" lazyload alt="image-20250529195836443"></p>
 <h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><ul>
 <li>需求分类<ul>
 <li>功能性需求 functional requirements</li>
@@ -655,19 +651,77 @@
 </li>
 <li><p>通用场景</p>
 <ul>
-<li><img src="image-20250529153004954.png" srcset="/img/loading.gif" lazyload alt="image-20250529153004954" style="zoom: 50%;" />
-</li>
-<li><p>| 场景要素 | 可能的值                                                     |<br>| ——– | ———————————————————— |<br>| 刺激源   | 内部&#x2F;外部：人员，硬件，软件，物理基础设施，物理环境          |<br>| 刺激     | 故障：遗漏，崩溃，错误时序，错误响应                         |<br>| 工件     | 处理器，通信渠道，持久存储，进程                             |<br>| 环境     | 正常操作，启动，关闭，修复模式，降级运行，超负荷运行         |<br>| 响应     | 防止故障成为故障。<br />检测故障：1.记录故障 2. 通知适当的实体<br />故障恢复：1.禁用引发故障事件的源 2. 在修复过程中暂时不可用 3. 修复或掩盖故障&#x2F;失败或抑制其造成的损害 4. 在修复过程中以降级模式运行 |<br>| 响应度量 | 系统必须可用的时间或时间间隔、可用百分比（如99.999%）、检测故障时间、修复故障时间、系统可在降级模式运行的时间或时间间隔、预防某类故障或处理不失败的比例（如99%）或速率（如每秒最多100次） |</p>
-</li>
+<li><img src="image-20250529153004954.png" srcset="/img/loading.gif" lazyload alt="image-20250529153004954" style="zoom: 50%;" /></li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>场景要素</th>
+<th>可能的值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>刺激源</td>
+<td>内部&#x2F;外部：人员，硬件，软件，物理基础设施，物理环境</td>
+</tr>
+<tr>
+<td>刺激</td>
+<td>故障：遗漏，崩溃，错误时序，错误响应</td>
+</tr>
+<tr>
+<td>工件</td>
+<td>处理器，通信渠道，持久存储，进程</td>
+</tr>
+<tr>
+<td>环境</td>
+<td>正常操作，启动，关闭，修复模式，降级运行，超负荷运行</td>
+</tr>
+<tr>
+<td>响应</td>
+<td>防止故障成为故障。 检测故障：1.记录故障 2. 通知适当的实体 故障恢复：1.禁用引发故障事件的源 2. 在修复过程中暂时不可用 3. 修复或掩盖故障&#x2F;失败或抑制其造成的损害 4. 在修复过程中以降级模式运行</td>
+</tr>
+<tr>
+<td>响应度量</td>
+<td>系统必须可用的时间或时间间隔、可用百分比（如99.999%）、检测故障时间、修复故障时间、系统可在降级模式运行的时间或时间间隔、预防某类故障或处理不失败的比例（如99%）或速率（如每秒最多100次）</td>
+</tr>
+</tbody></table>
 </li>
 <li><p>具体场景</p>
 <ul>
-<li><p><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529154100715.png" srcset="/img/loading.gif" lazyload alt="image-20250529154100715"></p>
-</li>
-<li><p>| 场景要素 | 可能的值             |<br>| ——– | ——————– |<br>| 刺激源   | 心跳监视器           |<br>| 刺激     | 服务器无响应         |<br>| 工件     | 处理流程             |<br>| 环境     | 正常操作             |<br>| 响应     | 通知操作组件继续操作 |<br>| 响应度量 | 无下线时间           |</p>
-</li>
+<li><img src="image-20250529154100715.png" srcset="/img/loading.gif" lazyload alt="image-20250529154100715"></li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>场景要素</th>
+<th>可能的值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>刺激源</td>
+<td>心跳监视器</td>
+</tr>
+<tr>
+<td>刺激</td>
+<td>服务器无响应</td>
+</tr>
+<tr>
+<td>工件</td>
+<td>处理流程</td>
+</tr>
+<tr>
+<td>环境</td>
+<td>正常操作</td>
+</tr>
+<tr>
+<td>响应</td>
+<td>通知操作组件继续操作</td>
+</tr>
+<tr>
+<td>响应度量</td>
+<td>无下线时间</td>
+</tr>
+</tbody></table>
 </li>
 <li><p>可用性策略</p>
 <ul>
@@ -709,19 +763,77 @@
 </li>
 <li><p>通用场景</p>
 <ul>
-<li><p><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529183555510.png" srcset="/img/loading.gif" lazyload alt="image-20250529183555510"></p>
-</li>
-<li><p>| 场景要素 | 可能的值                                                     |<br>| ——– | ———————————————————— |<br>| 刺激源   | 系统发起与另一个系统进行互操作的请求                         |<br>| 刺激     | 请求在系统之间交换信息                                       |<br>| 工件     | 希望进行互操作的系统                                         |<br>| 环境     | 希望互操作的系统在运行时被发现或在运行前已知                 |<br>| 响应     | 以下之一或多个：1.请求被（适当地）拒绝，并通知了适当的实体（人员或系统）2.请求被（适当地）接受，信息交换成功 3.请求被参与的一个或多个系统记录 |<br>| 响应度量 | 以下之一或多个：1.正确处理信息交换的百分比 2.正确拒绝信息交换的百分比 |</p>
-</li>
+<li><img src="image-20250529183555510.png" srcset="/img/loading.gif" lazyload alt="image-20250529183555510"></li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>场景要素</th>
+<th>可能的值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>刺激源</td>
+<td>系统发起与另一个系统进行互操作的请求</td>
+</tr>
+<tr>
+<td>刺激</td>
+<td>请求在系统之间交换信息</td>
+</tr>
+<tr>
+<td>工件</td>
+<td>希望进行互操作的系统</td>
+</tr>
+<tr>
+<td>环境</td>
+<td>希望互操作的系统在运行时被发现或在运行前已知</td>
+</tr>
+<tr>
+<td>响应</td>
+<td>以下之一或多个：1.请求被（适当地）拒绝，并通知了适当的实体（人员或系统）2.请求被（适当地）接受，信息交换成功 3.请求被参与的一个或多个系统记录</td>
+</tr>
+<tr>
+<td>响应度量</td>
+<td>以下之一或多个：1.正确处理信息交换的百分比 2.正确拒绝信息交换的百分比</td>
+</tr>
+</tbody></table>
 </li>
 <li><p>具体场景</p>
 <ul>
-<li><p><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529185634800.png" srcset="/img/loading.gif" lazyload alt="image-20250529185634800"></p>
-</li>
-<li><p>| 场景要素 | 可能的值                                   |<br>| ——– | —————————————— |<br>| 刺激源   | 车辆的信息系统                             |<br>| 刺激     | 发送当前位置                               |<br>| 工件     | 交通流量检测系统                           |<br>| 环境     | 系统知道运行情况                           |<br>| 响应     | 系统结合当前位置信息和谷歌地图、卫星数据等 |<br>| 响应度量 | 信息准确率达到99.9%                        |</p>
-</li>
+<li><img src="image-20250529185634800.png" srcset="/img/loading.gif" lazyload alt="image-20250529185634800"></li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>场景要素</th>
+<th>可能的值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>刺激源</td>
+<td>车辆的信息系统</td>
+</tr>
+<tr>
+<td>刺激</td>
+<td>发送当前位置</td>
+</tr>
+<tr>
+<td>工件</td>
+<td>交通流量检测系统</td>
+</tr>
+<tr>
+<td>环境</td>
+<td>系统知道运行情况</td>
+</tr>
+<tr>
+<td>响应</td>
+<td>系统结合当前位置信息和谷歌地图、卫星数据等</td>
+</tr>
+<tr>
+<td>响应度量</td>
+<td>信息准确率达到99.9%</td>
+</tr>
+</tbody></table>
 </li>
 <li><p>策略</p>
 <ul>
@@ -743,25 +855,83 @@
 </li>
 <li><p>通用场景</p>
 <ul>
-<li><p><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529184529017.png" srcset="/img/loading.gif" lazyload alt="image-20250529184529017"></p>
-</li>
-<li><p>| 场景要素 | 可能的值                                                     |<br>| ——– | ———————————————————— |<br>| 刺激源   | 终端用户，开发人员，系统管理员                               |<br>| 刺激     | 指令去增加&#x2F;删除&#x2F;修改功能，或更改质量属性、容量或技术         |<br>| 工件     | 代码，数据，接口，组件，资源，配置等                         |<br>| 环境     | 运行阶段，编译阶段，构建阶段，启动阶段，设计阶段             |<br>| 响应     | 以下之一或多个：1.进行修改 2.测试修改 3.部署修改             |<br>| 响应度量 | 以以下方面衡量的成本：1.受影响工件的数量、大小、复杂性 2.所需努力 3. 需要的时间 4. 花费的金钱 5. 修改影响其他功能或质量属性的程度 6. 引入的新缺陷 |</p>
-</li>
+<li><img src="image-20250529184529017.png" srcset="/img/loading.gif" lazyload alt="image-20250529184529017"></li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>场景要素</th>
+<th>可能的值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>刺激源</td>
+<td>终端用户，开发人员，系统管理员</td>
+</tr>
+<tr>
+<td>刺激</td>
+<td>指令去增加&#x2F;删除&#x2F;修改功能，或更改质量属性、容量或技术</td>
+</tr>
+<tr>
+<td>工件</td>
+<td>代码，数据，接口，组件，资源，配置等</td>
+</tr>
+<tr>
+<td>环境</td>
+<td>运行阶段，编译阶段，构建阶段，启动阶段，设计阶段</td>
+</tr>
+<tr>
+<td>响应</td>
+<td>以下之一或多个：1.进行修改 2.测试修改 3.部署修改</td>
+</tr>
+<tr>
+<td>响应度量</td>
+<td>以以下方面衡量的成本：1.受影响工件的数量、大小、复杂性 2.所需努力 3. 需要的时间 4. 花费的金钱 5. 修改影响其他功能或质量属性的程度 6. 引入的新缺陷</td>
+</tr>
+</tbody></table>
 </li>
 </ul>
 <ul>
 <li><p>具体场景</p>
 <ul>
-<li><p><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529185615365.png" srcset="/img/loading.gif" lazyload alt="image-20250529185615365"></p>
-</li>
-<li><p>| 场景要素 | 可能的值           |<br>| ——– | —————— |<br>| 刺激源   | 开发者             |<br>| 刺激     | 想要修改UI         |<br>| 工件     | 代码               |<br>| 环境     | 设计阶段           |<br>| 响应     | 完成修改并通过测试 |<br>| 响应度量 | 在3小时内完成      |</p>
-</li>
+<li><img src="image-20250529185615365.png" srcset="/img/loading.gif" lazyload alt="image-20250529185615365"></li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>场景要素</th>
+<th>可能的值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>刺激源</td>
+<td>开发者</td>
+</tr>
+<tr>
+<td>刺激</td>
+<td>想要修改UI</td>
+</tr>
+<tr>
+<td>工件</td>
+<td>代码</td>
+</tr>
+<tr>
+<td>环境</td>
+<td>设计阶段</td>
+</tr>
+<tr>
+<td>响应</td>
+<td>完成修改并通过测试</td>
+</tr>
+<tr>
+<td>响应度量</td>
+<td>在3小时内完成</td>
+</tr>
+</tbody></table>
 </li>
 <li><p>策略</p>
 <ul>
-<li><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529185027406.png" srcset="/img/loading.gif" lazyload alt="image-20250529185027406"></li>
+<li><img src="image-20250529185027406.png" srcset="/img/loading.gif" lazyload alt="image-20250529185027406"></li>
 <li>输入：更改到来</li>
 <li>具体策略：<ul>
 <li>减小模块大小：拆分模块</li>
@@ -781,23 +951,81 @@
 </li>
 <li><p>通用场景</p>
 <ul>
-<li><p><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529185416629.png" srcset="/img/loading.gif" lazyload alt="image-20250529185416629"></p>
-</li>
-<li><p>| 场景要素 | 可能的值                               |<br>| ——– | ————————————– |<br>| 刺激源   | 系统内部或外部                         |<br>| 刺激     | 周期性事件、零星事件或随机事件的到来   |<br>| 工件     | 系统或系统中的一个或多个组件           |<br>| 环境     | 操作模式：正常、紧急、峰值负载、超负荷 |<br>| 响应     | 处理事件，改变服务级别                 |<br>| 响应度量 | 延迟、截止时间、吞吐量、抖动、错失率   |</p>
-</li>
+<li><img src="image-20250529185416629.png" srcset="/img/loading.gif" lazyload alt="image-20250529185416629"></li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>场景要素</th>
+<th>可能的值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>刺激源</td>
+<td>系统内部或外部</td>
+</tr>
+<tr>
+<td>刺激</td>
+<td>周期性事件、零星事件或随机事件的到来</td>
+</tr>
+<tr>
+<td>工件</td>
+<td>系统或系统中的一个或多个组件</td>
+</tr>
+<tr>
+<td>环境</td>
+<td>操作模式：正常、紧急、峰值负载、超负荷</td>
+</tr>
+<tr>
+<td>响应</td>
+<td>处理事件，改变服务级别</td>
+</tr>
+<tr>
+<td>响应度量</td>
+<td>延迟、截止时间、吞吐量、抖动、错失率</td>
+</tr>
+</tbody></table>
 </li>
 <li><p>具体场景</p>
 <ul>
-<li><p><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529185703769.png" srcset="/img/loading.gif" lazyload alt="image-20250529185703769"></p>
-</li>
-<li><p>| 场景要素 | 可能的值      |<br>| ——– | ————- |<br>| 刺激源   | 用户          |<br>| 刺激     | 初始事务      |<br>| 工件     | 系统          |<br>| 环境     | 正常操作      |<br>| 响应     | 事务执行      |<br>| 响应度量 | 平均延迟为2秒 |</p>
-</li>
+<li><img src="image-20250529185703769.png" srcset="/img/loading.gif" lazyload alt="image-20250529185703769"></li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>场景要素</th>
+<th>可能的值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>刺激源</td>
+<td>用户</td>
+</tr>
+<tr>
+<td>刺激</td>
+<td>初始事务</td>
+</tr>
+<tr>
+<td>工件</td>
+<td>系统</td>
+</tr>
+<tr>
+<td>环境</td>
+<td>正常操作</td>
+</tr>
+<tr>
+<td>响应</td>
+<td>事务执行</td>
+</tr>
+<tr>
+<td>响应度量</td>
+<td>平均延迟为2秒</td>
+</tr>
+</tbody></table>
 </li>
 <li><p>策略</p>
 <ul>
-<li><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529191237976.png" srcset="/img/loading.gif" lazyload alt="image-20250529191237976"></li>
+<li><img src="image-20250529191237976.png" srcset="/img/loading.gif" lazyload alt="image-20250529191237976"></li>
 <li>输入：事件到达</li>
 <li>具体策略<ul>
 <li>控制资源请求：管理采样频率、限制事件响应（排队）、事件优先级排序、减少过载、限制处理时间、提高资源利用率。</li>
@@ -815,23 +1043,81 @@
 </li>
 <li><p>通用场景</p>
 <ul>
-<li><img src="image-20250529191903342.png" srcset="/img/loading.gif" lazyload alt="image-20250529191903342" style="zoom: 80%;" />
-</li>
-<li><p>| 场景要素 | 可能的值                                                     |<br>| ——– | ———————————————————— |<br>| 刺激源   | 人或其他系统，之前可能被正确或错误地识别，或当前未知。攻击者可能来自组织外部或内部。 |<br>| 刺激     | 未授权尝试显示数据、更改或删除数据、访问系统服务、更改系统行为或降低可用性。 |<br>| 工件     | 系统服务、系统内的数据、系统组件或资源、系统产生或消费的数据。 |<br>| 环境     | 系统是在线还是离线；连接或断开连接到网络；在防火墙后面或开放网络；完全运行、部分运行或不运行。 |<br>| 响应     | 事务以如下方式进行： 1.保护数据或服务不被未经授权访问 2.防止未经授权的数据或服务操作 3.参与事务方明确识别，确保可靠 4.事务参与方无法否认其参与 5.数据、资源和系统服务可用于合法使用 <br />系统通过以下方式追踪活动： 1.记录访问或修改 2.记录访问数据、资源或服务的尝试 3.在明显攻击发生时通知适当实体(人员或系统) |<br>| 响应度量 | 以下之一或多个： 1.系统在特定组件或数据值被破坏时的损失程度 2.从攻击检测到的时间 3.成功抵御多少次攻击 4.从成功攻击中恢复所需时间 5.特定攻击下的数据易受损害程度 |</p>
-</li>
+<li><img src="image-20250529191903342.png" srcset="/img/loading.gif" lazyload alt="image-20250529191903342" style="zoom: 80%;" /></li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>场景要素</th>
+<th>可能的值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>刺激源</td>
+<td>人或其他系统，之前可能被正确或错误地识别，或当前未知。攻击者可能来自组织外部或内部。</td>
+</tr>
+<tr>
+<td>刺激</td>
+<td>未授权尝试显示数据、更改或删除数据、访问系统服务、更改系统行为或降低可用性。</td>
+</tr>
+<tr>
+<td>工件</td>
+<td>系统服务、系统内的数据、系统组件或资源、系统产生或消费的数据。</td>
+</tr>
+<tr>
+<td>环境</td>
+<td>系统是在线还是离线；连接或断开连接到网络；在防火墙后面或开放网络；完全运行、部分运行或不运行。</td>
+</tr>
+<tr>
+<td>响应</td>
+<td>事务以如下方式进行： 1.保护数据或服务不被未经授权访问 2.防止未经授权的数据或服务操作 3.参与事务方明确识别，确保可靠 4.事务参与方无法否认其参与 5.数据、资源和系统服务可用于合法使用  系统通过以下方式追踪活动： 1.记录访问或修改 2.记录访问数据、资源或服务的尝试 3.在明显攻击发生时通知适当实体(人员或系统)</td>
+</tr>
+<tr>
+<td>响应度量</td>
+<td>以下之一或多个： 1.系统在特定组件或数据值被破坏时的损失程度 2.从攻击检测到的时间 3.成功抵御多少次攻击 4.从成功攻击中恢复所需时间 5.特定攻击下的数据易受损害程度</td>
+</tr>
+</tbody></table>
 </li>
 <li><p>具体场景</p>
 <ul>
-<li><p><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529192206966.png" srcset="/img/loading.gif" lazyload alt="image-20250529192206966"></p>
-</li>
-<li><p>| 场景要素 | 可能的值                               |<br>| ——– | ————————————– |<br>| 刺激源   | 远程的恶意用户                         |<br>| 刺激     | 试图修改支付率                         |<br>| 工件     | 系统数据                               |<br>| 环境     | 正常操作                               |<br>| 响应     | 系统维持审计踪迹                       |<br>| 响应度量 | 正确数据在一天内恢复并且攻击来源被标识 |</p>
-</li>
+<li><img src="image-20250529192206966.png" srcset="/img/loading.gif" lazyload alt="image-20250529192206966"></li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>场景要素</th>
+<th>可能的值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>刺激源</td>
+<td>远程的恶意用户</td>
+</tr>
+<tr>
+<td>刺激</td>
+<td>试图修改支付率</td>
+</tr>
+<tr>
+<td>工件</td>
+<td>系统数据</td>
+</tr>
+<tr>
+<td>环境</td>
+<td>正常操作</td>
+</tr>
+<tr>
+<td>响应</td>
+<td>系统维持审计踪迹</td>
+</tr>
+<tr>
+<td>响应度量</td>
+<td>正确数据在一天内恢复并且攻击来源被标识</td>
+</tr>
+</tbody></table>
 </li>
 <li><p>策略</p>
 <ul>
-<li><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529192602450.png" srcset="/img/loading.gif" lazyload alt="image-20250529192602450"></li>
+<li><img src="image-20250529192602450.png" srcset="/img/loading.gif" lazyload alt="image-20250529192602450"></li>
 <li>输入：攻击</li>
 <li>具体策略<ul>
 <li>检测攻击： 发现入侵（通过流量或签名） 、检测服务拒绝、检查消息完整性（ 通过校验或哈希)、检查消息延迟</li>
@@ -849,19 +1135,77 @@
 </li>
 <li><p>通用场景</p>
 <ul>
-<li><p><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529192822172.png" srcset="/img/loading.gif" lazyload alt="image-20250529192822172"></p>
-</li>
-<li><p>| 场景要素 | 可能的值                                                     |<br>| ——– | ———————————————————— |<br>| 刺激源   | 单元测试员、集成测试员、系统测试员、验收测试员、终端用户，手动执行测试或使用自动化测试工具 |<br>| 刺激     | 由于编码增量的完成而执行一组测试，如类层或服务，子系统完整集成、整个系统的完整实现或系统交付给客户。 |<br>| 工件     | 系统正在被测试的部分                                         |<br>| 环境     | 设计阶段、开发阶段、编译阶段、集成阶段、部署阶段、运行阶段   |<br>| 响应     | 以下之一或多个：1.执行测试套件并记录结果 2.记录导致故障的活动 3.控制并监控系统状态。 |<br>| 响应度量 | 以下之一或多个：1. 找到故障或故障类别的工作量 2. 实现给定状态空间覆盖百分比的工作量 3. 故障被下一个测试揭示的概率 4. 执行测试所需时间 4.发现故障需要的工作量 5. 测试中的最长依赖链长度 6. 准备测试环境所需时间 7. 降低风险暴露（损失大小×出现概率） |</p>
-</li>
+<li><img src="image-20250529192822172.png" srcset="/img/loading.gif" lazyload alt="image-20250529192822172"></li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>场景要素</th>
+<th>可能的值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>刺激源</td>
+<td>单元测试员、集成测试员、系统测试员、验收测试员、终端用户，手动执行测试或使用自动化测试工具</td>
+</tr>
+<tr>
+<td>刺激</td>
+<td>由于编码增量的完成而执行一组测试，如类层或服务，子系统完整集成、整个系统的完整实现或系统交付给客户。</td>
+</tr>
+<tr>
+<td>工件</td>
+<td>系统正在被测试的部分</td>
+</tr>
+<tr>
+<td>环境</td>
+<td>设计阶段、开发阶段、编译阶段、集成阶段、部署阶段、运行阶段</td>
+</tr>
+<tr>
+<td>响应</td>
+<td>以下之一或多个：1.执行测试套件并记录结果 2.记录导致故障的活动 3.控制并监控系统状态。</td>
+</tr>
+<tr>
+<td>响应度量</td>
+<td>以下之一或多个：1. 找到故障或故障类别的工作量 2. 实现给定状态空间覆盖百分比的工作量 3. 故障被下一个测试揭示的概率 4. 执行测试所需时间 4.发现故障需要的工作量 5. 测试中的最长依赖链长度 6. 准备测试环境所需时间 7. 降低风险暴露（损失大小×出现概率）</td>
+</tr>
+</tbody></table>
 </li>
 <li><p>具体场景</p>
 <ul>
-<li><img src="image-20250529193135500.png" srcset="/img/loading.gif" lazyload alt="image-20250529193135500" style="zoom: 80%;" />
-</li>
-<li><p>| 场景要素 | 可能的值                 |<br>| ——– | ———————— |<br>| 刺激源   | 单元测试人员             |<br>| 刺激     | 代码单元完成             |<br>| 工件     | 代码单元                 |<br>| 环境     | 开发环境                 |<br>| 响应     | 捕获测试结果             |<br>| 响应度量 | 3小时内达到85%路径覆盖率 |</p>
-</li>
+<li><img src="image-20250529193135500.png" srcset="/img/loading.gif" lazyload alt="image-20250529193135500" style="zoom: 80%;" /></li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>场景要素</th>
+<th>可能的值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>刺激源</td>
+<td>单元测试人员</td>
+</tr>
+<tr>
+<td>刺激</td>
+<td>代码单元完成</td>
+</tr>
+<tr>
+<td>工件</td>
+<td>代码单元</td>
+</tr>
+<tr>
+<td>环境</td>
+<td>开发环境</td>
+</tr>
+<tr>
+<td>响应</td>
+<td>捕获测试结果</td>
+</tr>
+<tr>
+<td>响应度量</td>
+<td>3小时内达到85%路径覆盖率</td>
+</tr>
+</tbody></table>
 </li>
 <li><p>策略</p>
 <ul>
@@ -883,19 +1227,77 @@
 </li>
 <li><p>通用场景</p>
 <ul>
-<li><p><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529194826560.png" srcset="/img/loading.gif" lazyload alt="image-20250529194826560"></p>
-</li>
-<li><p>| 场景要素 | 可能的值                                                     |<br>| ——– | ———————————————————— |<br>| 刺激源   | 最终用户，可能在一个专门化角色中                             |<br>| 刺激     | 最终用户尝试高效使用系统、学习使用系统、最小化错误影响、调整或配置系统。 |<br>| 工件     | 系统或用户正在交互的特定系统部分                             |<br>| 环境     | 运行阶段或配置阶段                                           |<br>| 响应     | 系统应为用户提供所需功能或预见用户需求                       |<br>| 响应度量 | 以下之一或多个：任务时间、错误数量、完成任务数量、用户满意度、用户知识获取、成功操作与总操作的比例、错误发生时丢失的时间或数据量 |</p>
-</li>
+<li><img src="image-20250529194826560.png" srcset="/img/loading.gif" lazyload alt="image-20250529194826560"></li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>场景要素</th>
+<th>可能的值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>刺激源</td>
+<td>最终用户，可能在一个专门化角色中</td>
+</tr>
+<tr>
+<td>刺激</td>
+<td>最终用户尝试高效使用系统、学习使用系统、最小化错误影响、调整或配置系统。</td>
+</tr>
+<tr>
+<td>工件</td>
+<td>系统或用户正在交互的特定系统部分</td>
+</tr>
+<tr>
+<td>环境</td>
+<td>运行阶段或配置阶段</td>
+</tr>
+<tr>
+<td>响应</td>
+<td>系统应为用户提供所需功能或预见用户需求</td>
+</tr>
+<tr>
+<td>响应度量</td>
+<td>以下之一或多个：任务时间、错误数量、完成任务数量、用户满意度、用户知识获取、成功操作与总操作的比例、错误发生时丢失的时间或数据量</td>
+</tr>
+</tbody></table>
 </li>
 <li><p>具体场景</p>
 <ul>
-<li><p><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529195328527.png" srcset="/img/loading.gif" lazyload alt="image-20250529195328527"></p>
-</li>
-<li><p>| 场景要素 | 可能的值          |<br>| ——– | —————– |<br>| 刺激源   | 用户              |<br>| 刺激     | 下载一个新应用    |<br>| 工件     | 系统              |<br>| 环境     | 运行时            |<br>| 响应     | 用户高效使用系统  |<br>| 响应度量 | 在2分钟的试用之后 |</p>
-</li>
+<li><img src="image-20250529195328527.png" srcset="/img/loading.gif" lazyload alt="image-20250529195328527"></li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>场景要素</th>
+<th>可能的值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>刺激源</td>
+<td>用户</td>
+</tr>
+<tr>
+<td>刺激</td>
+<td>下载一个新应用</td>
+</tr>
+<tr>
+<td>工件</td>
+<td>系统</td>
+</tr>
+<tr>
+<td>环境</td>
+<td>运行时</td>
+</tr>
+<tr>
+<td>响应</td>
+<td>用户高效使用系统</td>
+</tr>
+<tr>
+<td>响应度量</td>
+<td>在2分钟的试用之后</td>
+</tr>
+</tbody></table>
 </li>
 <li><p>策略</p>
 <ul>
@@ -923,19 +1325,9 @@
 </li>
 <li><p><strong>通过质量属性效能树（Utility Tree）来管理 ASR</strong>：把Utility拆分成质量属性和场景，最后变成指标，叶节点要有两个维度评价：对用户的重要程度和开发难易程度。它以“树”的形式，从高层的质量属性（如性能、安全性）向下展开为更具体的场景，使得系统性分析质量需求变得可视、清晰且可评估。</p>
 <ul>
-<li><p><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250530200152966.png" srcset="/img/loading.gif" lazyload alt="image-20250530200152966"></p>
-</li>
-<li><pre><code class="hljs">             Utility
-                |
-      ---------------------
-      |         |         |
-    性能      安全性     可用性
-      |         |         |
-</code></pre>
-</li>
+<li><img src="image-20250530200152966.png" srcset="/img/loading.gif" lazyload alt="image-20250530200152966"></li>
 </ul>
-<p>   首页加载≤2s   拒绝SQL注入   宕机≤5分钟<br>    (重要5&#x2F;难度2) (重要4&#x2F;难度3) (重要5&#x2F;难度4)<br>&#96;&#96;&#96;&#96;</p>
-</li>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-code">    Utility</span><br><span class="hljs-section">       |</span><br><span class="hljs-section">---------------------</span><br>|         |         |<br>性能      安全性     可用性<br><span class="hljs-code">  |         |         |</span><br>首页加载≤2s   拒绝SQL注入   宕机≤5分钟<br><span class="hljs-code"> (重要5/难度2) (重要4/难度3) (重要5/难度4)</span><br></code></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
@@ -985,7 +1377,7 @@
 </li>
 <li><p>分层模式变体</p>
 <ul>
-<li><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529202144119.png" srcset="/img/loading.gif" lazyload alt="image-20250529202144119"></li>
+<li><img src="image-20250529202144119.png" srcset="/img/loading.gif" lazyload alt="image-20250529202144119"></li>
 </ul>
 </li>
 <li><p>微内核模式：</p>
@@ -1008,7 +1400,7 @@
 <li>缺点：代理增加前期复杂度 、 可能成为通信的屏障 、 可能成为安全攻击的目标 、 难以测试。</li>
 </ul>
 </li>
-<li><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250529202959043.png" srcset="/img/loading.gif" lazyload alt="image-20250529202959043"></li>
+<li><img src="image-20250529202959043.png" srcset="/img/loading.gif" lazyload alt="image-20250529202959043"></li>
 </ul>
 <h3 id="模型-视图-控制器模式"><a href="#模型-视图-控制器模式" class="headerlink" title="模型-视图-控制器模式"></a>模型-视图-控制器模式</h3><ul>
 <li>概述<ul>
@@ -1030,8 +1422,8 @@
 <li>Pipe 相当于 Connector，连接 filter，将 output 导入到其他的 filter 的 input 中去，不会独立存在。</li>
 <li>缺点：不适用于互动式系统，过多的过滤器导致大量的计算开销。</li>
 <li>结构图<ul>
-<li><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250530103446068.png" srcset="/img/loading.gif" lazyload alt="image-20250530103446068"></li>
-<li><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/v2-d01cefd6ccd37b11d6bd6192349a31fb_1440w.jpg" srcset="/img/loading.gif" lazyload alt="img"></li>
+<li><img src="image-20250530103446068.png" srcset="/img/loading.gif" lazyload alt="image-20250530103446068"></li>
+<li><img src="v2-d01cefd6ccd37b11d6bd6192349a31fb_1440w.jpg" srcset="/img/loading.gif" lazyload alt="img"></li>
 <li>每一个组件表示filter 连接组件的部分是 pipe，任何一个 filter都依赖于前一个filter的输出（没有其他机会接收外部交互），不适合 交互 的场景（破坏依赖关系）</li>
 </ul>
 </li>
@@ -1114,7 +1506,7 @@
 <li>Map负责对数据进行抽取所需的信息，完成信息转换。可以有很多个 Map，每个Map处理的数据工作内容不一 样 ，他们互相独立运行。 Reduce负责进行合并，产出最终的答案。</li>
 <li>典型示例（词频统计）：每个Partition对应一个 Map，每个 Map分别完成词汇词频的统计，最后由 Reduce合并后进行排序。</li>
 <li>缺点：如果没有足够大的数据集，那么 Map-Reduce的开销是不能被接受的；如果不能将数据集切分成相似大小，那么并行的好处会消失；多次归纳是难以编排的。</li>
-<li><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250530122749200.png" srcset="/img/loading.gif" lazyload alt="image-20250530122749200"></li>
+<li><img src="image-20250530122749200.png" srcset="/img/loading.gif" lazyload alt="image-20250530122749200"></li>
 </ul>
 <h3 id="多层模式"><a href="#多层模式" class="headerlink" title="多层模式"></a>多层模式</h3><ul>
 <li><p>Multi-Tier Pattern 分配模式</p>
@@ -1129,7 +1521,7 @@
 </li>
 <li><p>结构图</p>
 <ul>
-<li><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250530123151554.png" srcset="/img/loading.gif" lazyload alt="image-20250530123151554"></li>
+<li><img src="image-20250530123151554.png" srcset="/img/loading.gif" lazyload alt="image-20250530123151554"></li>
 <li>三大类Modular类、 Runtime Process动态类、 软件和非软件环境关系（部署关系）</li>
 </ul>
 </li>
@@ -1139,9 +1531,41 @@
 </li>
 <li><p><strong>多层模式（Multi-Tier Pattern）</strong>：强调<strong>部署结构的物理分离</strong>，主要是<strong>系统运行时在物理环境中的分布方式</strong>。</p>
 </li>
-<li><p>| 对比项     | 分层模式（Layered）               | 多层模式（Multi-Tier）                  |<br>| ———- | ——————————— | ————————————— |<br>| 关注点     | <strong>逻辑结构、职责划分</strong>            | <strong>物理结构、部署分布</strong>                  |<br>| 表现形式   | <strong>在同一进程中组织不同的逻辑层</strong>  | <strong>不同层运行在不同服务器或容器中</strong>      |<br>| 交互方式   | 方法调用（in-process）            | 网络通信（HTTP&#x2F;RPC）                    |<br>| 举例       | DDD 的四层架构、Spring MVC 结构等 | Web客户端 + Nginx + Java服务 + MySQL 等 |<br>| 通常的关系 | 分层模式是多层模式的<strong>逻辑基础</strong>  | 多层模式是分层模式的<strong>物理体现</strong>        |</p>
-</li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>分层模式（Layered）</th>
+<th>多层模式（Multi-Tier）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>关注点</td>
+<td><strong>逻辑结构、职责划分</strong></td>
+<td><strong>物理结构、部署分布</strong></td>
+</tr>
+<tr>
+<td>表现形式</td>
+<td><strong>在同一进程中组织不同的逻辑层</strong></td>
+<td><strong>不同层运行在不同服务器或容器中</strong></td>
+</tr>
+<tr>
+<td>交互方式</td>
+<td>方法调用（in-process）</td>
+<td>网络通信（HTTP&#x2F;RPC）</td>
+</tr>
+<tr>
+<td>举例</td>
+<td>DDD 的四层架构、Spring MVC 结构等</td>
+<td>Web客户端 + Nginx + Java服务 + MySQL 等</td>
+</tr>
+<tr>
+<td>通常的关系</td>
+<td>分层模式是多层模式的<strong>逻辑基础</strong></td>
+<td>多层模式是分层模式的<strong>物理体现</strong></td>
+</tr>
+</tbody></table>
 </li>
 </ul>
 <h3 id="架构模式-vs-策略-Tactics"><a href="#架构模式-vs-策略-Tactics" class="headerlink" title="架构模式 vs 策略 Tactics"></a>架构模式 vs 策略 Tactics</h3><ul>
@@ -1252,7 +1676,7 @@
 </li>
 <li><p>ADD步骤 （ADD 3.0）</p>
 <ul>
-<li><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250530144434061.png" srcset="/img/loading.gif" lazyload alt="image-20250530144434061"></li>
+<li><img src="image-20250530144434061.png" srcset="/img/loading.gif" lazyload alt="image-20250530144434061"></li>
 <li>第一步：<strong>回顾输入</strong>。确认主要功能和质量属性场景需要已经按照优先级排序，如果没有就QAW和效能树等方式确定。检查在最初的需求获取（分析）过程中是否有任何重要的利益相关者被遗漏。检查自优先级排序完成以来，业务条件是否发生了变化</li>
 <li>第二步：<strong>通过选择驱动因素建立迭代目标</strong>。将复杂系统“分解”成可设计的部分，并明确当前迭代的关注点（驱动因素）。系统被分解为子模块，选择一个子模块实现。驱动因素包括关键子系统或组件，高优先级的质量属性场景（如高并发登录模块），和有明确风险或不确定性的部分。</li>
 <li>第三步：<strong>选择一个或多个系统要素来完善</strong>。从上一步选出的子模块中，挑选出要进行设计或细化的系统元素</li>
@@ -1291,9 +1715,39 @@
 </ul>
 </li>
 <li><p>Views 视图</p>
+<table>
+<thead>
+<tr>
+<th>视图类型</th>
+<th>Elements</th>
+<th>Relations</th>
+<th>Constraints</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Module View</strong></td>
+<td>类、模块、包、接口</td>
+<td>静态依赖、包含、实现</td>
+<td>模块层次、依赖方向、封装</td>
+<td>开发构建、代码组织、接口定义</td>
+</tr>
+<tr>
+<td><strong>C&amp;C View</strong></td>
+<td>组件、连接器（进程、服务、通信机制）</td>
+<td>调用、数据流、事件传播</td>
+<td>通信路径、服务可访问性</td>
+<td>运行时交互、通信机制设计、性能分析</td>
+</tr>
+<tr>
+<td><strong>Allocation View</strong></td>
+<td>软件单元、物理节点、平台资源</td>
+<td>部署关系、物理链接</td>
+<td>性能、安全、部署限制</td>
+<td>部署架构、资源映射、运维支持</td>
+</tr>
+</tbody></table>
 <ul>
-<li><p>| 视图类型            | Elements                             | Relations              | Constraints              | Usage                              |<br>| ——————- | ———————————— | ———————- | ———————— | ———————————- |<br>| <strong>Module View</strong>     | 类、模块、包、接口                   | 静态依赖、包含、实现   | 模块层次、依赖方向、封装 | 开发构建、代码组织、接口定义       |<br>| <strong>C&amp;C View</strong>        | 组件、连接器（进程、服务、通信机制） | 调用、数据流、事件传播 | 通信路径、服务可访问性   | 运行时交互、通信机制设计、性能分析 |<br>| <strong>Allocation View</strong> | 软件单元、物理节点、平台资源         | 部署关系、物理链接     | 性能、安全、部署限制     | 部署架构、资源映射、运维支持       |</p>
-</li>
 <li><p>质量视图 Quality Views：安全视图、性能视图、可靠性视图、沟通视图、异常（错误处理）视图</p>
 </li>
 <li><p>组合视图 Combining Views：包括各种 C&amp;C视图、带有 SOA或通信进程视图的部署视图、分解视图和任何工作分配、实施、使用或分层视图。</p>
@@ -1338,7 +1792,7 @@
 </ul>
 <h2 id="5-微服务架构"><a href="#5-微服务架构" class="headerlink" title="5. 微服务架构"></a>5. 微服务架构</h2><h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><ul>
 <li>主流架构风格<ul>
-<li><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250530162639760.png" srcset="/img/loading.gif" lazyload alt="image-20250530162639760"></li>
+<li><img src="image-20250530162639760.png" srcset="/img/loading.gif" lazyload alt="image-20250530162639760"></li>
 </ul>
 </li>
 <li>单体架构<ul>
@@ -1396,7 +1850,7 @@
 </li>
 <li><p>与SOA对比</p>
 <ul>
-<li><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250530164414125.png" srcset="/img/loading.gif" lazyload alt="image-20250530164414125"></li>
+<li><img src="image-20250530164414125.png" srcset="/img/loading.gif" lazyload alt="image-20250530164414125"></li>
 </ul>
 </li>
 <li><p>微服务架构的问题</p>
@@ -1516,7 +1970,7 @@
 </tbody></table>
 <ul>
 <li>DDD架构<ul>
-<li><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250530171428382.png" srcset="/img/loading.gif" lazyload alt="image-20250530171428382"></li>
+<li><img src="image-20250530171428382.png" srcset="/img/loading.gif" lazyload alt="image-20250530171428382"></li>
 <li><strong>领域层是重中之重</strong>，业务核心逻辑应尽可能集中于此</li>
 </ul>
 </li>
@@ -1583,7 +2037,7 @@
 <li>缺点：配置和启动应用慢，某些请求延迟高</li>
 </ul>
 </li>
-<li><img src="%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B4%E7%90%86(%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86).assets/image-20250531144609140.png" srcset="/img/loading.gif" lazyload alt="image-20250531144609140"></li>
+<li><img src="image-20250531144609140.png" srcset="/img/loading.gif" lazyload alt="image-20250531144609140"></li>
 </ul>
 </li>
 <li>可观测性模式（维护）<ul>
@@ -1633,38 +2087,6 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="../../../../categories/%E6%A0%B8%E5%BF%83%E8%AF%BE/" class="category-chain-item">核心课</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="../../../../tags/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" class="print-no-link">#软件系统设计</a>
-      
-        <a href="../../../../tags/%E6%9E%B6%E6%9E%84/" class="print-no-link">#架构</a>
-      
-        <a href="../../../../tags/%E8%B4%A8%E9%87%8F%E5%B1%9E%E6%80%A7/" class="print-no-link">#质量属性</a>
-      
-    </div>
   
 </div>
 
@@ -1674,7 +2096,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>软件系统设计(架构部分)</div>
+      <div></div>
       <div>https://frosty-xue.github.io/2025/06/03/软件系统设计-架构部分/</div>
     </div>
     <div class="license-meta">
