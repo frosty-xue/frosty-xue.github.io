@@ -1,0 +1,2050 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../../img/fluid.png">
+  <link rel="icon" href="../../../../img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Frosty">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="软件系统设计整理(设计模式部分) 要知道每个原则和设计模式的英文，因为考试是纯英文。。  1. 面向对象设计原则 设计原则是最重要的部分，要理解本身概念和应用  概述 软件设计 需求定义了系统需要满足的目标 规约定义了系统的外部可观察到的行为 架构定义了系统一级的主要组成部分、各部分的交互方法、使用的技术 设计定义了如何完成任务、需要写的代码   面向对象软件设计 将实现的约束条件应用到面向对象分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件系统设计(设计模式部分)">
+<meta property="og:url" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/index.html">
+<meta property="og:site_name" content="Frosty的技术博客">
+<meta property="og:description" content="软件系统设计整理(设计模式部分) 要知道每个原则和设计模式的英文，因为考试是纯英文。。  1. 面向对象设计原则 设计原则是最重要的部分，要理解本身概念和应用  概述 软件设计 需求定义了系统需要满足的目标 规约定义了系统的外部可观察到的行为 架构定义了系统一级的主要组成部分、各部分的交互方法、使用的技术 设计定义了如何完成任务、需要写的代码   面向对象软件设计 将实现的约束条件应用到面向对象分">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250526160242596.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250604145745603.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250526161707888.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250526161744252.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250526161845119.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250526161859438.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250526162350022.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250526162408020.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250526163302821.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250526163316493.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250526170217963.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250526170226272.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250526171224989.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250526171247512.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250526171952892.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250526171959398.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250604164256148.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250604170748432.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/6.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250526202244530.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250526202357146.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250526202651392.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250527153536626.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250527154738653.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250527155020974.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250527161856099.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/6-1748336184333.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250527165737670.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/8-1748423358403.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/9.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250527171410015.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250527172855145.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250527173140823.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/3-1748423350315.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/9-1748346264390.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250527194516129.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/13.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250528144110116.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250528144204267.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250528151251247.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/8-1748423335109.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250528152037197.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250528152221884.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/11.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250528154351400.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/2.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/3.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/4.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/7.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250528160913422.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250528161025917.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250528163853341-1748421559700.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/2-1748423305989.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/3-1748421781646.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/8.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/17.png">
+<meta property="og:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250528174952509.png">
+<meta property="article:published_time" content="2025-06-06T04:01:40.000Z">
+<meta property="article:modified_time" content="2025-06-06T04:02:54.188Z">
+<meta property="article:author" content="Frosty">
+<meta property="article:tag" content="软件系统设计">
+<meta property="article:tag" content="设计模式">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://frosty-xue.github.io/2025/06/06/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%83%A8%E5%88%86/image-20250526160242596.png">
+  
+  
+  
+  <title>软件系统设计(设计模式部分) - Frosty的技术博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="../../../../css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="../../../../css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="../../../../css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"frosty-xue.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="../../../../js/utils.js" ></script>
+  <script  src="../../../../js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="../../../../index.html">
+      <strong>Frosty的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../../../index.html" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../../../archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../../../categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../../../tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="../../../../about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('../../../../img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="软件系统设计(设计模式部分)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-06 12:01" pubdate>
+          June 6, 2025 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          25k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          210 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">软件系统设计(设计模式部分)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="软件系统设计整理-设计模式部分"><a href="#软件系统设计整理-设计模式部分" class="headerlink" title="软件系统设计整理(设计模式部分)"></a>软件系统设计整理(设计模式部分)</h1><blockquote>
+<p>要知道每个原则和设计模式的英文，因为考试是纯英文。。</p>
+</blockquote>
+<h2 id="1-面向对象设计原则"><a href="#1-面向对象设计原则" class="headerlink" title="1. 面向对象设计原则"></a>1. 面向对象设计原则</h2><blockquote>
+<p>设计原则是最重要的部分，要理解本身概念和应用</p>
+</blockquote>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul>
+<li>软件设计<ul>
+<li><strong>需求</strong>定义了系统需要满足的目标</li>
+<li><strong>规约</strong>定义了系统的外部可观察到的行为</li>
+<li><strong>架构</strong>定义了系统一级的主要组成部分、各部分的交互方法、使用的技术</li>
+<li><strong>设计</strong>定义了如何完成任务、需要写的代码</li>
+</ul>
+</li>
+<li>面向对象软件设计<ul>
+<li>将实现的约束条件应用到面向对象分析所产生的概念模型的过程</li>
+<li>用方法和属性来描述用于构成系统的类</li>
+<li>添加不明显属于领域的类，比如抽象类和接口</li>
+<li>描述类是如何构成组件的</li>
+</ul>
+</li>
+<li>如何发现合适的对象<ul>
+<li>OOD的难点在于将一个系统分解成对象</li>
+<li>许多对象直接来自于分析模型或实现空间（数据库、文件、用户界面、IPC…）</li>
+<li>同样，还有其他一些类没有这样的对应类，用来使可能过于特殊的设计变得更为通用，例如策略模式类</li>
+</ul>
+</li>
+<li>软件的可维护性和可复用性<ul>
+<li>一个可维护性(Maintainability) 较低的软件设计，通常由于如下4个原因造成：过于僵硬、过于脆弱、复用率低、黏度过高</li>
+<li>一个好的系统设计应该具备如下三个性质：可扩展性、灵活性、可插入性</li>
+<li>软件的复用(Reuse)或重用拥有众多优点，如可以提高软件的开发效率，提高软件质量，节约开发成本，<strong>恰当的复用还可以改善系统的可维护性</strong></li>
+<li>面向对象设计复用的目标在于实现支持可维护性的复用，在面向对象的设计里面，可维护性复用都是<strong>以面向对象设计原则为基础的</strong></li>
+<li><strong>重构</strong>(Refactoring)是在不改变软件现有功能的基础上，通过调整程序代码改善软件的质量、性能，使其程序的设计模式和架构更趋合理，提高软件的扩展性和维护性</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="面向对象设计原则"><a href="#面向对象设计原则" class="headerlink" title="面向对象设计原则"></a>面向对象设计原则</h3><blockquote>
+<p>要知道原则的英文</p>
+</blockquote>
+<ul>
+<li><p>面向对象设计原则简介</p>
+<ul>
+<li>常用的面向对象设计原则包括7个，这些原则并不是孤立存在的，它们相互依赖，相互补充</li>
+<li>目的：支持可维护的复用<ul>
+<li>目标：开闭原则</li>
+<li>指导：最小知识原则</li>
+<li>基础：单一职责原则、可变性封装原则</li>
+<li>实现：依赖倒置原则、合成复用原则、里氏代换原则、接口隔离原则</li>
+</ul>
+</li>
+<li><img src="image-20250526160242596.png" srcset="/img/loading.gif" lazyload alt="image-20250526160242596" style="zoom:67%;" /></li>
+<li><img src="image-20250604145745603.png" srcset="/img/loading.gif" lazyload alt="image-20250604145745603"></li>
+</ul>
+</li>
+<li><p>单一职责原则 SRP</p>
+<ul>
+<li>定义：一个对象应该只包含单一的职责，并且该职责被完整地封装在一个类中</li>
+<li>另一个定义：就一个类而言，应该仅有一个引起它变化的原因</li>
+<li>分析<ul>
+<li>一个类（或者大到模块，小到方法）承担的职责越多，它被复用的可能性越小</li>
+<li>类的职责主要包括两个方面：<strong>数据职责</strong>和<strong>行为职责</strong>，数据职责通过其属性来体现，而行为职责通过其方法来体现</li>
+<li>单一职责原则是实现高内聚、低耦合的指导方针</li>
+</ul>
+</li>
+<li>例子<ul>
+<li>某基于Java的C&#x2F;S系统的“登录功能”通过如下登录类(Login)实现</li>
+<li><img src="image-20250526161707888.png" srcset="/img/loading.gif" lazyload alt="image-20250526161707888"></li>
+<li>现使用单一职责原则对其进行重构，把接受请求、访问数据分开</li>
+<li><img src="image-20250526161744252.png" srcset="/img/loading.gif" lazyload alt="image-20250526161744252" style="zoom: 67%;" /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>开闭原则 OCP</p>
+<ul>
+<li>定义：一个软件实体应<strong>当对扩展开放，对修改关闭</strong>。也就是说在设计一个模块的时候，应当使这个模块可以在不被修改的前提下被扩展，即实现在不修改源代码的情况下改变这个模块的行为。</li>
+<li>抽象化是开闭原则的关键</li>
+<li>例子：<ul>
+<li>某图形界面系统提供了各种不同形状的按钮，客户端代码可针对这些按钮进行编程，用户可能会改变需求要求使用不同的按钮</li>
+<li><img src="image-20250526161845119.png" srcset="/img/loading.gif" lazyload alt="image-20250526161845119" style="zoom:50%;" /></li>
+<li><img src="image-20250526161859438.png" srcset="/img/loading.gif" lazyload alt="image-20250526161859438" style="zoom: 80%;" /></li>
+<li>其实就是让原来依赖实现类的类去依赖抽象类</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>里氏代换(替换)原则 LSP</p>
+<ul>
+<li>定义：所有引用基类（父类）的地方必须能透明地使用其子类的对象</li>
+<li>里氏代换原则可以通俗表述为：在软件中如果能够使用基类对象，那么一定能够使用其子类对象</li>
+<li>里氏代换原则是实现开闭原则的重要方式之一</li>
+<li><strong>在程序中尽量使用基类类型来对对象进行定义，在运行时再确定其子类类型，用子类对象来替换父类对象</strong></li>
+<li>例子<ul>
+<li>某系统需要实现对重要数据（如用户密码）的加密处理，在数据操作类(DataOperator)中需要调用加密类中定义的加密算法，系统提供了两个不同的加密类，CipherA和CipherB</li>
+<li><img src="image-20250526162350022.png" srcset="/img/loading.gif" lazyload alt="image-20250526162350022" style="zoom:80%;" /></li>
+<li><img src="image-20250526162408020.png" srcset="/img/loading.gif" lazyload alt="image-20250526162408020" style="zoom: 40%;" /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>依赖倒转(置)原则 DIP</p>
+<ul>
+<li>定义：高层模块不应该依赖低层模块，它们都应该依赖抽象。抽象不应该依赖于细节，细节应该依赖于抽象</li>
+<li>另一个定义：要针对接口编程，不要针对实现编程</li>
+<li>如果说开闭原则是面向对象设计的<strong>目标</strong>的话，那么依赖倒转原则就是面向对象设计的<strong>主要手段</strong></li>
+<li>依赖倒转原则的常用实现方式之一是在代码中使用抽象类，而将具体类放在配置文件中</li>
+<li>类之间的耦合：零耦合、具体耦合、抽象耦合</li>
+<li>依赖倒转原则要求客户端依赖于抽象耦合，以抽象方式耦合是依赖倒转原则的关键</li>
+<li>例子<ul>
+<li>某系统提供一个数据转换模块，可以将来自不同数据源的数据转换成多种格式</li>
+<li><img src="image-20250526163302821.png" srcset="/img/loading.gif" lazyload alt="image-20250526163302821" style="zoom:67%;" /></li>
+<li><img src="image-20250526163316493.png" srcset="/img/loading.gif" lazyload alt="image-20250526163316493" style="zoom:80%;" /></li>
+</ul>
+</li>
+<li><strong>为什么里式替换原则和依赖倒置原则要结合起来？</strong><ul>
+<li>单独使用的局限性：如果只满足LSP，而依赖于具体的子类或父类实现，系统的耦合度还是偏高，扩展性不足。如果只满足DIP高层依赖的抽象不能保证子类能够替换父类，可能会导致逻辑错误或行为异常。</li>
+<li>结合使用的好处：<ul>
+<li>可靠性：DIP要求依赖抽象，但抽象的稳定性和正确性很重要。LSP确保不同实现（子类）都能替换抽象，不会破坏原有功能，让依赖倒置变得安全可靠。</li>
+<li>解耦与复用：只要抽象层遵循LSP，实际开发中高层模块只需依赖接口（DIP），而不会关心具体实现。</li>
+<li>降低维护成本：新需求或子类增加时，只要遵守LSP，高层模块无须修改。DIP让系统更灵活、适应变化，而LSP保证变化不会潜移默化破坏功能稳定性。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>接口隔离原则 ISP</p>
+<ul>
+<li>定义：客户端不应该依赖那些它不需要的接口</li>
+<li>另一个定义：一旦一个接口太大，则需要将它分割成一些更细小的接口，使用该接口的客户端仅需知道与之相关的方法即可</li>
+<li>接口隔离原则是指<strong>使用多个专门的接口，而不使用单一的总接口</strong></li>
+<li>使用接口隔离原则拆分接口时，首先必须满足单一职责原则</li>
+<li>可以在进行系统设计时采用<strong>定制服务</strong>的方式，即为不同的客户端提供宽窄不同的接口</li>
+<li>例子<ul>
+<li>下图展示了一个拥有多个客户类的系统，在系统中定义了一个巨大的接口（胖接口）AbstractService来服务所有的客户类。可以使用接口隔离原则对其进行重构</li>
+<li><img src="image-20250526170217963.png" srcset="/img/loading.gif" lazyload alt="image-20250526170217963" style="zoom:80%;" /></li>
+<li><img src="image-20250526170226272.png" srcset="/img/loading.gif" lazyload alt="image-20250526170226272" style="zoom:80%;" /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>合成复用原则 CRP</p>
+<ul>
+<li>定义：尽量使用对象组合，而不是继承来达到复用的目的。HAS-A can be better than IS-A</li>
+<li>合成复用原则就是指<strong>在一个新的对象里通过关联关系（包括组合关系和聚合关系）来使用一些已有的对象，使之成为新对象的一部分</strong>；新对象通过<strong>委派调用已有对象的方法达到复用其已有功能的目的</strong>。简言之：<strong>要尽量使用组合&#x2F;聚合关系，少用继承</strong>。</li>
+<li>在面向对象设计中，可以通过两种基本方法<strong>在不同的环境中复用已有的设计和实现</strong>，即<strong>通过组合&#x2F;聚合关系或通过继承</strong></li>
+<li>继承复用：实现简单，易于扩展。破坏系统的封装性；从基类继承而来的实现是静态的，<strong>不可能在运行时发生改变，没有足够的灵活性</strong>；只能在有限的环境中使用。（“<strong>白箱</strong>”复用）</li>
+<li>组合&#x2F;聚合复用：耦合度相对较低，选择性地调用成员对象的操作；可以在运行时动态进行。（“<strong>黑箱</strong>”复用）</li>
+<li>组合&#x2F;聚合可以使系统更加灵活，类与类之间的耦合度降低，一个类的变化对其他类造成的影响相对较少，因此一般首选使用组合&#x2F;聚合来实现复用</li>
+<li>例子<ul>
+<li>某教学管理系统部分数据库访问类设计如图所示，如果需要更换数据库连接方式，如原来采用JDBC连接数据库，现在采用数据库连接池连接，则需要修改DBUtil类源代码。如果StudentDAO采用JDBC连接，但是TeacherDAO采用连接池连接，则需要增加一个新的DBUtil类，并修改StudentDAO或TeacherDAO的源代码，使之继承新的数据库连接类，这将违背开闭原则，系统扩展性较差</li>
+<li><img src="image-20250526171224989.png" srcset="/img/loading.gif" lazyload alt="image-20250526171224989" style="zoom:80%;" /></li>
+<li><img src="image-20250526171247512.png" srcset="/img/loading.gif" lazyload alt="image-20250526171247512" style="zoom: 67%;" /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>迪米特法则&#x2F;最少知识原则 LoD</p>
+<ul>
+<li>定义：不要和“陌生人”说话，只与你的直接朋友通信。每一个软件单位对其他的单位都只有最少的知识，而且局限于那些与本单位密切相关的软件单位</li>
+<li>迪米特法则就是指一个软件实体应当尽可能少的与其他实体发生相互作用，这样当一个模块修改时，就会尽量少的影响其他的模块</li>
+<li>迪米特法则中，对于一个对象，其<strong>朋友</strong>包括以下几类：<ul>
+<li>当前对象本身(this)</li>
+<li>以参数形式传入到当前对象方法中的对象</li>
+<li>当前对象的成员对象</li>
+<li>如果当前对象的成员对象是一个集合，那么集合中的元素也都是朋友</li>
+<li>当前对象所创建的对象</li>
+</ul>
+</li>
+<li>迪米特法则可分为<strong>狭义法则</strong>和<strong>广义法则</strong>。在狭义的迪米特法则中，如果两个类之间不必彼此直接通信，那么这两个类就不应当发生直接的相互作用，如果其中的一个类需要调用另一个类的某一个方法的话，可以通过第三者转发这个调用。狭义法则可以降低类之间的耦合，但是不同模块之间的通信效率低。广义的迪米特法则：指对对象之间的信息流量、流向以及信息的影响的控制，主要是对信息隐藏的控制</li>
+<li>迪米特法则的主要用途在于控制信息的过载：尽量创建松耦合的类；尽量降低成员变量和成员函数的访问权限；只要有可能，一个类型应当设计成不变类；一个对象对其他对象的引用应当降到最低</li>
+<li>例子<ul>
+<li>某系统界面类(如Form1、Form2等类)与数据访问类(如DAO1、DAO2等类)之间的调用关系较为复杂</li>
+<li><img src="image-20250526171952892.png" srcset="/img/loading.gif" lazyload alt="image-20250526171952892" style="zoom:80%;" /></li>
+<li><img src="image-20250526171959398.png" srcset="/img/loading.gif" lazyload alt="image-20250526171959398" style="zoom:80%;" /></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-策略模式"><a href="#2-策略模式" class="headerlink" title="2. 策略模式"></a>2. 策略模式</h2><h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><ul>
+<li><p>软件模式</p>
+<ul>
+<li>软件模式是将模式的一般概念应用于软件开发领域，即<strong>软件开发的总体指导思路或参照样板</strong>。软件模式包括设计模式、架构模式、分析模式、过程模式。在软件生命周期的每个阶段都存在一些模式。</li>
+<li>软件模式的基本结构 (四要素)：问题描述、前提条件（环境或约束条件）、解法和效果</li>
+<li>软件模式在发现过程中需要遵循<strong>大三律(Rule Of Three)</strong>，即只有<strong>经过三个以上不同类型的系统的校验</strong>，一个解决方案才能从候选模式升格成模式</li>
+</ul>
+</li>
+<li><p>设计模式的概念</p>
+<ul>
+<li>设计模式（Design Pattern）是一套<strong>被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结</strong>，使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性</li>
+</ul>
+</li>
+<li><p>设计模式的作用</p>
+<ul>
+<li>设计模式为您提供了与其他开发人员共享的词汇表。当您使用模式与其他开发人员或团队进行沟通时，您不仅在沟通模式名称，还传达了模式所代表的整套质量属性，特征和约束，为开发团队提供强大的动力</li>
+<li>通过让您在<strong>模式级别</strong>(而不是实质性对象级别)进行思考，还可以提高您对体系结构的思考</li>
+</ul>
+</li>
+<li><p>设计模式的基本要素</p>
+<ul>
+<li>包括模式名称、问题、目的、解决方案、效果、实例代码、相关设计模式</li>
+<li>关键元素（四要素）：模式名称、问题、解决方案、效果</li>
+</ul>
+</li>
+<li><p>设计模式分类</p>
+<ul>
+<li>分类一：目的<ul>
+<li>创建型模式（Creational）：主要用于创建对象；例如：工厂方法模式、抽象工厂模式</li>
+<li>结构型模式（Structural）：主要用于处理类或对象的组合；例如：适配器模式、组合模式、外观模式、装饰模式</li>
+<li>行为性模式（Behavioral）：主要用于描述对类或对象怎样交互和怎样分配职责，例如：模板方法模式、命令模式、中介者模式、观察者模式</li>
+</ul>
+</li>
+<li>分类二：范围<ul>
+<li>类模式：处理类和子类之间的关系，这些关系通过继承建立，在编译时刻就被确定下来，是属于<strong>静态的</strong>；例如：工厂方法模式、（类）适配器模式、模板方法模式。</li>
+<li>对象模式：处理对象间的关系，这些关系在运行时刻变化，更具<strong>动态性</strong>；例如：抽象工厂模式、（对象）适配器模式、命令模式、中介者模式、观察者模式。</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>范围&#x2F;目的</th>
+<th>创建型模式</th>
+<th>结构型模式</th>
+<th align="left">行为型模式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类模式</td>
+<td>工厂方法模式</td>
+<td>(类)适配器模式</td>
+<td align="left">模板方法模式</td>
+</tr>
+<tr>
+<td>对象模式</td>
+<td>抽象工厂模式、建造者模式、原型模式、单例模式</td>
+<td>(对象)适配器模式、桥接模式、组合模式、装饰模式、外观模式、享元模式、代理模式</td>
+<td align="left">命令模式、迭代器模式、中介者模式、观察者模式、状态模式、策略模式</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>如何使用设计模式</p>
+<ul>
+<li>依赖库和框架：提供了全部和必要的功能，一般可以直接直接复用</li>
+<li>设计模式帮助我们构建自己的应用程序，以使其更具可维护性和灵活性</li>
+<li>设计模式首先进入你的大脑</li>
+<li>尽量避免过度使用的问题</li>
+</ul>
+</li>
+</ul>
+<h3 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h3><ul>
+<li>概述<ul>
+<li><strong>策略模式定义了一系列算法</strong>，将每个算法封装在一起，并使它们可替换，策略使算法独立于使用该算法的客户端而变化</li>
+<li>目的：定义一系列算法，封装每个算法，并使它们可替换。策略使<strong>算法可以独立于使用该算法的客户端而变化</strong>。</li>
+<li>名称：策略模式 <strong>Strategy Pattern</strong>，也可以是Policy Pattern</li>
+</ul>
+</li>
+<li>应用场景<ul>
+<li>许多相关的类仅在<strong>行为</strong>上有所不同，策略提供了一种使用多种行为之一配置类的方法</li>
+<li>您需要<strong>算法的不同变体</strong>。例如，您可能定义了反映不同空间&#x2F;时间权衡的算法。将这些变体实现为算法的类层次结构时，可以使用策略。</li>
+<li>一种算法使用客户端不应该知道的数据。使用策略模式<strong>可避免暴露复杂的、特定于算法的数据结构</strong></li>
+<li>一个类定义了许多行为，这些行为在其操作中显示为多个条件语句。代替许多条件，将相关的条件分支移到他们自己的<strong>策略类</strong>中。</li>
+</ul>
+</li>
+<li>策略模式结构<ul>
+<li><img src="image-20250604164256148.png" srcset="/img/loading.gif" lazyload alt="image-20250604164256148"></li>
+<li>使用策略的上下文、抽象策略接口、具体策略类</li>
+</ul>
+</li>
+<li>策略模式的作用<ul>
+<li>定义了相关算法家族。策略类的层次结构定义了一系列算法或行为，以供上下文重用。</li>
+<li>子类化的替代方法</li>
+<li>消除条件语句</li>
+<li>多种实现方式。策略可以提供相同行为的不同实现。客户可以选择具有不同时间和空间权衡的策略</li>
+</ul>
+</li>
+<li>策略模式的缺点<ul>
+<li>客户必须意识到不同的策略。这种模式有一个潜在的缺点，即<strong>客户在选择合适的策略之前必须先了解策略的不同</strong>，不然客户可能会遇到实现问题。</li>
+<li>策略和上下文之间的通信开销</li>
+<li>对象数量增加</li>
+<li>使用设计模式一般都会有的缺点：<ul>
+<li>增加设计的复杂度和增加类的个数(增加辅助类)</li>
+<li>增加隔阂、方法调用，降低软件运行的效率，但是这已经不是目前主要的问题了</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-工厂模式"><a href="#3-工厂模式" class="headerlink" title="3. 工厂模式"></a>3. 工厂模式</h2><h3 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h3><ul>
+<li>概述<ul>
+<li>动机：考虑一个简单的软件应用场景，<strong>一个软件系统可以提供多个外观不同</strong>的按钮(如圆形按钮、矩形按钮、菱形按钮等)，这些按钮都源自同一个基类，不过在继承基类后不同的子类修改了部分属性从而使得它们可以呈现不同的外观，如果我们希望在使用这些按钮时，不需要知道这些具体按钮类的名字，只需要知道表示该按钮类的一个参数，并提供一个调用方便的方法，把该参数传入方法即可返回一个相应的按钮对象，此时，就可以使用简单工厂模式。（<del>人话</del>：当系统有多个相似用途的类，而创建并使用它们时只需要传入几个参数，不需要复杂的设置操作，就可以用工厂模式）</li>
+</ul>
+</li>
+<li>模式定义<ul>
+<li>简单工厂模式(<strong>Simple Factory Pattern</strong>)：又称为<strong>静态工厂</strong>方法(Static Factory Method)模式，它属于<strong>类创建型模式</strong></li>
+<li>简单工厂模式专门定义一个类来负责创建其他类的实例，<strong>被创建的实例通常都具有共同的父类</strong></li>
+<li>工厂角色提供<strong>静态工厂方法</strong>来创建其他类的实例，这样子满足了原则：<ul>
+<li>单一职责原则(封装变化)<strong>将对象的创建和使用分离</strong>(创建本质上和使用强耦合)，将复杂度降低，并将变化的部分和不变的部分分离开。</li>
+<li>但是对开闭原则的支持不太好</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>模式角色<ul>
+<li>Factory：工厂角色</li>
+<li>Product：抽象产品角色</li>
+<li>ConcreteProduct：具体产品角色</li>
+<li><img src="image-20250604170748432.png" srcset="/img/loading.gif" lazyload alt="image-20250604170748432" style="zoom:50%;" /></li>
+</ul>
+</li>
+<li>模式分析<ul>
+<li><strong>将对象的创建和对象本身业务处理分离</strong>可以<strong>降低系统的耦合度</strong>，使得两者修改起来都相对容易</li>
+<li>在调用工厂类的工厂方法时，由于工厂方法是<strong>静态方法</strong>，可通过类名直接调用，只需要传入一个简单的参数即可，在实际开发中，还可以在调用时将所传入的参数保存在XML等格式的<strong>配置文件</strong>中，修改参数时无须修改任何Java源代码</li>
+<li>简单工厂模式最大的问题在于<strong>工厂类的职责相对过重</strong>，增加新的产品需要修改工厂类的判断逻辑，这一点<strong>与开闭原则</strong>是相违背的</li>
+<li>简单工厂模式的要点在于：<strong>当你需要什么，只需要传入一个正确的参数，就可以获取你所需要的对象，而无须知道其创建细节</strong></li>
+</ul>
+</li>
+<li>简单工厂模式优点<ul>
+<li>工厂类可以决定在什么时候创建哪一个产品类的实例，客户端可以免除直接创建产品对象的责任，这种做法<strong>实现了对责任的分割，它提供了专门的工厂类用于创建对象</strong></li>
+<li><strong>客户端无须知道所创建的具体产品类的类名，只需要知道具体产品类所对应的参数即可</strong></li>
+<li><strong>通过引入配置文件，可以在不修改任何客户端代码的情况下更换和增加新的具体产品类</strong></li>
+</ul>
+</li>
+<li>简单工厂模式缺点<ul>
+<li>由于<strong>工厂类集中了所有产品创建逻辑</strong>，一旦不能正常工作，整个系统都要受到影响</li>
+<li><strong>增加系统中类的个数</strong>，在一定程序上增加了系统的复杂度和理解难度</li>
+<li><strong>系统扩展困难，一旦添加新产品就不得不修改工厂逻辑</strong>，在产品类型较多时，有可能造成工厂逻辑过于复杂，不利于系统的扩展和维护</li>
+<li>简单工厂模式由于使用了静态工厂方法，造成<strong>工厂角色无法形成基于继承的等级结构</strong></li>
+</ul>
+</li>
+<li>适用场景<ul>
+<li><strong>工厂类负责创建的对象比较少</strong>：由于创建的对象较少，不会造成工厂方法中的业务逻辑<strong>太过复杂</strong></li>
+<li><strong>客户端只知道传入工厂类的参数，对于如何创建对象不关心</strong>：客户端既不需要关心创建细节，甚至连类名都不需要记住，只需要知道类型所对应的参数</li>
+</ul>
+</li>
+</ul>
+<h3 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h3><ul>
+<li>概念<ul>
+<li>在简单工厂模式中，所有的产品都是由同一个工厂创建，工厂类职责较重，业务逻辑较为复杂，具体产品与工厂类之间的耦合度高，严重影响了系统的灵活性和扩展性，而工厂方法模式则可以很好地解决这一问题</li>
+</ul>
+</li>
+<li>模式定义<ul>
+<li>工厂方法模式(<strong>Factory Method Pattern</strong>)又称为工厂模式，也叫<strong>虚拟构造器(Virtual Constructor)模式或者多态工厂(Polymorphic Factory)模式</strong>，它属于<strong>类创建型模式</strong></li>
+<li>在工厂方法模式中，<strong>工厂父类</strong>负责定义创建产品对象的公共接口，而<strong>工厂子类</strong>则负责生成具体的产品对象，这样做的目的是将产品类的实例化操作延迟到工厂子类中完成，即<strong>通过工厂子类来确定究竟应该实例化哪一个具体产品类</strong></li>
+<li>工厂方法是以<strong>继承方法</strong>为主，工厂子类是<strong>继承工厂父类</strong>的</li>
+</ul>
+</li>
+<li>模式结构<ul>
+<li><img src="6.png" srcset="/img/loading.gif" lazyload style="zoom: 50%;" /></li>
+</ul>
+</li>
+<li>模式分析<ul>
+<li>工厂方法模式保持了简单工厂模式的优点，而且克服了它的缺点。<strong>在工厂方法模式中，核心的工厂类不再负责所有产品的创建，而是将具体创建工作交给子类去做</strong>。这使得<strong>工厂方法模式可以允许系统在不修改工厂角色的情况下引进新产品</strong></li>
+<li>当系统扩展需要添加新的产品对象时，仅仅需要添加一个具体产品对象以及一个具体工厂对象，<strong>很好地符合了”开闭原则”</strong>。<strong>工厂方法模式退化(抽象工厂和具体工厂合并)后可以演变成简单工厂模式</strong>。</li>
+<li>为了提高系统的可扩展性和灵活性，在定义工厂和产品时都必须使用抽象层</li>
+</ul>
+</li>
+<li>模式优点<ul>
+<li><strong>用户只需要关心所需产品对应的工厂，无须关心创建细节，甚至无须知道具体产品类的类名</strong>。</li>
+<li>基于工厂角色和产品角色的多态性设计是工厂方法模式的关键。它能够使<strong>工厂可以自主确定创建何种产品对象，而如何创建这个对象的细节则完全封装在具体工厂内部</strong>。工厂方法模式之所以又被称为多态工厂模式，是因为所有的具体工厂类都具有同一抽象父类。</li>
+<li>使用工厂方法模式的另一个优点是在<strong>系统中加入新产品时，无须修改抽象工厂和抽象产品提供的接口，无须修改客户端，也无须修改其他的具体工厂和具体产品</strong>，而<strong>只要添加一个具体工厂和具体产品就可以了</strong>。</li>
+</ul>
+</li>
+<li>模式缺点<ul>
+<li>在添加新产品时，<strong>需要编写新的具体产品类，而且还要提供与之对应的具体工厂类，系统中类的个数将成对增加，在一定程度上增加了系统的复杂度</strong>，有更多的类需要编译和运行，会给系统带来一些额外的开销。</li>
+<li>由于考虑到系统的可扩展性，需要引入抽象层，在客户端代码中均使用抽象层进行定义，<strong>增加了系统的抽象性和理解难度</strong>，且在实现时可能需要用到DOM、反射等技术，<strong>增加了系统的实现难度</strong>。</li>
+</ul>
+</li>
+<li>适用场景<ul>
+<li><strong>一个类不知道它所需要的对象的类</strong>：在工厂方法模式中，客户端不需要知道具体产品类的类名，只需要知道所对应的工厂即可</li>
+<li><strong>一个类通过其子类来指定创建哪个对象</strong>：在工厂方法模式中，对于抽象工厂类只需要提供一个创建产品的接口，而由其子类来确定具体要创建的对象，利用面向对象的多态性和里氏代换原则，在程序运行时，子类对象将覆盖父类对象，从而使得系统更容易扩展</li>
+<li>将创建对象的任务委托给多个工厂子类中的某一个，<strong>客户端在使用时可以无须关心是哪一个工厂子类创建产品子类</strong>，需要时再动态指定</li>
+</ul>
+</li>
+</ul>
+<h3 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h3><ul>
+<li>概述<ul>
+<li>有时候<strong>我们需要一个工厂可以提供多个产品对象，而不是单一的产品对象</strong></li>
+<li><strong>产品等级结构：产品等级结构即产品的继承结构</strong>，如一个抽象类是电视机，其子类有海尔电视机、海信电视机、TCL电视机，则抽象电视机与具体品牌的电视机之间构成了一个产品等级结构</li>
+<li><strong>产品族</strong>：在抽象工厂模式中，<strong>产品族是指由同一个工厂生产的，位于不同产品等级结构中的一组产品</strong>，如海尔电器工厂生产的海尔电视机、海尔电冰箱，海尔电视机位于电视机产品等级结构中，海尔电冰箱位于电冰箱产品等级结构中</li>
+<li>当系统所提供的工厂所需生产的具体产品并不是一个简单的对象，而是<strong>多个位于不同产品等级结构中属于不同类型的具体产品时</strong>需要使用抽象工厂模式</li>
+<li>抽象工厂模式与工厂方法模式最大的区别在于，<strong>工厂方法模式针对的是一个产品等级结构，而抽象工厂模式则需要面对多个产品等级结构</strong></li>
+</ul>
+</li>
+<li>模式定义<ul>
+<li>抽象工厂模式(<strong>Abstract Factory Pattern</strong>)：提供一个<strong>创建一系列相关或相互依赖对象的接口</strong>，而无须指定它们具体的类。抽象工厂模式又称为Kit模式，属于对象创建型模式</li>
+<li><img src="image-20250526202244530.png" srcset="/img/loading.gif" lazyload alt="image-20250526202244530" style="zoom: 67%;" /></li>
+</ul>
+</li>
+<li>模式结构<ul>
+<li>抽象工厂模式包含如下角色：<ul>
+<li>AbstractFactory：抽象工厂</li>
+<li>ConcreteFactory：具体工厂</li>
+<li>AbstractProduct：抽象产品</li>
+<li>Product：具体产品</li>
+</ul>
+</li>
+<li><img src="image-20250526202357146.png" srcset="/img/loading.gif" lazyload alt="image-20250526202357146" style="zoom: 50%;" /></li>
+<li>产品族是牌子，产品等级结构是产品类型</li>
+<li><img src="image-20250526202651392.png" srcset="/img/loading.gif" lazyload alt="image-20250526202651392" style="zoom: 80%;" /></li>
+</ul>
+</li>
+<li>模式优点<ul>
+<li>抽象工厂模式<strong>隔离了具体类的生成</strong>，使得客户并不需要知道什么被创建。由于这种隔离，更换一个具体工厂就变得相对容易。所有的具体工厂都实现了抽象工厂中定义的那些公共接口，因此<strong>只需改变具体工厂的实例，就可以在某种程度上改变整个软件系统的行为</strong>。另外，应用抽象工厂模式<strong>可以实现高内聚低耦合的设计目的</strong>，因此抽象工厂模式得到了广泛的应用。</li>
+<li>当一个产品族中的多个对象被设计成一起工作时，它<strong>能够保证客户端始终只使用同一个产品族中的对象</strong>。这对一些需要根据当前环境来决定其行为的软件系统来说，是一种非常实用的设计模式。</li>
+<li><strong>增加新的具体工厂和产品族很方便，无须修改已有系统，符合”开闭原则”</strong>。<ol>
+<li>增加新的产品族符合开闭原则</li>
+<li>增加新的产品等级结构麻烦</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>模式缺点<ul>
+<li>在添加新的产品对象时，<strong>难以扩展抽象工厂来生产新种类的产品</strong>，这是因为在抽象工厂角色中规定了所有可能被创建的产品集合，要支持新种类的产品就意味着要对该接口进行扩展，而这将涉及到<strong>对抽象工厂角色及其所有子类的修改</strong>，显然会带来较大的不便。开闭原则的倾斜性(<strong>增加新的工厂和产品族容易，增加新的产品等级结构麻烦</strong>)</li>
+</ul>
+</li>
+<li>开闭原则的倾斜性<ul>
+<li>“开闭原则”要求系统对扩展开放，对修改封闭，通过扩展达到增强其功能的目的。对于涉及到多个产品族与多个产品等级结构的系统，其功能增强包括两方面：<ol>
+<li>增加产品族：<strong>对于增加新的产品族，工厂方法模式很好的支持了”开闭原则”，对于新增加的产品族，只需要对应增加一个新的具体工厂即可，对已有代码无须做任何修改</strong>。</li>
+<li>增加新的产品等级结构：<strong>对于增加新的产品等级结构，需要修改所有的工厂角色，包括抽象工厂类，在所有的工厂类中都需要增加生产新产品的方法，不能很好地支持”开闭原则”</strong>。</li>
+</ol>
+</li>
+<li>抽象工厂模式的这种性质称为”开闭原则”的倾斜性，抽象工厂模式以一种倾斜的方式支持增加新的产品，它为新产品族的增加提供方便，但不能为新的产品等级结构的增加提供这样的方便。</li>
+</ul>
+</li>
+<li>适用场景<ul>
+<li>一个系统<strong>不应当依赖于产品类实例如何被创建、组合和表达的细节</strong>，这对于所有类型的工厂模式都是重要的。</li>
+<li>系统中有<strong>多于一个的产品族</strong>，而每次只使用其中某一产品族。</li>
+<li><strong>属于同一个产品族的产品将在一起使用</strong>，这一约束必须在系统的设计中体现出来。</li>
+<li>系统提供一个产品类的库，<strong>所有的产品以同样的接口出现</strong>，从而<strong>使客户端不依赖于具体实现</strong>。</li>
+</ul>
+</li>
+<li>退化：当抽象工厂模式中每一个具体工厂类只创建一个产品对象，也就是<strong>只存在一个产品等级结构时，抽象工厂模式退化成工厂方法模式</strong>；<strong>当工厂方法模式中抽象工厂与具体工厂合并，提供一个统一的工厂来创建产品对象，并将创建对象的工厂方法设计为静态方法时，工厂方法模式退化成简单工厂模式</strong>。</li>
+</ul>
+<h2 id="4-创建型模式"><a href="#4-创建型模式" class="headerlink" title="4. 创建型模式"></a>4. 创建型模式</h2><blockquote>
+<p>前面的工厂也属于创建型模式(Creational Pattern)</p>
+</blockquote>
+<h3 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h3><ul>
+<li>概述<ul>
+<li>对于一些复杂的对象，它们拥有一系列成员属性，这些成员属性中有些是引用类型的成员对象。而且在这<br>些复杂对象中，还可能存在一些限制条件，如某些属性没有赋值则复杂对象不能作为一个完整的产品使用；有些属性的赋值必须按照某个顺序，一个属性没有赋值之前，另一个属性可能无法赋值等</li>
+<li><strong>建造者模式可以将部件和其组装过程分开，一步一步创建一个复杂的对象</strong>，用户只需要指定复杂对象的类型就可以得到该对象，而无须知道其内部的具体构造细节</li>
+<li>由于组合部件的过程很复杂，因此部件的组合过程往往被“外部化”到一个称作<strong>建造者</strong>的对象里，<strong>建造者返还给客户端的是一个已经建造完毕的完整产品对象</strong>，而用户无须关心该对象所包含的属性以及它们的组装方式，这就是建造者模式的模式动机</li>
+</ul>
+</li>
+<li>模式定义<ul>
+<li>建造者模式(<strong>Builder Pattern</strong>)：将<strong>一个复杂对象的构建与它的表示分离</strong>，使得<strong>同样的构建过程可以创建不同的表示</strong></li>
+<li>建造者模式是一步一步创建一个复杂的对象，它允许用户只通过指定复杂对象的类型和内容就可以构建它们，用户不需要知道内部的具体构建细节</li>
+</ul>
+</li>
+<li>模式结构<ul>
+<li>建造者模式包含如下角色：<ol>
+<li>Builder：抽象建造者</li>
+<li>ConcreteBuilder：具体建造者</li>
+<li>Director：指挥者</li>
+<li>Product：产品角色</li>
+</ol>
+</li>
+<li><img src="image-20250527153536626.png" srcset="/img/loading.gif" lazyload alt="image-20250527153536626" style="zoom:67%;" /></li>
+</ul>
+</li>
+<li>模式分析<ul>
+<li>建造者模式的结构中还引入了一个指挥者类Director，该类的作用主要有两个：一方面它隔离了客户与生产过程；另一方面它负责控制产品的生成过程</li>
+<li>在客户端代码中，<strong>无须关心产品对象的具体组装过程，只需确定具体建造者的类型即可</strong>，建造者模式将复杂对象的构建与对象的表现分离开来，这样使得同样的构建过程可以创建出不同的表现</li>
+</ul>
+</li>
+<li>模式优点<ul>
+<li>在建造者模式中，<strong>客户端不必知道产品内部组成的细节，将产品本身与产品的创建过程解耦，使得相同的创建过程可以创建不同的产品对象</strong>。</li>
+<li>每一个具体建造者都相对独立，而与其他的具体建造者无关，因此可以很方便地替换具体建造者或增加新的具体建造者，<strong>用户使用不同的具体建造者即可得到不同的产品对象</strong>。</li>
+<li><strong>可以更加精细地控制产品的创建过程</strong>。将复杂产品的创建步骤分解在不同的方法中，使得创建过程更加清晰，也更方便使用程序来控制创建过程。</li>
+<li><strong>增加新的具体建造者无须修改原有类库的代码，指挥者类针对抽象建造者类编程，系统扩展方便，符合”开闭原则”</strong>。</li>
+</ul>
+</li>
+<li>模式缺点<ul>
+<li>建造者模式所创建的产品一般具有较多的共同点，其组成部分相似，<strong>如果产品之间的差异性很大，则不适合使用建造者模式</strong>，因此其使用范围受到一定的限制。</li>
+<li>如果产品的内部变化复杂，可能会导致需要定义很多具体建造者类来实现这种变化，导致系统变得<strong>很庞大</strong>。</li>
+</ul>
+</li>
+<li>使用场景<ul>
+<li>需要生成的产品对象有<strong>复杂的内部结构</strong>，这些产品对象通常包含多个成员属性。</li>
+<li>需要生成的产品对象的<strong>属性相互依赖，需要指定其生成顺序</strong>。</li>
+<li>对象的创建过程独立于创建该对象的类。<strong>在建造者模式中引入了指挥者类，将创建过程封装在指挥者类中，而不在建造者类中</strong>。</li>
+<li>隔离复杂对象的创建和使用，并使得相同的创建过程可以创建不同的产品。</li>
+</ul>
+</li>
+<li>建造者模式的简化<ol>
+<li><strong>省略抽象建造者角色</strong>：如果系统中只需要一个具体建造者的话，可以省略掉抽象建造者。</li>
+<li><strong>省略指挥者角色</strong>：在具体建造者只有一个的情况下，如果抽象建造者角色已经被省略掉，那么还可以省略指挥者角色，让Builder角色扮演指挥者与建造者双重角色</li>
+</ol>
+</li>
+<li>建造者模式与抽象工厂模式的比较<ul>
+<li>与抽象工厂模式相比，建造者模式返回<strong>一个组装好的完整产品</strong>，而抽象工厂模式返回<strong>一系列相关的产品</strong>，一个强调组装，一个强调结果的产品</li>
+<li>在抽象工厂模式中，<strong>客户端实例化工厂类，然后调用工厂方法获取所需产品对象</strong>，而在建造者模式中，<strong>客户端可以不直接调用建造者的相关方法，而是通过指挥者类来指导如何生成对象</strong>，包括对象的组装过程和建造步骤，它<strong>侧重于一步步构造一个复杂对象，返回一个完整的对象</strong>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h3><ul>
+<li>概述<ul>
+<li>在面向对象系统中，使用原型模式来复制一个对象自身，从而<strong>克隆出多个与原型对象一模一样的对象</strong></li>
+<li>在软件系统中，有些对象的创建过程较为复杂，而且有时候需要频繁创建，原型模式通过给出一个原型对象来指明所要创建的对象的类型，然后用<strong>复制这个原型对象</strong>的办法创建出更多同类型的对象，这就是原型模式的意图所在</li>
+</ul>
+</li>
+<li>模式定义<ul>
+<li>原型模式(<strong>Prototype Pattern</strong>)：原型模式是一种对象创建型模式，用原型实例指定创建对象的种类，并且通过复制这些原型创建新的对象。<strong>原型模式允许一个对象再创建另外一个可定制的对象，无须知道任何创建的细节</strong>。</li>
+<li>原型模式的基本工作原理是通过<strong>将一个原型对象传给那个要发动创建的对象</strong>，这个要发动创建的对象通过<strong>请求原型对象拷贝原型自己</strong>来实现创建过程</li>
+</ul>
+</li>
+<li>模式结构<ul>
+<li>原型模式包含如下角色：<ol>
+<li>Prototype：抽象原型类</li>
+<li>ConcretePrototype：具体原型类</li>
+<li>Client：客户类</li>
+</ol>
+</li>
+<li><img src="image-20250527154738653.png" srcset="/img/loading.gif" lazyload alt="image-20250527154738653" style="zoom: 50%;" /></li>
+</ul>
+</li>
+<li>模式分析<ul>
+<li>在原型模式结构中定义了一个抽象原型类，所有的Java类都继承自java.lang.Object，而Object类提供一个clone()方法，可以将一个Java对象复制一份。因此在Java中可以直接使用Object提供的clone()方法来实现对象的克隆，Java语言中的原型模式实现很简单</li>
+<li>能够实现克隆的Java类必须实现一个标识接口Cloneable，表示这个Java类支持复制，否则调用clone()后Java编译器将抛出一个CloneNotSupportedException异常</li>
+<li>通常情况下，一个类包含一些成员对象，在使用原型模式克隆对象时，根据其成员对象是否也克隆，原型模式可以分为两种形式：深克隆和浅克隆</li>
+<li><img src="image-20250527155020974.png" srcset="/img/loading.gif" lazyload alt="image-20250527155020974" style="zoom: 40%;" /></li>
+<li>相似对象的复制：通过原型模式获得相同对象后可以再对其属性进行修改，从而获取所需<br>对象</li>
+</ul>
+</li>
+<li>模式优点<ul>
+<li>当创建新的对象实例较为复杂时，使用原型模式可以<strong>简化对象的创建过程</strong>，通过一个已有实例可以提高新实例的创建效率。</li>
+<li>可以动态增加或减少产品类。</li>
+<li>原型模式提供了简化的创建结构。</li>
+<li>可以使用深克隆的方式保存对象的状态。</li>
+</ul>
+</li>
+<li>模式缺点<ul>
+<li>需要为每一个类配备一个克隆方法，而且这个克隆方法需要对类的功能进行通盘考虑，这对全新的类来说不是很难，但对已有的类进行改造时，不一定是件容易的事，<strong>必须修改其源代码，违背了”开闭原则”</strong>。</li>
+<li>在实现深克隆时需要编写较为复杂的代码</li>
+</ul>
+</li>
+<li>适用场景<ul>
+<li><strong>创建新对象成本较大</strong>，新的对象可以通过原型模式对已有对象进行复制来获得，如果是相似对象，则可以对其属性稍作修改。</li>
+<li>如果系统<strong>要保存对象的状态</strong>，而<strong>对象的状态变化很小，或者对象本身占内存不大的时候</strong>，也可以使用<strong>原型模式配合备忘录模式</strong>来应用。相反，如果对象的状态变化很大，或者对象占用的内存很大，那么采用状态模式会比原型模式更好。</li>
+<li>需要避免使用分层次的工厂类来创建分层次的对象，并且类的实例对象只有一个或很少的几个组合状态，通过复制原型对象得到新实例可能比使用构造函数创建一个新实例更加方便。</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-状态和命令模式"><a href="#5-状态和命令模式" class="headerlink" title="5. 状态和命令模式"></a>5. 状态和命令模式</h2><h3 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h3><ul>
+<li>概述<ul>
+<li>在很多情况下，<strong>一个对象的行为取决于一个或多个动态变化的属性</strong>，这样的属性叫做<strong>状态</strong>，这样的对象叫做<strong>有状态的(stateful)对象</strong>，这样的对象状态是从事先定义好的一系列值中取出的。当一个这样的对象与外部事件产生互动时，其内部状态就会改变，从而使得系统的行为也随之发生变化</li>
+<li>在UML中可以使用<strong>状态图</strong>来描述对象状态的变化</li>
+</ul>
+</li>
+<li>模式定义<ul>
+<li>状态模式(<strong>State Pattern</strong>)：<strong>允许一个对象在其内部状态改变时改变它的行为</strong>，对象看起来似乎修改了它的类。其别名为状态对象(Objects for States)，状态模式是一种<strong>对象行为型</strong>模式。</li>
+<li>设计主要是面对变化，因此我们在分析开始的时候就应该分析变化：<strong>增加新的状态，面向新的状态的部分的行为</strong>。</li>
+<li>封装变化：<strong>封闭 + 委托</strong>(组合关系)</li>
+</ul>
+</li>
+<li>模式结构<ul>
+<li>状态模式包含如下角色：<ol>
+<li>Context: 环境类</li>
+<li>State: 抽象状态类</li>
+<li>ConcreteState: 具体状态类</li>
+</ol>
+</li>
+<li><img src="image-20250527161856099.png" srcset="/img/loading.gif" lazyload alt="image-20250527161856099" style="zoom:50%;" /></li>
+<li>在结构上<strong>策略模式</strong>和状态模式是一致的，但是在使用上是很不同的</li>
+</ul>
+</li>
+<li>模式分析<ul>
+<li>状态模式描述了<strong>对象状态的变化</strong>以及<strong>对象如何在每一种状态下表现出不同的行为</strong></li>
+<li>状态模式的关键是<strong>引入了一个抽象类来专门表示对象的状态</strong>，这个类我们叫做<strong>抽象状态类</strong>，而对象的每一种具体状态类都继承了该类，并在<strong>不同具体状态类中实现了不同状态的行为，包括各种状态之间的转换</strong>（状态对象持有对上下文(Context)的引用，可以调用setState方法）</li>
+<li>在状态模式结构中需要理解<strong>环境类与抽象状态类</strong>的作用：<ol>
+<li>环境类实际上就是<strong>拥有状态的对象</strong>，环境类有时候可以充当<strong>状态管理器(State Manager)<strong>的角色，可以</strong>在环境类中对状态进行切换操作</strong>。</li>
+<li>抽象状态类可以是抽象类，也可以是接口，不同状态类就是继承这个父类的不同子类，<strong>状态类的产生是由于环境类存在多个状态</strong>，同时还满足两个条件：<strong>这些状态经常需要切换，在不同的状态下对象的行为不同</strong>。因此可以<strong>将不同对象下的行为单独提取出来封装在具体的状态类中，使得环境类对象在其内部状态改变时可以改变它的行为，对象看起来似乎修改了它的类</strong>，而实际上是<strong>由于切换到不同的具体状态类实现的</strong>。</li>
+<li>环境类一般包含所有的行为方法（当然执行时要确保可以执行），而具体的状态类只能有当前状态可以拥有的行为方法</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>模式优点<ul>
+<li><strong>封装了转换规则</strong>。</li>
+<li><strong>枚举可能的状态</strong>，在枚举状态之前需要确定状态种类。</li>
+<li>将所有与某个状态有关的行为放到一个类中，并且可以<strong>方便地增加新的状态</strong>，只需要改变对象状态即可改变对象的行为。</li>
+<li>允许<strong>状态转换逻辑与状态对象合成一体</strong>，而不是某一个巨大的条件语句块。</li>
+<li>可以<strong>让多个环境对象共享一个状态对象</strong>，从而减少系统中对象的个数。</li>
+</ul>
+</li>
+<li>模式缺点<ul>
+<li>状态模式的使用必然会<strong>增加系统类和对象的个数</strong>。</li>
+<li>状态模式的结构与实现都较为复杂，<strong>如果使用不当将导致程序结构和代码的混乱</strong>。</li>
+<li>状态模式<strong>对“开闭原则”的支持并不太好</strong>，对于可以切换状态的状态模式，<strong>增加新的状态类需要修改那些负责状态转换的源代码</strong>，否则无法切换到新增状态；而且<strong>修改某个状态类的行为也需修改对应类的源代码</strong>。</li>
+</ul>
+</li>
+<li>适用场景<ul>
+<li>对象的行为依赖于它的状态(属性)并且可以根据它的状态改变而改变它的相关行为。</li>
+<li>代码中包含大量与<strong>对象状态有关的条件语句</strong></li>
+</ul>
+</li>
+<li>模式扩展<ul>
+<li>在有些情况下<strong>多个环境对象需要共享同一个状态</strong>，如果希望在系统中实现多个环境对象实例共享一个或多个状态对象，那么需要将这些状态对象定义为环境的<strong>静态成员对象</strong>。例如多个玩家对象可以共享“健康”、“濒死”等状态对象，因为不同的玩家在这些状态下的行为是一样的，没必要创建多个状态对象</li>
+<li><strong>简单状态模式</strong>：简单状态模式是指状态都相互独立，状态之间无须进行转换的状态模式，它遵循“开闭原则”</li>
+<li><strong>可切换状态的状态模式</strong>：大多数的状态模式都是可以切换状态的状态模式，在实现状态切换时，在具体状态类内部需要调用环境类Context的setState()方法进行状态的转换操作，在具体状态类中可以调用到环境类的方法，因此状态类与环境类之间通常还存在关联关系或者依赖关系。<strong>可以通过在状态类中引用环境类的对象来回调环境类的setState()方法实现状态的切换</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h3><ul>
+<li>概述<ul>
+<li>在软件设计中，我们经常<strong>需要向某些对象发送请求</strong>，但是并<strong>不知道请求的接收者是谁</strong>，<strong>也不知道被请求的操作是哪个</strong>，我们<strong>只需在程序运行时指定具体的请求接收者即可</strong>，此时，可以使用命令模式来进行设计，使得<strong>请求发送者与请求接收者消除彼此之间的耦合</strong>，让对象之间的调用关系更加灵活。</li>
+<li>命令模式可以对<strong>发送者和接收者完全解耦</strong>，发送者与接收者之间<strong>没有直接引用关系</strong>，<strong>发送请求的对象只需要知道如何发送请求，而不必知道如何完成请求</strong>。</li>
+<li><img src="6-1748336184333.png" srcset="/img/loading.gif" lazyload style="zoom:50%;" /></li>
+</ul>
+</li>
+<li>模式定义<ul>
+<li>命令模式(Command Pattern)：<strong>将一个请求封装为一个对象</strong>，从而使我们可用<strong>不同的请求对客户进行参数化</strong>；<strong>对请求排队或者记录请求日志，以及支持可撤销的操作</strong>。命令模式是一种<strong>对象行为型模式</strong>，其别名为动作(Action)模式或事务(Transaction)模式。</li>
+</ul>
+</li>
+<li>模式结构<ul>
+<li>命令模式包含如下角色：<ol>
+<li>Command: 抽象命令类</li>
+<li>ConcreteCommand: 具体命令类</li>
+<li>Invoker: 调用者，相当于电灯开关</li>
+<li>Receiver: 接收者，相当于电灯控制模块</li>
+<li>Client:客户类</li>
+</ol>
+</li>
+<li><img src="image-20250527165737670.png" srcset="/img/loading.gif" lazyload alt="image-20250527165737670" style="zoom:50%;" /></li>
+<li><img src="8-1748423358403.png" srcset="/img/loading.gif" lazyload style="zoom: 60%;" /></li>
+</ul>
+</li>
+<li>例子：电视机遥控器<ul>
+<li><img src="9.png" srcset="/img/loading.gif" lazyload></li>
+<li>遥控器是invoker，电视机是receiver</li>
+</ul>
+</li>
+<li>模式优点<ul>
+<li>降低系统的耦合度。</li>
+<li>新的命令可以很容易地加入到系统中。</li>
+<li>可以比较容易地设计一个命令队列和宏命令(组合命令)。</li>
+<li><strong>可以方便地实现对请求的Undo和Redo</strong>。</li>
+</ul>
+</li>
+<li>模式缺点<ul>
+<li>使用命令模式可能会<strong>导致某些系统有过多的具体命令类</strong>。因为针对每一个命令都需要设计一个具体命令类，因此某些系统可能需要大量具体命令类，这将影响命令模式的使用</li>
+</ul>
+</li>
+<li>适用场景<ul>
+<li>系统<strong>需要将请求调用者和请求接收者解耦</strong>，使得调用者和接收者不直接交互。</li>
+<li>系统<strong>需要在不同的时间指定请求、将请求排队和执行请求</strong>。</li>
+<li>系统<strong>需要支持命令的撤销(Undo)操作和恢复(Redo)操作</strong>。</li>
+<li>系统<strong>需要将一组操作组合在一起</strong>，即支持宏命令。</li>
+</ul>
+</li>
+<li>模式扩展<ul>
+<li>撤销：让Invoker维护一个命令的历史记录（通常是一个栈），用于管理命令的执行和撤销。使用栈数据结构可以轻松地实现撤销功能，因为栈支持后进先出，只需要出栈然后调用其undo方法就可以实现撤销</li>
+<li>宏命令：<ul>
+<li>宏命令又称为<strong>组合命令</strong>，它是<strong>命令模式和组合模式</strong>联用的产物。</li>
+<li>宏命令也是一个具体命令，不过它包含了对其他命令对象的引用，<strong>在调用宏命令的execute()方法时，将递归调用它所包含的每个成员命令的execute()方法</strong></li>
+<li><img src="image-20250527171410015.png" srcset="/img/loading.gif" lazyload alt="image-20250527171410015"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-观察者与行为型模式"><a href="#6-观察者与行为型模式" class="headerlink" title="6. 观察者与行为型模式"></a>6. 观察者与行为型模式</h2><blockquote>
+<p>前面的状态模式和命令模式也是行为型模式</p>
+</blockquote>
+<h3 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h3><ul>
+<li>概述<ul>
+<li>建立一种<strong>对象与对象之间的依赖关系，一个对象发生改变时将自动通知其他对象，其他对象将相应做出反应</strong>。<ol>
+<li>发生改变的对象称为<strong>观察目标</strong></li>
+<li>被通知的对象称为<strong>观察者</strong></li>
+</ol>
+</li>
+<li><img src="image-20250527172855145.png" srcset="/img/loading.gif" lazyload alt="image-20250527172855145" style="zoom:50%;" /></li>
+<li><strong>一个观察目标可以对应多个观察者</strong>，而且这些观察者之间没有相互联系，<strong>可以根据需要增加和删除观察者，使得系统更易于扩展</strong>，这就是观察者模式的模式动机。</li>
+</ul>
+</li>
+<li>模式定义<ul>
+<li>观察者模式(<strong>Observer Pattern</strong>)：定义对象间的一种<strong>一对多依赖关系</strong>，使得<strong>每当一个对象状态发生改变</strong>时，其<strong>相关依赖对象皆得到通知并被自动更新</strong>。</li>
+<li>观察者模式又叫做<strong>发布-订阅</strong>（Publish&#x2F;Subscribe）模式、<strong>模型-视图</strong>（Model&#x2F;View）模式、<strong>源-监听器</strong>（Source&#x2F;Listener）模式或<strong>从属者</strong>（Dependents）模式。观察者模式是一种<strong>对象行为型</strong>模式。</li>
+</ul>
+</li>
+<li>模式结构<ul>
+<li>观察者模式包含如下角色：<ol>
+<li>Subject: 目标</li>
+<li>ConcreteSubject: 具体目标</li>
+<li>Observer: 观察者</li>
+<li>ConcreteObserver: 具体观察者</li>
+</ol>
+</li>
+<li><img src="image-20250527173140823.png" srcset="/img/loading.gif" lazyload alt="image-20250527173140823" style="zoom: 80%;" /></li>
+<li><code>attach(Observer obs)</code>: 将观察者添加到观察者列表中。使该观察者可以接收通知。</li>
+<li><code>detach(Observer obs)</code>: 将观察者从观察者列表中移除。停止该观察者接收通知。</li>
+<li><code>notify()</code>: 通知所有注册的观察者调用它们的<code>update()</code>方法。通常会在主题的状态改变时被调用。</li>
+<li><img src="3-1748423350315.png" srcset="/img/loading.gif" lazyload style="zoom:50%;" /></li>
+</ul>
+</li>
+<li>模式分析<ul>
+<li>观察者模式描述了<strong>如何建立对象与对象之间的依赖关系</strong>，如何构造满足这种需求的系统。</li>
+<li>这一模式中的关键对象是观察目标和观察者，<strong>一个目标可以有任意数目的与之相依赖的观察者，一旦目标的状态发生改变，所有的观察者都将得到通知</strong>。</li>
+<li>作为对这个通知的响应，每个观察者都将即时更新自己的状态，以与目标状态同步，这种交互也称为<strong>发布-订阅 (publish-subscribe)</strong>。目标是通知的发布者，它发出通知时并不需要知道谁是它的观察者，可以有任意数目的观察者订阅它并接收通知。</li>
+</ul>
+</li>
+<li>模式优点<ul>
+<li>观察者模式可以<strong>实现表示层和数据逻辑层的分离</strong>，并定义了稳定的消息更新传递机制，抽象了更新接口，使得可以有各种各样不同的表示层作为具体观察者角色。</li>
+<li>观察者模式<strong>在观察目标和观察者之间建立一个抽象的耦合</strong>。</li>
+<li>观察者模式<strong>支持广播通信</strong>。</li>
+<li>观察者模式<strong>符合开闭原则</strong>的要求</li>
+</ul>
+</li>
+<li>模式缺点<ul>
+<li>如果一个观察目标对象有很多直接和间接的观察者的话，<strong>将所有的观察者都通知到会花费很多时间</strong>。</li>
+<li>如果在观察者和观察目标之间有<strong>循环依赖的话</strong>，观察目标会触发它们之间进行循环调用，<strong>可能导致系统崩溃</strong>。</li>
+<li>观察者模式<strong>没有相应的机制让观察者知道所观察的目标对象是怎么发生变化的</strong>，而仅仅只是知道观察目标发生了变化。</li>
+</ul>
+</li>
+<li>适用场景<ul>
+<li>一个抽象模型有两个方面，其中<strong>一个方面依赖于另一个方面</strong>。将这些方面<strong>封装在独立的对象中使它们可以各自独立地改变和复用</strong>。</li>
+<li><strong>一个对象的改变将导致其他一个或多个对象也发生改变，而不知道具体有多少对象将发生改变</strong>，可以降低对象之间的耦合度。</li>
+<li><strong>一个对象必须通知其他对象，而并不知道这些对象是谁</strong>。</li>
+<li><strong>需要在系统中创建一个触发链</strong>，A对象的行为将影响B对象，B对象的行为将影响C对象……，可以使用观察者模式创建一种<strong>链式触发机制</strong>。</li>
+</ul>
+</li>
+<li>在JDK的java.util包中，提供了Observable类以及Observer接口，它们构成了Java语言对观察者模式的支持</li>
+</ul>
+<h3 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h3><ul>
+<li>概述<ul>
+<li>在面向对象的软件设计与开发过程中，根据“单一职责原则”，我们<strong>应该尽量将对象细化，使其只负责或呈现单一的职责</strong>。</li>
+<li>对于一个模块，可能由很多对象构成，而且这些对象之间可能存在相互的引用，<strong>为了减少对象两两之间复杂的引用关系，使之成为一个松耦合的系统，我们需要使用中介者模式</strong>，这就是中介者模式的模式动机。</li>
+</ul>
+</li>
+<li>模式定义<ul>
+<li>中介者模式(<strong>Mediator Pattern</strong>)定义：用一个中介对象来<strong>封装一系列的对象交互</strong>，中介者使各对象不需要显式地相互引用，从而<strong>使其耦合松散</strong>，而且<strong>可以独立地改变它们之间的交互</strong>。中介者模式又称为<strong>调停者模式</strong>（只是中文翻译不同），它是一种<strong>对象行为型模式</strong>。</li>
+</ul>
+</li>
+<li>模式结构<ul>
+<li>中介者模式包含如下角色：<ol>
+<li>Mediator: 抽象中介者</li>
+<li>ConcreteMediator: 具体中介者</li>
+<li>Colleague: 抽象同事类</li>
+<li>ConcreteColleague: 具体同事类</li>
+</ol>
+</li>
+<li><img src="9-1748346264390.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+<li>模式分析<ul>
+<li>中介者模式可以使对象之间的关系数量急剧减少</li>
+<li><img src="image-20250527194516129.png" srcset="/img/loading.gif" lazyload alt="image-20250527194516129" style="zoom:50%;" /></li>
+<li>中介者承担两方面的职责：<ol>
+<li><strong>中转作用（结构性）</strong>：通过中介者提供的中转作用，各个同事对象就不再需要显式引用其他同事，当需要和其他同事进行通信时，通过中介者即可。该中转作用属于中介者<strong>在结构上的支持</strong>。</li>
+<li><strong>协调作用（行为性）</strong>：中介者可以更进一步的对同事之间的关系进行封装，同事可以一致地和中介者进行交互，而不需要指明中介者需要具体怎么做，中介者根据封装在自身内部的协调逻辑，对同事的请求进行进一步处理，将同事成员之间的关系行为进行分离和封装。该协调作用属于中介者<strong>在行为上的支持</strong>。</li>
+</ol>
+</li>
+<li>仅当对象之间交互复杂、流程可变、需要集中协调时，选用中介者模式；如只是多个对象分别调用同一个对象的不同接口，无复杂关联，不用中介者，直接引用最合适</li>
+</ul>
+</li>
+<li>模式优点<ul>
+<li>简化了对象之间的交互。</li>
+<li>将各同事解耦。</li>
+<li>减少子类生成。</li>
+<li>可以简化各同事类的设计和实现。</li>
+</ul>
+</li>
+<li>模式缺点<ul>
+<li>在具体中介者类中包含了同事之间的交互细节，可能会导致<strong>具体中介者类非常复杂</strong>，使得<strong>系统难以维护</strong>。</li>
+</ul>
+</li>
+<li>适用场景<ul>
+<li>系统中<strong>对象之间存在复杂的引用关系</strong>，产生的相互依赖关系结构混乱且难以理解。</li>
+<li>一个对象由于引用了其他很多对象并且直接和这些对象通信，导致<strong>难以复用该对象</strong>。</li>
+<li><strong>想通过一个中间类来封装多个类中的行为，而又不想生成太多的子类</strong>。</li>
+</ul>
+</li>
+<li>模式扩展<ul>
+<li>与迪米特法则关系：在中介者模式中，通过创造出一个中介者对象，<strong>将系统中有关的对象所引用的其他对象数目减少到最少</strong>，使得一个对象与其同事之间的相互作用被这个对象与中介者对象之间的相互作用所取代。因此，<strong>中介者模式就是迪米特法则的一个典型应用</strong>。</li>
+<li>中介者模式可以方便地应用于<strong>图形界面(GUI)开发</strong>中，在比较复杂的界面中可能存在<strong>多个界面组件之间的交互关系</strong>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h3><ul>
+<li><p>概述</p>
+<ul>
+<li>模板方法模式是<strong>基于继承</strong>的代码复用基本技术，模板方法模式的结构和用法也是面向对象设计的核心之一。在模板方法模式中，可以<strong>将相同的代码放在父类中，而将不同的方法实现放在不同的子类中</strong>。</li>
+<li>在模板方法模式中，我们需要准备一个抽象类，<strong>将部分逻辑以具体方法以及具体构造函数的形式实现</strong>，<strong>然后声明一些抽象方法来让子类实现剩余的逻辑。不同的子类可以以不同的方式实现这些抽象方法，从而对剩余的逻辑有不同的实现</strong></li>
+</ul>
+</li>
+<li><p>模式定义</p>
+<ul>
+<li>模板方法模式(<strong>Template Method Pattern</strong>)：定义一个操作中<strong>算法的骨架</strong>，而将一些步骤<strong>延迟到子类</strong>中，模板方法使得子类<strong>可以不改变一个算法的结构即可重定义该算法的某些特定步骤</strong>。模板方法是一种<strong>类行为型</strong>模式。</li>
+</ul>
+</li>
+<li><p>模式结构</p>
+<ul>
+<li>模板方法模式包含如下角色：<ol>
+<li>AbstractClass: 抽象类</li>
+<li>ConcreteClass: 具体子类</li>
+</ol>
+</li>
+<li><img src="13.png" srcset="/img/loading.gif" lazyload style="zoom: 50%;" /></li>
+</ul>
+</li>
+<li><p>模式分析</p>
+<ul>
+<li><p>模板方法模式是一种类的行为型模式，在它的结构图中<strong>只有类之间的继承关系，没有对象关联关系</strong>。</p>
+</li>
+<li><p>在模板方法模式的使用过程中，要求开发抽象类和开发具体子类的设计师之间进行协作。一个设计师负责给出<strong>一个算法的轮廓和骨架</strong>，另一些设计师则<strong>负责给出这个算法的各个逻辑步骤</strong>。实现这些具体逻辑步骤的方法称为<strong>基本方法(Primitive Method)</strong>，而将这些基本法方法汇总起来的方法称为<strong>模板方法(Template Method)</strong>，模板方法模式的名字从此而来。</p>
+</li>
+<li><p>模板方法：一个模板方法是<strong>定义在抽象类中的、把基本操作方法组合在一起</strong>形成一个总算法或一个总行为的方法。</p>
+</li>
+<li><p>基本方法：基本方法是<strong>实现算法各个步骤的方法</strong>，是模板方法的组成部分。</p>
+</li>
+<li><p>该模式下的方法有三种：</p>
+<ul>
+<li><p><strong>抽象方法 (Abstract Method)</strong></p>
+<ul>
+<li><strong>定义</strong>：抽象方法是指在抽象类中声明的方法，这些方法没有实现，必须在具体子类中实现。它定义了算法的基本步骤，需要由子类提供具体实现。</li>
+<li><strong>作用</strong>：它提供了一种让子类实现特定任务的机制，使得整体算法架构在抽象类中可见，而具体步骤细节由子类决定。</li>
+</ul>
+</li>
+<li><p><strong>具体方法 (Concrete Method)</strong></p>
+<ul>
+<li><strong>定义</strong>：具体方法由抽象类或其子类提供完整实现，是模板方法的一部分，包含特定步骤的具体操作。</li>
+<li><strong>作用</strong>：具体方法在抽象类中实现或在子类中实现，它用于给出算法中某些步骤的具体操作，通常那些不会变化或不需要由子类提供变更的部分。</li>
+</ul>
+</li>
+<li><p><strong>钩子方法 (Hook Method)</strong></p>
+<ul>
+<li><strong>定义</strong>：钩子方法是指在抽象类中具有默认实现或空实现的方法，子类可以选择性地重写以改变或扩展算法的步骤。它是一种可选的扩展点。</li>
+<li>“挂钩”方法和空方法：<ul>
+<li><strong>“挂钩”方法</strong>：通常是有默认实现的钩子方法，提供基础的但是可定制的行为。子类可以重写这些方法以改变行为。</li>
+<li><strong>空方法</strong>：最简单的钩子方法就是<strong>空方法</strong>，通常是没有实现的钩子方法，即方法体为空。子类可以选择性地提供实现以扩展或变更行为。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Game</span> &#123;<br>    <span class="hljs-comment">// 具体方法</span><br>    <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">play</span><span class="hljs-params">()</span> &#123;<br>        start();<br>        <span class="hljs-keyword">if</span> (needInstructions()) &#123;  <span class="hljs-comment">// 这是钩子方法</span><br>            showInstructions();<br>        &#125;<br>        end();<br>    &#125;<br><br>    <span class="hljs-comment">// 抽象方法：需要子类实现</span><br>    <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">start</span><span class="hljs-params">()</span>;<br>    <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">showInstructions</span><span class="hljs-params">()</span>;<br>    <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">end</span><span class="hljs-params">()</span>;<br><br>    <span class="hljs-comment">// 钩子方法：具有默认实现，子类可以选择重写</span><br>    <span class="hljs-type">boolean</span> <span class="hljs-title function_">needInstructions</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;  <span class="hljs-comment">// 默认是需要展示说明，但子类可重写以改变行为</span><br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SoccerGame</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Game</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">start</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;Starting the soccer game.&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">showInstructions</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;Showing soccer game instructions.&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">end</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;Ending the soccer game.&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-type">boolean</span> <span class="hljs-title function_">needInstructions</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;  <span class="hljs-comment">// 不需要说明</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<ul>
+<li>在模板方法模式中，由于面向对象的多态性，子类对象在运行时将覆盖父类对象，子类中定义的方法也将覆盖父类中定义的方法，因此程序在运行时，<strong>具体子类的基本方法将覆盖父类中定义的基本方法，子类的钩子方法也将覆盖父类的钩子方法</strong>，从而可以<strong>通过在子类中实现的钩子方法对父类方法的执行进行约束，实现子类对父类行为的反向控制</strong>。</li>
+</ul>
+<ul>
+<li><p>模式优点</p>
+<ul>
+<li>模板方法模式<strong>在一个类中抽象地定义算法</strong>，而<strong>由它的子类实现细节的处理</strong>。</li>
+<li>模板方法模式是一种<strong>代码复用的基本技术</strong>。</li>
+<li>模板方法模式导致一种<strong>反向的控制结构</strong>，通过一个父类调用其子类的操作，通过对子类的扩展增加新的行为，<strong>符合“开闭原则”</strong>。</li>
+</ul>
+</li>
+<li><p>模式缺点</p>
+<ul>
+<li>每个不同的实现都需要定义一个子类，这会<strong>导致类的个数增加</strong>，系统更加庞大，设计也更加抽象，但是更加符合“单一职责原则”，使得类的内聚性得以提高。</li>
+</ul>
+</li>
+<li><p>适用场景</p>
+<ul>
+<li>一次性实现一个算法的不变的部分，并<strong>将可变的行为留给子类来实现</strong>。</li>
+<li><strong>各子类中公共的行为应被提取出来并集中到一个公共父类</strong>中以避免代码重复。</li>
+<li><strong>对一些复杂的算法进行分割</strong>，将其算法中固定不变的部分设计为模板方法和父类具体方法，而一些可以改变的细节由其子类来实现。</li>
+<li>控制<strong>子类的扩展</strong>。</li>
+</ul>
+</li>
+<li><p>模式扩展</p>
+<ul>
+<li>模板方法模式鼓励我们<strong>恰当使用继承</strong>，此模式可以用来改写一些拥有相同功能的相关类，<strong>将可复用的一般性的行为代码移到父类里面</strong></li>
+<li>在模板方法模式中，子类不显式调用父类的方法，而是通过覆盖父类的方法来实现某些具体的业务逻辑，<strong>父类控制对子类的调用</strong>，这种机制被称为<strong>好莱坞原则</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="7-适配器与组合"><a href="#7-适配器与组合" class="headerlink" title="7. 适配器与组合"></a>7. 适配器与组合</h2><h3 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h3><ul>
+<li><p>概述</p>
+<ul>
+<li>通常情况下，<strong>客户端可以通过目标类的接口访问它所提供的服务</strong>。有时，现有的类可以满足客户类的功能需要，但是它所提供的接口不一定是客户类所期望的，这可能是因为现有类中方法名与目标类中定义的方法名不一致等原因所导致的。</li>
+<li>在这种情况下，现有的接口需要转化为客户类期望的接口，这样保证了对现有类的重用。如果不进行这样的转化，客户类就不能利用现有类所提供的功能，适配器模式可以完成这样的转化。</li>
+<li>在适配器模式中可以定义一个包装类，包装不兼容接口的对象，这个包装类指的就是<strong>适配器(Adapter)</strong>，它所包装的对象就是<strong>适配者(Adaptee)</strong>，即被适配的类。</li>
+<li>适配器提供客户类需要的接口，<strong>适配器的实现就是把客户类的请求转化为对适配者的相应接口的调用</strong>。也就是说：<strong>当客户类调用适配器的方法时，在适配器类的内部将调用适配者类的方法，而这个过程对客户类是透明的，客户类并不直接访问适配者类</strong>。因此，<strong>适配器可以使由于接口不兼容而不能交互的类可以一起工作</strong>。这就是适配器模式的模式动机</li>
+</ul>
+</li>
+<li><p>模式定义</p>
+<ul>
+<li>适配器模式(Adapter Pattern) ：<strong>将一个接口转换成客户希望的另一个接口</strong>，适配器模式使<strong>接口不兼容的那些类可以一起工作</strong>，其别名为包装器(Wrapper)。</li>
+<li>适配器模式既可以作为<strong>类结构型模式</strong>，也可以作为<strong>对象结构型模式</strong>。</li>
+</ul>
+</li>
+<li><p>模式结构</p>
+<ul>
+<li><p>适配器模式包含如下角色：</p>
+<ol>
+<li>Target：目标抽象类</li>
+<li>Adapter：适配器类</li>
+<li>Adaptee：适配者类</li>
+<li>Client：客户类</li>
+</ol>
+</li>
+<li><p><strong>对象适配器</strong>：适配器和适配者通过对象组合来关联，适配器包含适配者来实现接口转换。它的实现更加灵活，因为它允许在运行时动态的适配不同的适配者。</p>
+</li>
+<li><img src="image-20250528144110116.png" srcset="/img/loading.gif" lazyload alt="image-20250528144110116" style="zoom: 50%;" /></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Adapter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Target</span>&#123;<br>  <span class="hljs-keyword">private</span> Adaptee adaptee;<br>  <span class="hljs-keyword">public</span> <span class="hljs-title function_">Adapter</span><span class="hljs-params">(Adaptee adaptee)</span>&#123;<br>    <span class="hljs-built_in">this</span>.adaptee=adaptee;<br>  &#125;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">request</span><span class="hljs-params">()</span>&#123;<br>    adaptee.specificRequest();<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<ul>
+<li><p><strong>类适配器</strong>：通过多重继承来实现适配。适配器在编译时定义接口关系，更适合应用于支持多重继承的语言。在适配步骤上可能更直接，但是继承关系较为固定。</p>
+</li>
+<li><img src="image-20250528144204267.png" srcset="/img/loading.gif" lazyload alt="image-20250528144204267" style="zoom:50%;" />
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Adapter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Adaptee</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Target</span>&#123;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">request</span><span class="hljs-params">()</span>&#123;<br>    specificRequest();<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<ul>
+<li><p>模式优点</p>
+<ul>
+<li><strong>将目标类和适配者类解耦</strong>，通过引入一个适配器类来重用现有的适配者类，而无须修改原有代码。</li>
+<li><strong>增加了类的透明性和复用性</strong>，将具体的实现封装在适配者类中，对于客户端类来说是透明的，而且提高了适配者的复用性。</li>
+<li><strong>灵活性和扩展性都非常好</strong>，通过使用配置文件，可以很方便地更换适配器，也可以在不修改原有代码的基础上增加新的适配器类，完全符合”开闭原则”。</li>
+<li>类适配器额外的优点：由于适配器类是适配者类的子类，因此<strong>可以在适配器类中置换一些适配者的方法，使得适配器的灵活性更强</strong>。</li>
+<li>对象适配器额外的优点：一个对象适配器可以把多个不同的适配者适配到同一个目标，也就是说，<strong>同一个适配器可以把适配者类和它的子类都适配到目标接口</strong>。</li>
+</ul>
+</li>
+<li><p>模式缺点</p>
+<ul>
+<li>类适配器缺点：对于Java、C#等不支持多重继承的语言，一次最多只能适配一个适配者类，而且目标抽象类(Target)只能为抽象类，不能为具体类，<strong>其使用有一定的局限性</strong>，不能将一个适配者类和它的子类都适配到目标接口。</li>
+<li>对象适配器缺点：与类适配器模式相比，要想<strong>置换适配者类的方法就不容易</strong>。如果一定要置换掉适配者类的一个或多个方法，就只好先做一个适配者类的子类，将适配者类的方法置换掉，然后再把适配者类的子类当做真正的适配者进行适配，实现过程较为复杂。</li>
+</ul>
+</li>
+<li><p>适用情景</p>
+<ul>
+<li>系统<strong>需要使用现有的类</strong>，而这些类的接口不符合系统的需要。</li>
+<li><strong>想要建立一个可以重复使用的类，用于与一些彼此之间没有太大关联的一些类</strong>，包括一些可能在将来引进的类<strong>一起工作</strong>。</li>
+</ul>
+</li>
+<li><p>模式扩展</p>
+<ul>
+<li><p>默认适配器模式</p>
+<ul>
+<li>当不需要全部实现接口提供的方法时，可先设计一个<strong>抽象类实现接口</strong>，并<strong>为该接口中每个方法提供一个默认实现</strong>（空方法），那么该抽象类的子类可有选择地覆盖父类的某些方法来实现需求，它<strong>适用于一个接口不想使用其所有的方法的情况</strong>。因此也称为<strong>单接口适配器模式</strong></li>
+<li><img src="image-20250528151251247.png" srcset="/img/loading.gif" lazyload alt="image-20250528151251247" style="zoom:40%;" /></li>
+</ul>
+</li>
+<li><p>双向适配器</p>
+<ul>
+<li><p>在对象适配器的使用过程中，如果<strong>在适配器中同时包含对目标类和适配者类的引用，适配者可以通过它调用目标类中的方法，目标类也可以通过它调用适配者类中的方法</strong>，那么该适配器就是一个<strong>双向适配器</strong>。</p>
+</li>
+<li><img src="8-1748423335109.png" srcset="/img/loading.gif" lazyload style="zoom:50%;" /></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h3><ul>
+<li><p>概述</p>
+<ul>
+<li><img src="image-20250528152037197.png" srcset="/img/loading.gif" lazyload alt="image-20250528152037197" style="zoom: 80%;" /></li>
+<li>对于<strong>树形结构</strong>，当容器对象（如文件夹）的某一个方法被调用时，将遍历整个树形结构，寻找也包含这个方法的成员对象（可以是容器对象，也可以是叶子对象，如子文件夹和文件）并调用执行。<strong>（递归调用）</strong></li>
+<li>由于容器对象和叶子对象在功能上的区别，在使用这些对象的客户端代码中必须<strong>有区别地对待容器对象和叶子对象</strong>，而实际上<strong>大多数情况下客户端希望一致地处理它们，因为对于这些对象的区别对待将会使得程序非常复杂</strong>。</li>
+<li>组合模式描述了<strong>如何将容器对象和叶子对象进行递归组合</strong>，使得<strong>用户在使用时无须对它们进行区分</strong>，可以<strong>一致地对待容器对象和叶子对象</strong>，这就是组合模式的模式动机。</li>
+</ul>
+</li>
+<li><p>模式定义</p>
+<ul>
+<li>组合模式(Composite Pattern)：组合多个对象形成<strong>树形结构</strong>以<strong>表示”整体-部分”的结构层次</strong>。组合模式对<strong>单个对象（即叶子对象）<strong>和</strong>组合对象（即容器对象）<strong>的</strong>使用具有一致性</strong>。</li>
+<li>组合模式又可以称为<strong>整体-部分(Part-Whole)模式</strong>，属于对象结构模式，它<strong>将对象组织到树结构中，可以用来描述整体与部分的关系</strong>。</li>
+</ul>
+</li>
+<li><p>模式结构</p>
+<ul>
+<li>组合模式包含如下角色：<ol>
+<li>Component: 抽象构件</li>
+<li>Leaf: 叶子构件</li>
+<li>Composite: 容器构件</li>
+<li>Client: 客户类</li>
+</ol>
+</li>
+<li><img src="image-20250528152221884.png" srcset="/img/loading.gif" lazyload alt="image-20250528152221884" style="zoom:50%;" /></li>
+</ul>
+</li>
+<li><p>模式分析</p>
+<ul>
+<li><p>组合模式的关键是<strong>定义了一个抽象构件类</strong>，它既可以代表叶子，又可以代表容器，而<strong>客户端针对该抽象构件类进行编程</strong>，无须知道它到底表示的是叶子还是容器，可以对其进行统一处理。</p>
+</li>
+<li><p>同时<strong>容器对象与抽象构件类之间还建立一个聚合关联关系</strong>，在容器对象中既可以包含叶子，也可以包含容器，以此<strong>实现递归组合，形成一个树形结构</strong>。</p>
+</li>
+<li><img src="11.png" srcset="/img/loading.gif" lazyload style="zoom:50%;" /></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Component</span>&#123;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">add</span><span class="hljs-params">(Component c)</span>;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">remove</span><span class="hljs-params">(Component c)</span>;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> Component <span class="hljs-title function_">getChild</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span>;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">operation</span><span class="hljs-params">()</span>;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Leaf</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Component</span>&#123;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">add</span><span class="hljs-params">(Component c)</span><br>  &#123; <span class="hljs-comment">//异常处理或错误提示 </span><br>  &#125;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">remove</span><span class="hljs-params">(Component c)</span><br>  &#123; <span class="hljs-comment">//异常处理或错误提示 </span><br>  &#125;<br>  <span class="hljs-keyword">public</span> Component <span class="hljs-title function_">getChild</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span><br>  &#123; <span class="hljs-comment">//异常处理或错误提示 </span><br>  &#125;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">operation</span><span class="hljs-params">()</span><br>  &#123;<br>  <span class="hljs-comment">//实现代码</span><br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Composite</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Component</span><br>&#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-type">ArrayList</span> <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>();<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">add</span><span class="hljs-params">(Component c)</span><br>  &#123;<br>    list.add(c);<br>  &#125;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">remove</span><span class="hljs-params">(Component c)</span><br>  &#123;<br>    list.remove(c);<br>  &#125;<br>  <span class="hljs-keyword">public</span> Component <span class="hljs-title function_">getChild</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span><br>  &#123;<br>    (Component)list.get(i);<br>  &#125;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">operation</span><span class="hljs-params">()</span><br>  &#123;<br>    <span class="hljs-keyword">for</span>(Object obj:list)<br>    &#123;<br>      ((Component)obj).operation();<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>模式优点<ul>
+<li>可以清楚地定义<strong>分层次的复杂对象</strong>，表示对象的全部或部分层次，使得增加新构件也更容易。</li>
+<li>客户端调用简单，<strong>客户端可以一致的使用组合结构或其中单个对象</strong>。</li>
+<li>定义了包含叶子对象和容器对象的<strong>类层次结构</strong>，叶子对象可以被组合成更复杂的容器对象，而这个容器对象又可以被组合，这样不断递归下去，<strong>可以形成复杂的树形结构</strong>。</li>
+<li><strong>更容易在组合体内加入对象构件</strong>，客户端不必因为加入了新的对象构件而更改原有代码。</li>
+</ul>
+</li>
+<li>模式缺点<ul>
+<li><strong>使设计变得更加抽象</strong>，对象的业务规则如果很复杂，则实现组合模式具有很大挑战性，而且不是所有的方法都与叶子对象子类都有关联。</li>
+<li>增加新构件时可能会产生一些问题，<strong>很难对容器中的构件类型进行限制</strong>。</li>
+</ul>
+</li>
+<li>适用场景<ul>
+<li>需要表示一个<strong>对象整体或部分层次</strong>，在具有整体和部分的层次结构中，希望通过一种方式忽略整体与部分的差异，可以一致地对待它们。</li>
+<li>让客户能够忽略不同对象层次的变化，<strong>客户端可以针对抽象构件编程，无须关心对象层次结构的细节</strong>。</li>
+<li><strong>对象的结构是动态的并且复杂程度不一样，但客户需要一致地处理它们</strong>。</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-桥接与装饰者"><a href="#8-桥接与装饰者" class="headerlink" title="8. 桥接与装饰者"></a>8. 桥接与装饰者</h2><h3 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h3><blockquote>
+<p>个人理解：桥接模式就是把拥有两个维度的物体（如有颜色的形状）其中一个维度单独拉出来变成一个抽象层，例如颜色，然后用组合关系实现动态的变化和扩展</p>
+</blockquote>
+<ul>
+<li><p>概述</p>
+<ul>
+<li>设想如果要绘制矩形、圆形、椭圆、正方形，我们至少需要4个形状类，但是如果绘制的图形需要具有不同的颜色，如红色、绿色、蓝色等，此时至少有如下两种设计方案：<ol>
+<li>第一种设计方案是为每一种形状都提供一套各种颜色的版本。</li>
+<li>第二种设计方案是根据实际需要对形状和颜色进行组合</li>
+<li><img src="image-20250528154351400.png" srcset="/img/loading.gif" lazyload alt="image-20250528154351400" style="zoom:50%;" /></li>
+</ol>
+</li>
+<li>对于有<strong>两个变化维度（即两个变化的原因）<strong>的系统，采用</strong>方案二</strong>来进行设计系统中类的个数更少，且系统扩展更为方便。设计方案二即是桥接模式的应用。桥接模式<strong>将继承关系转换为关联关系</strong>，从而<strong>降低了类与类之间的耦合</strong>，减少了<strong>代码编写量</strong>。</li>
+<li><img src="2.png" srcset="/img/loading.gif" lazyload style="zoom:50%;" /></li>
+</ul>
+</li>
+<li><p>模式定义</p>
+<ul>
+<li>桥接模式(Bridge Pattern)：<strong>将抽象部分与它的实现部分分离，使它们都可以独立地变化</strong>。它是一种<strong>对象结构型模式</strong>，又称为柄体(Handle and Body)模式或接口(Interface)模式。</li>
+</ul>
+</li>
+<li><p>模式结构</p>
+<ul>
+<li>桥接模式包含如下角色：<ol>
+<li><strong>Abstraction（抽象类）</strong>：<ul>
+<li>定义抽象类的接口，包含对 <code>Implementor</code> 接口的引用。这通常是应用程序中客户端需要使用的接口。</li>
+<li>不一定是抽象类，可以是具体类，关键是定义操作的接口。</li>
+</ul>
+</li>
+<li><strong>RefinedAbstraction（扩充抽象类）</strong>：<ul>
+<li><code>Abstraction</code> 的具体实现，扩展抽象类，实现其中定义的方法。它通过接口操作实现部分。</li>
+<li>处理并调用 <code>Implementor</code> 的方法，细化接口以匹配具体需求。</li>
+</ul>
+</li>
+<li><strong>Implementor（实现类接口）</strong>：<ul>
+<li>定义实现类的接口，它是实现细节部分的接口，与 <code>Abstraction</code> 组件无直接关系。</li>
+<li>提供实现类需要的特定功能。</li>
+</ul>
+</li>
+<li><strong>ConcreteImplementor（具体实现类）</strong>：<ul>
+<li><code>Implementor</code> 接口的具体实现，提供具体的功能实现。</li>
+<li>这些类对 <code>RefinedAbstraction</code> 的请求作出响应。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><img src="3.png" srcset="/img/loading.gif" lazyload style="zoom:50%;" /></li>
+<li>例子：现需要提供大中小3种型号的画笔，能够绘制5种不同颜色，如果使用蜡笔，我们需要准备3*5&#x3D;15支蜡笔，也就是说必须准备15个具体的蜡笔类。而如果使用毛笔的话，只需要3种型号的毛笔，外加5个颜料盒，用3+5&#x3D;8个类就可以实现15支蜡笔的功能。本实例使用桥接模式来模拟毛笔的使用过程。</li>
+<li><img src="4.png" srcset="/img/loading.gif" lazyload style="zoom: 50%;" /></li>
+</ul>
+</li>
+<li><p>模式分析</p>
+<ul>
+<li><strong>抽象化</strong>：抽象化就是忽略一些信息，把不同的实体当作同样的实体对待。在面向对象中，<strong>将对象的共同性质抽取出来形成类的过程即为抽象化的过程</strong>。</li>
+<li><strong>实现化</strong>：<strong>针对抽象化给出的具体实现，就是实现化</strong>，抽象化与实现化是一对互逆的概念，实现化产生的对象比抽象化更具体，是对抽象化事物的进一步具体化的产物。</li>
+<li><strong>脱耦</strong>：脱耦就是<strong>将抽象化和实现化之间的耦合解脱开，或者说是将它们之间的强关联改换成弱关联，将两个角色之间的继承关系改为关联关系</strong>。</li>
+</ul>
+</li>
+<li><p>模式优点</p>
+<ul>
+<li><strong>分离抽象接口及其实现部分。</strong></li>
+<li>桥接模式有时类似于多继承方案，但是多继承方案违背了类的单一职责原则（即一个类只有一个变化的原因），复用性比较差，而且多继承结构中类的个数非常庞大，<strong>桥接模式是比多继承方案更好的解决方法</strong>。</li>
+<li>桥接模式<strong>提高了系统的可扩充性</strong>，在两个变化维度中任意扩展一个维度，都不需要修改原有系统。</li>
+<li><strong>实现细节对客户透明，可以对用户隐藏实现细节。</strong></li>
+</ul>
+</li>
+<li><p>模式缺点</p>
+<ul>
+<li>桥接模式的引入会<strong>增加系统的理解与设计难度</strong>，由于聚合关联关系建立在抽象层，要求开发者针对抽象进行设计与编程。</li>
+<li>桥接模式要求正确识别出系统中两个独立变化的维度，因此<strong>其使用范围具有一定的局限性</strong>。</li>
+</ul>
+</li>
+<li><p>适用场景</p>
+<ul>
+<li>如果一个系统<strong>需要在构件的抽象化角色和具体化角色之间增加更多的灵活性，避免在两个层次之间建立静态的继承联系</strong>，通过桥接模式可以使它们在抽象层建立一个关联关系。</li>
+<li><strong>抽象化角色和实现化角色可以以继承的方式独立扩展而互不影响</strong>，在程序运行时可以动态将一个抽象化子类的对象和一个实现化子类的对象进行组合，即系统需要对抽象化角色和实现化角色进行动态耦合。</li>
+<li>一个类<strong>存在两个独立变化的维度</strong>，且这两个维度都需要进行扩展。</li>
+<li>虽然在系统中使用继承是没有问题的，但是由于抽象化角色和具体化角色需要独立变化，设计要求需要独立管理这两者。</li>
+<li>对于那些<strong>不希望使用继承或因为多层次继承导致系统类的个数急剧增加的系统</strong>，桥接模式尤为适用。</li>
+</ul>
+</li>
+<li><p>模式扩展</p>
+<ul>
+<li>适配器模式与桥接模式：桥接模式和适配器模式用于设计的不同阶段，<strong>桥接模式用于系统的初步设计</strong>，对于存在两个独立变化维度的类可以将其分为抽象化和实现化两个角色，使它们可以分别进行变化；而在初步设计完成之后，<strong>当发现系统与已有类无法协同工作时，可以采用适配器模式</strong>。但有时候在设计初期也需要考虑适配器模式，特别是那些涉及到大量第三方应用接口的情况。</li>
+<li><img src="7.png" srcset="/img/loading.gif" lazyload style="zoom:50%;" /></li>
+</ul>
+</li>
+</ul>
+<h3 id="装饰模式"><a href="#装饰模式" class="headerlink" title="装饰模式"></a>装饰模式</h3><blockquote>
+<p>个人理解：用另一个继承或实现了抽象类&#x2F;接口的类对原来的对象进行装饰，从而实现给它增加属性或行为</p>
+</blockquote>
+<ul>
+<li><p>概述</p>
+<ul>
+<li>一般有两种方式可以实现给一个类或对象增加行为：<strong>继承机制</strong>和<strong>关联机制</strong>（即将一个类的对象嵌入另一个对象中，由另一个对象来决定是否调用嵌入对象的行为来扩展自己）</li>
+<li>与继承关系相比，关联关系的主要优势在于<strong>不会破坏类的封装性</strong>，而且<strong>继承是一种耦合度较大的静态关系，无法在程序运行时动态扩展</strong>。</li>
+<li>由于关联关系使系统具有较好的松耦合性，因此使得<strong>系统更加容易维护</strong>。当然，关联关系的缺点是<strong>比继承关系要创建更多的对象</strong></li>
+<li>装饰模式以<strong>对客户透明的方式动态地给一个对象附加上更多的责任</strong>，换言之，客户端并不会觉得对象在装饰前和装饰后有什么不同。装饰模式可以在<strong>不需要创造更多子类的情况下，将对象的功能加以扩展</strong>。这就是装饰模式的模式动机。</li>
+<li><img src="image-20250528160913422.png" srcset="/img/loading.gif" lazyload alt="image-20250528160913422" style="zoom:50%;" /></li>
+</ul>
+</li>
+<li><p>模式定义</p>
+<ul>
+<li>装饰模式(Decorator Pattern) ：<strong>动态地给一个对象增加一些额外的职责</strong>(Responsibility)，就增加对象功能来说，装饰模式比生成子类实现更为灵活。其别名也可以称为<strong>包装器</strong>(Wrapper)，<strong>与适配器模式的别名相同，但它们适用于不同的场合</strong>。根据翻译的不同，装饰模式也有人称之为”油漆工模式”，它是一种<strong>对象结构型模式</strong>。</li>
+</ul>
+</li>
+<li><p>模式结构</p>
+<ul>
+<li><p>装饰模式包含如下角色：</p>
+<ol>
+<li>Component: 抽象构件</li>
+<li>ConcreteComponent: 具体构件</li>
+<li>Decorator: 抽象装饰类</li>
+<li>ConcreteDecorator: 具体装饰类</li>
+</ol>
+</li>
+<li><img src="image-20250528161025917.png" srcset="/img/loading.gif" lazyload alt="image-20250528161025917" style="zoom:50%;" /></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Decorator</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Component</span><br>&#123;<br>  <span class="hljs-keyword">private</span> Component component;<br>  <span class="hljs-keyword">public</span> <span class="hljs-title function_">Decorator</span><span class="hljs-params">(Component component)</span><br>  &#123;<br>    <span class="hljs-built_in">this</span>.component=component;<br>  &#125;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">operation</span><span class="hljs-params">()</span><br>   &#123;<br>   component.operation();<br>   &#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteDecorator</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Decorator</span><br>&#123;<br>  <span class="hljs-keyword">public</span> <span class="hljs-title function_">ConcreteDecorator</span><span class="hljs-params">(Component component)</span><br>  &#123;<br>    <span class="hljs-built_in">super</span>(component);<br>  &#125;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">operation</span><span class="hljs-params">()</span><br>  &#123;<br>    <span class="hljs-built_in">super</span>.operation(); <span class="hljs-comment">// 原来的行为</span><br>    addedBehavior(); <span class="hljs-comment">// 装饰器给它增加的行为</span><br>  &#125;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addedBehavior</span><span class="hljs-params">()</span><br>  &#123;<br>    <span class="hljs-comment">//新增方法</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><code class="hljs haxe">  <br>- 例子：假设我们要实现一个简单的文本处理系统，其中文本可以被多种方式格式化（比如加上装饰、颜色、尺寸等）。<br>  <br><br>​````java<br><span class="hljs-comment">// Component: 定义接口</span><br><span class="hljs-title class_"><span class="hljs-keyword">interface</span> <span class="hljs-title">Text</span> </span>&#123;<br>    <span class="hljs-keyword">String</span> getContent();<br>&#125;<br><br><span class="hljs-comment">// ConcreteComponent: 实现基本功能的文本类</span><br><span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">PlainText</span> <span class="hljs-keyword"><span class="hljs-keyword">implements</span> <span class="hljs-type">Text</span></span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">String</span> content;<br>    <br>    <span class="hljs-keyword">public</span> PlainText(<span class="hljs-keyword">String</span> content) &#123;<br>        <span class="hljs-built_in">this</span>.content = content;<br>    &#125;<br>    <br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">String</span> getContent() &#123;<br>        <span class="hljs-keyword">return</span> content;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// Decorator: 定义一个抽象装饰者，持有一个组件</span><br><span class="hljs-keyword">abstract</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">TextDecorator</span> <span class="hljs-keyword"><span class="hljs-keyword">implements</span> <span class="hljs-type">Text</span></span> </span>&#123;<br>    protected Text text;<br>    <br>    <span class="hljs-keyword">public</span> TextDecorator(Text text) &#123;<br>        <span class="hljs-built_in">this</span>.text = text;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// ConcreteDecorator: 具体的修饰者，实现装饰功能</span><br><span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">BoldDecorator</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span> <span class="hljs-type">TextDecorator</span></span> </span>&#123;<br>    <span class="hljs-keyword">public</span> BoldDecorator(Text text) &#123;<br>        <span class="hljs-keyword">super</span>(text);<br>    &#125;<br>    <br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">String</span> getContent() &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&lt;b&gt;&quot;</span> + text.getContent() + <span class="hljs-string">&quot;&lt;/b&gt;&quot;</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">ItalicDecorator</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span> <span class="hljs-type">TextDecorator</span></span> </span>&#123;<br>    <span class="hljs-keyword">public</span> ItalicDecorator(Text text) &#123;<br>        <span class="hljs-keyword">super</span>(text);<br>    &#125;<br>    <br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">String</span> getContent() &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&lt;i&gt;&quot;</span> + text.getContent() + <span class="hljs-string">&quot;&lt;/i&gt;&quot;</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 客户代码：使用装饰模式</span><br><span class="hljs-keyword">public</span> <span class="hljs-title class_"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> void main(<span class="hljs-keyword">String</span>[] args) &#123;<br>        <span class="hljs-comment">// 创建一个基本文本对象</span><br>        Text simpleText = <span class="hljs-keyword">new</span><span class="hljs-type"></span> PlainText(<span class="hljs-string">&quot;Hello, World!&quot;</span>);<br>        <br>        <span class="hljs-comment">// 使用装饰者动态添加功能</span><br>        Text boldText = <span class="hljs-keyword">new</span><span class="hljs-type"></span> BoldDecorator(simpleText);<br>        Text italicBoldText = <span class="hljs-keyword">new</span><span class="hljs-type"></span> ItalicDecorator(boldText);<br>        <br>        <span class="hljs-comment">// 输出结果</span><br>        System.out.println(<span class="hljs-string">&quot;Plain Text: &quot;</span> + simpleText.getContent());<br>        System.out.println(<span class="hljs-string">&quot;Bold Text: &quot;</span> + boldText.getContent());<br>        System.out.println(<span class="hljs-string">&quot;Italic and Bold Text: &quot;</span> + italicBoldText.getContent());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>模式优点</p>
+<ul>
+<li>装饰模式与继承关系的目的都是要扩展对象的功能，但是<strong>装饰模式可以提供比继承更多的灵活性</strong>。</li>
+<li>可以<strong>通过一种动态的方式来扩展一个对象的功能</strong>，通过配置文件可以在运行时选择不同的装饰器，从而实现不同的行为。</li>
+<li><strong>通过使用不同的具体装饰类以及这些装饰类的排列组合，可以创造出很多不同行为的组合</strong>。可以使用多个具体装饰类来装饰同一对象，得到功能更为强大的对象。</li>
+<li><strong>具体构件类与具体装饰类可以独立变化</strong>，用户可以根据需要增加新的具体构件类和具体装饰类，在使用时再对其进行组合，原有代码无须改变，符合”开闭原则”。</li>
+</ul>
+</li>
+<li><p>模式缺点</p>
+<ul>
+<li>使用装饰模式进行系统设计时将<strong>产生很多小对象</strong>，这些对象的区别在于它们之间相互连接的方式有所不同，而不是它们的类或者属性值有所不同，同时还将产生很多具体装饰类。这些装饰类和小对象的产生将增加系统的复杂度，加大学习与理解的难度。</li>
+<li>这种比继承更加灵活机动的特性，也同时意味着<strong>装饰模式比继承更加易于出错，排错也很困难，对于多次装饰的对象，调试时寻找错误可能需要逐级排查，较为烦琐</strong>。</li>
+</ul>
+</li>
+<li><p>适用场景</p>
+<ul>
+<li>在不影响其他对象的情况下，<strong>以动态、透明的方式给单个对象添加职责</strong>。</li>
+<li>需要<strong>动态地给一个对象增加功能</strong>，这些功能也可以<strong>动态地被撤销</strong>。</li>
+<li><strong>当不能采用继承的方式对系统进行扩充或者采用继承不利于系统扩展和维护时</strong>。不能采用继承的情况主要有两类：第一类是系统中存在大量独立的扩展，为支持每一种组合将产生大量的子类，使得子类数目呈爆炸性增长；第二类是因为类定义不能继承（如final类）。</li>
+</ul>
+</li>
+<li><p>模式扩展</p>
+<ul>
+<li><strong>一个装饰类的接口必须与被装饰类的接口保持相同</strong>，对于客户端来说无论是装饰之前的对象还是装饰之后的对象都可以一致对待。</li>
+<li>尽量保持具体构件类Component作为一个”轻”类，也就是说<strong>不要把太多的逻辑和状态放在具体构件类中</strong>，可以通过装饰类对其进行扩展。</li>
+<li><strong>如果只有一个具体构件类而没有抽象构件类，那么抽象装饰类可以作为具体构件类的直接子类</strong>。（就不用继承抽象Component或者实现接口了）</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-结构型模式"><a href="#9-结构型模式" class="headerlink" title="9. 结构型模式"></a>9. 结构型模式</h2><blockquote>
+<p>前面的适配器、组合、桥接、装饰都是结构型模式</p>
+</blockquote>
+<h3 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h3><ul>
+<li><p>模式定义</p>
+<ul>
+<li>外观模式(Facade Pattern)：外部与一个子系统的通信必须通过一个<strong>统一的外观对象</strong>进行，为子系统中的一组接口<strong>提供一个一致的界面</strong>，外观模式定义了一个高层接口，这个接口<strong>使得这一子系统更加容易使用</strong>。外观模式又称为<strong>门面模式</strong>，它是一种<strong>对象结构型模式</strong>。</li>
+<li>引入外观角色之后，<strong>用户只需要直接与外观角色交互，用户与子系统之间的复杂关系由外观角色来实现</strong>，从而降低了系统的耦合度。</li>
+<li><img src="image-20250528163853341-1748421559700.png" srcset="/img/loading.gif" lazyload alt="image-20250528163853341" style="zoom:50%;" /></li>
+</ul>
+</li>
+<li><p>模式结构</p>
+<ul>
+<li><p>外观模式包含如下角色：</p>
+<ol>
+<li>Facade: 外观角色</li>
+<li>SubSystem:子系统角色</li>
+</ol>
+</li>
+<li><img src="2-1748423305989.png" srcset="/img/loading.gif" lazyload style="zoom: 40%;" /></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Facade</span><br>&#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-type">SubSystemA</span> <span class="hljs-variable">obj1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SubSystemA</span>();<br>  <span class="hljs-keyword">private</span> <span class="hljs-type">SubSystemB</span> <span class="hljs-variable">obj2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SubSystemB</span>();<br>  <span class="hljs-keyword">private</span> <span class="hljs-type">SubSystemC</span> <span class="hljs-variable">obj3</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SubSystemC</span>();<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">method</span><span class="hljs-params">()</span>&#123;<br>    obj1.method1();<br>    obj2.method2();<br>    obj3.method3();<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>模式分析</p>
+<ul>
+<li>根据“单一职责原则”，<strong>在软件中将一个系统划分为若干个子系统有利于降低整个系统的复杂性</strong>，一个常见的设计目标是使子系统间的通信和相互依赖关系达到最小，而达到该目标的途径之一就是<strong>引入一个外观对象</strong>，它<strong>为子系统的访问提供了一个简单而单一的入口</strong>。</li>
+<li>外观模式也是“迪米特法则”的体现，<strong>通过引入一个新的外观类可以降低原有系统的复杂度</strong>，同时<strong>降低客户类与子系统类的耦合度</strong>。</li>
+<li>外观模式要求一个子系统的外部与其内部的通信<strong>通过一个统一的外观对象进行</strong>，外观类将客户端与子系统的内部复杂性分隔开，使得<strong>客户端只需要与外观对象打交道，而不需要与子系统内部的很多对象打交道</strong>。</li>
+<li>外观模式的目的在于<strong>降低系统的复杂程度</strong>。</li>
+<li>外观模式从很大程度上<strong>提高了客户端使用的便捷性</strong>，使得客户端无须关心子系统的工作细节，通过外观角色即可调用相关功能。</li>
+<li>例子：电源总开关<ul>
+<li><img src="3-1748421781646.png" srcset="/img/loading.gif" lazyload style="zoom:50%;" /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>模式优点</p>
+<ul>
+<li><strong>对客户屏蔽子系统组件，减少了客户处理的对象数目并使得子系统使用起来更加容易</strong>。通过引入外观模式，客户代码将变得很简单，与之关联的对象也很少。</li>
+<li><strong>实现了子系统与客户之间的松耦合关系</strong>，这使得子系统的组件变化不会影响到调用它的客户类，只需要调整外观类即可。</li>
+<li><strong>降低了大型软件系统中的编译依赖性，并简化了系统在不同平台之间的移植过程</strong>，因为编译一个子系统一般不需要编译所有其他的子系统。一个子系统的修改对其他子系统没有任何影响，而且子系统内部变化也不会影响到外观对象。</li>
+<li><strong>只是提供了一个访问子系统的统一入口，并不影响用户直接使用子系统类</strong>。</li>
+</ul>
+</li>
+<li><p>模式缺点</p>
+<ul>
+<li><strong>不能很好地限制客户使用子系统类</strong>，如果对客户访问子系统类做太多的限制则减少了可变性和灵活性。</li>
+<li>在不引入<strong>抽象外观类</strong>的情况下，<strong>增加新的子系统可能需要修改外观类或客户端的源代码，违背了“开闭原则”</strong>。</li>
+</ul>
+</li>
+<li><p>适用场景</p>
+<ul>
+<li><strong>当要为一个复杂子系统提供一个简单接口时可以使用外观模式</strong>。该接口可以满足大多数用户的需求，而且用户也可以越过外观类直接访问子系统。</li>
+<li><strong>客户程序与多个子系统之间存在很大的依赖性</strong>。引入外观类将子系统与客户以及其他子系统解耦，可以提高子系统的独立性和可移植性。</li>
+<li>在层次化结构中，可以<strong>使用外观模式定义系统中每一层的入口，层与层之间不直接产生联系，而通过外观类建立联系，降低层之间的耦合度</strong>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h3><ul>
+<li><p>概述</p>
+<ul>
+<li>面向对象技术可以很好地解决一些灵活性或可扩展性问题，但在很多情况下需要在系统中增加类和对象的个数。<strong>当对象数量太多时，将导致运行代价过高，带来性能下降等问题</strong>。</li>
+<li><strong>享元模式</strong>正是为解决这一类问题而诞生的。<strong>享元模式通过共享技术实现相同或相似对象的重用</strong>。</li>
+<li>在享元模式中<strong>可以共享的相同内容称为内部状态</strong>(Intrinsic State)，而那些<strong>需要外部环境来设置的不能共享的内容称为外部状态</strong>(Extrinsic State)，相同的内部状态是可以共享的</li>
+<li>在享元模式中通常会出现工厂模式，需要<strong>创建一个享元工厂来负责维护一个享元池(Flyweight Pool)用于存储具有相同内部状态的享元对象</strong>。</li>
+<li>在享元模式中共享的是享元对象的内部状态，外部状态需要通过环境来设置。在实际使用中，能够共享的内部状态是有限的，因此<strong>享元对象一般都设计为较小的对象</strong>，它所包含的内部状态较少，这种对象也称为细粒度对象。<strong>享元模式的目的就是使用共享技术来实现大量细粒度对象的复用</strong>。</li>
+</ul>
+</li>
+<li><p>模式定义</p>
+<ul>
+<li>享元模式(<strong>Flyweight Pattern</strong>)：运用<strong>共享技术</strong>有效地支持大量<strong>细粒度对象</strong>的复用。系统只使用少量的对象，<strong>而这些对象都很相似，状态变化很小</strong>，可以实现对象的多次复用。由于享元模式要求能够共享的对象必须是细粒度对象，因此它又称为<strong>轻量级模式</strong>，它是一种<strong>对象结构型模式</strong>。</li>
+</ul>
+</li>
+<li><p>模式结构</p>
+<ul>
+<li><p>享元模式包含如下角色：</p>
+<ol>
+<li>Flyweight: 抽象享元类</li>
+<li>ConcreteFlyweight: 具体享元类</li>
+<li>UnsharedConcreteFlyweight: 非共享具体享元类</li>
+<li>FlyweightFactory: 享元工厂类</li>
+</ol>
+</li>
+<li><img src="8.png" srcset="/img/loading.gif" lazyload style="zoom:50%;" /></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FlyweightFactory</span>&#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-type">HashMap</span> <span class="hljs-variable">flyweights</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>();<br>  <span class="hljs-keyword">public</span> Flyweight <span class="hljs-title function_">getFlyweight</span><span class="hljs-params">(String key)</span><br>  &#123;<br>    <span class="hljs-keyword">if</span>(flyweights.containsKey(key))<br>    &#123;<br>      <span class="hljs-keyword">return</span> (Flyweight)flyweights.get(key);<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>      <span class="hljs-type">Flyweight</span> <span class="hljs-variable">fw</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConcreteFlyweight</span>();<br>      flyweights.put(key,fw);<br>      <span class="hljs-keyword">return</span> fw;<br>    &#125;<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Flyweight</span><br>&#123;<br>  <span class="hljs-comment">//内部状态作为成员属性</span><br>  <span class="hljs-keyword">private</span> String intrinsicState;<br>  <span class="hljs-keyword">public</span> <span class="hljs-title function_">Flyweight</span><span class="hljs-params">(String intrinsicState)</span><br>  &#123;<br>    <span class="hljs-built_in">this</span>.intrinsicState = intrinsicState;<br>  &#125;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">operation</span><span class="hljs-params">(String extrinsicState)</span><br>  &#123;<br>  ......<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>模式分析</p>
+<ul>
+<li>享元模式是一个考虑系统性能的设计模式，通过使用享元模式可以节约内存空间，提高系统的性能</li>
+<li>享元模式的核心在于<strong>享元工厂类</strong>，<strong>享元工厂类的作用在于提供一个用于存储享元对象的享元池</strong>，用户需要对象时，首先从享元池中获取，<strong>如果享元池中不存在，则创建一个新的享元对象返回给用户，并在享元池中保存该新增对象</strong>。</li>
+</ul>
+</li>
+<li><p>模式优点</p>
+<ul>
+<li>享元模式的优点在于它可以<strong>极大减少内存中对象的数量</strong>，使得相同对象或相似对象在内存中只保存一份。</li>
+<li>享元模式的外部状态相对独立，而且不会影响其内部状态，从而使得<strong>享元对象可以在不同的环境中被共享</strong>。</li>
+</ul>
+</li>
+<li><p>模式缺点</p>
+<ul>
+<li>享元模式使得系统更加复杂，需要<strong>分离出内部状态和外部状态，这使得程序的逻辑复杂化</strong>。</li>
+<li>为了使对象可以共享，享元模式<strong>需要将享元对象的状态外部化，而读取外部状态使得运行时间变长</strong>。</li>
+</ul>
+</li>
+<li><p>适用场景</p>
+<ul>
+<li>一个系统有<strong>大量相同或者相似的对象</strong>，由于这类对象的大量使用，造成内存的大量耗费。</li>
+<li>对象的<strong>大部分状态都可以外部化</strong>，可以将这些外部状态传入对象中。</li>
+<li>使用享元模式需要维护一个存储享元对象的享元池，而这需要耗费资源，因此，<strong>应当在多次重复使用享元对象时才值得使用享元模式</strong>。</li>
+</ul>
+</li>
+<li><p>模式扩展</p>
+<ul>
+<li><strong>单纯享元模式</strong>：在单纯享元模式中，<strong>所有的享元对象都是可以共享的</strong>，即所有抽象享元类的子类都可共享，不存在非共享具体享元类。</li>
+<li><strong>复合享元模式</strong>：将一些单纯享元使用组合模式加以组合，可以形成复合享元对象，这样的复合享元对象本身不能共享，但是它们可以分解成单纯享元对象，而后者则可以共享</li>
+<li>在享元模式的享元工厂类中通常<strong>提供一个静态的工厂方法用于返回享元对象</strong>，使用简单工厂模式来生成享元对象。</li>
+<li>在一个系统中，通常只有唯一一个享元工厂，因此<strong>享元工厂类可以使用单例模式进行设计</strong>。</li>
+<li>享元模式可以结合组合模式形成<strong>复合享元模式</strong>，统一对享元对象设置外部状态。</li>
+</ul>
+</li>
+</ul>
+<h3 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h3><ul>
+<li><p>概述</p>
+<ul>
+<li>在某些情况下，<strong>一个客户不想或者不能直接引用一个对象，此时可以通过一个称之为“代理”的第三者来实现间接引用</strong>。代理对象可以在<strong>客户端和目标对象之间起到中介的作用</strong>，并且可以<strong>通过代理对象去掉客户不能看到的内容和服务或者添加客户需要的额外服务</strong>。</li>
+<li>通过引入一个新的对象来实现<strong>对真实对象的操作</strong>或者<strong>将新的对象作为真实对象的一个替身</strong>，这种实现机制即为<strong>代理模式</strong>。通过引入代理对象来间接访问一个对象，这就是代理模式的模式动机。</li>
+</ul>
+</li>
+<li><p>模式定义</p>
+<ul>
+<li>代理模式(<strong>Proxy Pattern</strong>) ：给某一个对象<strong>提供一个代理</strong>，并<strong>由代理对象控制对原对象的引用</strong>。代理模式的英文叫做<strong>Proxy或Surrogate</strong>，它是一种<strong>对象结构型模式</strong>。</li>
+<li>思想简单，但是变体很多</li>
+</ul>
+</li>
+<li><p>模式结构</p>
+<ul>
+<li><p>代理模式包含如下角色：</p>
+<ol>
+<li>Subject: 抽象主题角色</li>
+<li>Proxy: 代理主题角色</li>
+<li>RealSubject: 真实主题角色</li>
+</ol>
+</li>
+<li><img src="17.png" srcset="/img/loading.gif" lazyload style="zoom:40%;" />
+</li>
+<li><img src="image-20250528174952509.png" srcset="/img/loading.gif" lazyload alt="image-20250528174952509" style="zoom:50%;" /></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Proxy</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Subject</span>&#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-type">RealSubject</span> <span class="hljs-variable">realSubject</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RealSubject</span>();<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">preRequest</span><span class="hljs-params">()</span><br>  &#123;......&#125;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">request</span><span class="hljs-params">()</span><br>  &#123;<br>    preRequest();<br>    realSubject.request();<br>    postRequest();<br>  &#125;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">postRequest</span><span class="hljs-params">()</span><br>  &#123;......&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>模式优点</p>
+<ul>
+<li>代理模式能够<strong>协调调用者和被调用者</strong>，在一定程度上降低了系统的耦合度。</li>
+<li><strong>远程代理使得客户端可以访问在远程机器上的对象</strong>，远程机器可能具有更好的计算性能与处理速度，可以快速响应并处理客户端请求。</li>
+<li><strong>虚拟代理</strong>通过使用一个小对象来代表一个大对象，<strong>可以减少系统资源的消耗，对系统进行优化并提高运行速度。</strong></li>
+<li><strong>保护代理可以控制对真实对象的使用权限。</strong></li>
+</ul>
+</li>
+<li><p>模式缺点</p>
+<ul>
+<li>由于在客户端和真实主题之间增加了代理对象，因此<strong>有些类型的代理模式可能会造成请求的处理速度变慢</strong>。</li>
+<li><strong>实现代理模式需要额外的工作，有些代理模式的实现非常复杂</strong>。</li>
+</ul>
+</li>
+<li><p>适用场景</p>
+<ul>
+<li><strong>远程(Remote)代理</strong>：为一个位于不同的地址空间的对象提供一个本地的代理对象，这个不同的地址空间可以是在同一台主机中，也可是在另一台主机中，远程代理又叫做大使(Ambassador)。</li>
+<li><strong>虚拟(Virtual)代理</strong>：如果需要创建一个资源消耗较大的对象，先创建一个消耗相对较小的对象来表示，真实对象只在需要时才会被真正创建。</li>
+<li><strong>Copy-on-Write代理</strong>：它是虚拟代理的一种，把复制（克隆）操作延迟到只有在客户端真正需要时才执行。一般来说，对象的深克隆是一个开销较大的操作，Copy-on-Write代理可以让这个操作延迟，只有对象被用到的时候才被克隆。</li>
+<li><strong>保护(Protect or Access)代理</strong>：控制对一个对象的访问，可以给不同的用户提供不同级别的使用权限。</li>
+<li><strong>缓冲(Cache)代理</strong>：为某一个目标操作的结果提供临时的存储空间，以便多个客户端可以共享这些结果。</li>
+<li><strong>防火墙(Firewall)代理</strong>：保护目标不让恶意用户接近。</li>
+<li><strong>智能引用(Smart Reference)代理</strong>：当一个对象被引用时，提供一些额外的操作，如将此对象被调用的次数记录下来等。</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="../../../../categories/%E6%A0%B8%E5%BF%83%E8%AF%BE/" class="category-chain-item">核心课</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="../../../../tags/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" class="print-no-link">#软件系统设计</a>
+      
+        <a href="../../../../tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="print-no-link">#设计模式</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>软件系统设计(设计模式部分)</div>
+      <div>https://frosty-xue.github.io/2025/06/06/软件系统设计-设计模式部分/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Frosty</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 6, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="../../03/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%9E%B6%E6%9E%84%E9%83%A8%E5%88%86/" title="软件系统设计整理(架构部分)">
+                        <span class="hidden-mobile">软件系统设计整理(架构部分)</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="../../../../js/events.js" ></script>
+<script  src="../../../../js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="../../../../js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="../../../../js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="../../../../js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
