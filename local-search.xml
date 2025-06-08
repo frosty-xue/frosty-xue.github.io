@@ -567,6 +567,10 @@
     
     <tags>
       
+      <tag>算法</tag>
+      
+      <tag>数据结构</tag>
+      
       <tag>DFS</tag>
       
       <tag>BFS</tag>
@@ -578,10 +582,6 @@
       <tag>回溯</tag>
       
       <tag>递归</tag>
-      
-      <tag>数据结构</tag>
-      
-      <tag>算法</tag>
       
     </tags>
     
@@ -606,6 +606,10 @@
     
     <tags>
       
+      <tag>算法</tag>
+      
+      <tag>数据结构</tag>
+      
       <tag>DFS</tag>
       
       <tag>BFS</tag>
@@ -615,10 +619,6 @@
       <tag>深度优先遍历</tag>
       
       <tag>递归</tag>
-      
-      <tag>数据结构</tag>
-      
-      <tag>算法</tag>
       
       <tag>拓扑排序</tag>
       
@@ -649,9 +649,9 @@
     
     <tags>
       
-      <tag>数据结构</tag>
-      
       <tag>算法</tag>
+      
+      <tag>数据结构</tag>
       
       <tag>链表</tag>
       
@@ -678,9 +678,9 @@
     
     <tags>
       
-      <tag>算法</tag>
-      
       <tag>二分查找</tag>
+      
+      <tag>算法</tag>
       
     </tags>
     
@@ -923,9 +923,9 @@
     
     <tags>
       
-      <tag>数据结构</tag>
-      
       <tag>算法</tag>
+      
+      <tag>数据结构</tag>
       
     </tags>
     
