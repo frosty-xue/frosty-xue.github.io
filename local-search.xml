@@ -198,9 +198,9 @@
     
     <tags>
       
-      <tag>Redis</tag>
-      
       <tag>数据库</tag>
+      
+      <tag>Redis</tag>
       
       <tag>NoSQL</tag>
       
@@ -229,9 +229,9 @@
     
     <tags>
       
-      <tag>数据库</tag>
-      
       <tag>MySQL</tag>
+      
+      <tag>数据库</tag>
       
       <tag>SQL</tag>
       
@@ -569,8 +569,6 @@
       
       <tag>算法</tag>
       
-      <tag>数据结构</tag>
-      
       <tag>DFS</tag>
       
       <tag>BFS</tag>
@@ -582,6 +580,8 @@
       <tag>回溯</tag>
       
       <tag>递归</tag>
+      
+      <tag>数据结构</tag>
       
     </tags>
     
@@ -608,8 +608,6 @@
       
       <tag>算法</tag>
       
-      <tag>数据结构</tag>
-      
       <tag>DFS</tag>
       
       <tag>BFS</tag>
@@ -619,6 +617,8 @@
       <tag>深度优先遍历</tag>
       
       <tag>递归</tag>
+      
+      <tag>数据结构</tag>
       
       <tag>拓扑排序</tag>
       
